@@ -6,8 +6,6 @@
       enableSSHSupport = true;
     };
   };
-  tmux = import ./tmux.nix;
-
-  bash.enable = true;
+  # tmux = import ./tmux.nix;
   zsh.enable = true;
 }

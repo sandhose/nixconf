@@ -7,6 +7,8 @@
 
   systemPackages =
     with pkgs; [
+      zsh-funcs
+
       curl
       htop
       jq
@@ -18,10 +20,10 @@
       postgresql_12
       pinentry_mac
       weechat
-      home-manager
+      tmux
 
       scons
-      gcc-arm-embedded
+      # gcc-arm-embedded
       nnn
       nats-streaming-server
       sshpass
@@ -84,7 +86,7 @@
     ];
 
   variables = {
-    EDITOR = "nvim";
+    EDITOR = "${pkgs.neovim}/bin/nvim";
     LANG = "en_US.UTF-8";
   };
 }

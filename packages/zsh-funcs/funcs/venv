@@ -1,0 +1,10 @@
+if [ "`git rev-parse --is-inside-work-tree 2>/dev/null`" = "true" ]; then
+    ACTIVATE=`git rev-parse --show-toplevel`/.venv/bin/activate
+else
+    ACTIVATE=./.venv/bin/activate
+fi
+if [ -f "$ACTIVATE" ]; then
+    source $ACTIVATE
+else
+    echo "No virtualenv found"
+fi

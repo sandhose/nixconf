@@ -7,6 +7,7 @@
       });
 
       fly = pkgs.callPackage ../packages/fly { };
+      zsh-funcs = pkgs.callPackage ../packages/zsh-funcs { };
     };
 
     allowUnsupportedSystem = true;
