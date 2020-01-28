@@ -1,11 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ <home-manager/nix-darwin> ];
+  imports = [
+    <home-manager/nix-darwin>
+    ../../common
+  ];
   environment = import ./environment.nix { inherit pkgs; };
   programs = import ./programs.nix;
   nix = import ./nix.nix { inherit pkgs; };
-  nixpkgs = import ./nixpkgs.nix;
+  # nixpkgs = import ./nixpkgs.nix;
   system = import ./system.nix;
 
   users.users = {
@@ -17,8 +20,8 @@
   };
 
   home-manager.users.sandhose = { pkgs, ... }: {
-    home = import ../home/home.nix { inherit pkgs; };
-    programs = import ../home/programs.nix { inherit pkgs; };
+    home = import ../../home/home.nix { inherit pkgs; };
+    programs = import ../../home/programs.nix { inherit pkgs; };
   };
 
   fonts.fonts = with pkgs; [

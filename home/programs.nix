@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 with builtins; {
   git = {
     enable = true;
@@ -35,7 +35,9 @@ with builtins; {
       vim = "${pkgs.neovim}/bin/nvim";
     };
 
-    initExtra = readFile ./files/additional.zsh;
+    initExtra = ''
+        source ${config.lib.base16.base16template "shell"}
+    '' + readFile ./files/additional.zsh;
   };
 
   tmux = {
