@@ -21,7 +21,7 @@
 
   home-manager.users.sandhose = { pkgs, ... }: {
     home = import ../../home/home.nix { inherit pkgs; };
-    programs = import ../../home/programs.nix { inherit pkgs; };
+    programs = import ../../home/programs.nix { inherit pkgs; inherit config; };
   };
 
   fonts.fonts = with pkgs; [

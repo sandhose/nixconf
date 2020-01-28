@@ -9,7 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       <home-manager/nixos>
-      <base16/base16.nix>
       ../../common
     ];
 
@@ -70,7 +69,7 @@
 
   services.zfs = {
     autoScrub = {
-      enable = true; 
+      enable = true;
       interval = "daily";
     };
     autoSnapshot = {
@@ -81,7 +80,7 @@
     trim = {
       enable = true;
       interval = "daily";
-    }; 
+    };
   };
 
   # Open ports in the firewall.
@@ -123,12 +122,6 @@
     };
   };
 
-  themes.base16 = {
-    enable = true;
-    scheme = "default";
-    variant = "default-dark";
-  }; 
-
   home-manager.users.sandhose = { pkgs, ... }: {
     home = import ../../home/home.nix { inherit pkgs; };
     programs = import ../../home/programs.nix { inherit pkgs; inherit config; };
@@ -141,4 +134,3 @@
   system.stateVersion = "19.09"; # Did you read the comment?
 
 }
-

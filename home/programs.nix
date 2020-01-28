@@ -32,12 +32,73 @@ with builtins; {
 
     shellAliases = {
       zmv = "noglob zmv -W";
-      vim = "${pkgs.neovim}/bin/nvim";
     };
 
-    initExtra = ''
-        source ${config.lib.base16.base16template "shell"}
-    '' + readFile ./files/additional.zsh;
+    plugins = [{
+      name = "base16-shell";
+      src = pkgs.fetchFromGitHub {
+        owner = "chriskempson";
+        repo = "base16-shell";
+        rev = "ce8e1e5";
+        sha256 = "1yj36k64zz65lxh28bb5rb5skwlinixxz6qwkwaf845ajvm45j1q";
+      };
+    }];
+
+    initExtra = readFile ./files/additional.zsh;
+  };
+
+  neovim = {
+    enable = true;
+    vimAlias = true;
+
+    extraConfig = readFile ./files/vimrc;
+
+    plugins = with pkgs.vimPlugins; [
+      undotree
+      nerdtree
+      nerdtree-git-plugin
+      vim-fugitive
+      vim-gitgutter
+      vim-surround
+      vim-easy-align
+      supertab
+      editorconfig-vim
+      ale
+      fzf-vim
+      LanguageClient-neovim
+      ncm2
+      nvim-yarp
+      ncm2-bufword
+      ncm2-path
+      ncm2-ultisnips
+      # ncm2-go
+      ultisnips
+      vim-snippets
+      # andrewstuart/vim-kubernetes
+      vim-airline
+      base16-vim
+      vim-airline-themes
+      # edkolev/tmuxline.vim
+      vim-polyglot
+      vim-go
+      # vim-scripts/scons.vim
+      # flowtype/vim-flow
+      # vim-scripts/coq-syntax
+      # andreshazard/vim-freemarker
+      # jparise/vim-graphql
+      # Harenome/vim-mipssyntax
+      # fremff/vim-css-syntax
+      # vim-scripts/lbnf.vim
+      # leafo/moonscript-vim
+      # quabug/vim-gdscript
+      # jxnblk/vim-mdx-js
+      # b4b4r07/vim-hcl
+      # tpope/vim-db
+      # stfl/meson.vim
+      goyo-vim
+      limelight-vim
+      vim-indent-guides
+    ];
   };
 
   tmux = {

@@ -2,8 +2,8 @@
 
 {
   # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
+  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/configuration.nix
+  darwinConfig = "$HOME/.config/nixpkgs/configuration.nix";
 
   systemPackages =
     with pkgs; [
