@@ -5,6 +5,8 @@
     ../home
   ];
 
+  environment = import ./environment.nix { inherit pkgs; };
+
   nixpkgs.config = {
     packageOverrides = pkgs: {
       neomutt = pkgs.neomutt.overrideAttrs (attrs: attrs // {
