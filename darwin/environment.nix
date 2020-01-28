@@ -9,19 +9,24 @@
     with pkgs; [
       zsh-funcs
 
+      cocoapods
+      nmap
+      bazel
+      zola
       curl
       htop
       jq
       vim
       neovim
-      vagrant
+      # vagrant
       terraform
       pwgen
       postgresql_12
       pinentry_mac
-      weechat
+      # weechat
       tmux
 
+      libssh2
       scons
       # gcc-arm-embedded
       nnn
@@ -32,6 +37,10 @@
       kubeseal
       libcoap
       python37Packages.onkyo-eiscp
+      python37Packages.ansible
+
+      nanomsg
+      libffi
 
       doctl
       git
@@ -41,8 +50,8 @@
       python3
       iperf
       isync
-      gradle
-      maven
+      # gradle
+      # maven
       kubectl
       kubernetes-helm
       kustomize
