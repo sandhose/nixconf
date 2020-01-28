@@ -56,9 +56,6 @@
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-  programs.zsh = {
-    enable = true;
-  };
 
   # List services that you want to enable:
 
@@ -120,11 +117,6 @@
       shell = pkgs.zsh;
       extraGroups = [ "wheel" ];
     };
-  };
-
-  home-manager.users.sandhose = { pkgs, ... }: {
-    home = import ../../home/home.nix { inherit pkgs; };
-    programs = import ../../home/programs.nix { inherit pkgs; inherit config; };
   };
 
   # This value determines the NixOS release with which your system is to be

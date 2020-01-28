@@ -6,9 +6,10 @@
     ../../common
   ];
   environment = import ./environment.nix { inherit pkgs; };
-  programs = import ./programs.nix;
+  programs = {
+    nix-index.enable = true;
+  };
   nix = import ./nix.nix { inherit pkgs; };
-  # nixpkgs = import ./nixpkgs.nix;
   system = import ./system.nix;
 
   users.users = {
@@ -17,11 +18,6 @@
       shell = pkgs.zsh;
       home = "/Users/sandhose";
     };
-  };
-
-  home-manager.users.sandhose = { pkgs, ... }: {
-    home = import ../../home/home.nix { inherit pkgs; };
-    programs = import ../../home/programs.nix { inherit pkgs; inherit config; };
   };
 
   fonts.fonts = with pkgs; [

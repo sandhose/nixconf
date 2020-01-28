@@ -1,6 +1,10 @@
 { pkgs, config, ... }:
 
-{ 
+{
+  imports = [
+    ../home
+  ];
+
   nixpkgs.config = {
     packageOverrides = pkgs: {
       neomutt = pkgs.neomutt.overrideAttrs (attrs: attrs // {
@@ -14,5 +18,15 @@
 
     allowUnsupportedSystem = true;
     allowUnfree = true;
+  };
+
+  programs = {
+    gnupg = {
+      agent = {
+        enable = true;
+        enableSSHSupport = true;
+      };
+    };
+    zsh.enable = true;
   };
 }

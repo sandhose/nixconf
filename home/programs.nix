@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 with builtins; {
   git = {
     enable = true;
@@ -115,6 +115,7 @@ with builtins; {
       set -g mouse on
       bind R move-window -r
       bind P attach -c "#{pane_current_path}"
+      set -g default-command "${pkgs.zsh}/bin/zsh"
 
       source -q ~/.tmuxline-theme.conf
     '';
