@@ -20,9 +20,5 @@
     };
   };
 
-  fonts.fonts = with pkgs; [
-    fira-code
-  ];
-
   services.nix-daemon.enable = true;
 }

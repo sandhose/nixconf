@@ -34,13 +34,13 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Select internationalisation properties.
-  i18n = {
-    consoleFont = "Lat2-Terminus16";
-    # consoleKeyMap = "fr";
-    defaultLocale = "en_US.UTF-8";
-    consoleUseXkbConfig = true;
+  console = {
+    font = "Lat2-Terminus16";
+    useXkbConfig = true;
   };
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -48,8 +48,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget vim
-    zsh-funcs
+    google-chrome
+    steam
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -63,6 +63,8 @@
   services.openssh.enable = true;
 
   services.fwupd.enable = true;
+
+  services.tcsd.enable = true;
 
   services.zfs = {
     autoScrub = {
@@ -92,6 +94,9 @@
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+  hardware.pulseaudio.support32Bit = true;
 
   services.xserver = {
     enable = true;

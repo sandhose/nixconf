@@ -31,4 +31,9 @@
     };
     zsh.enable = true;
   };
+
+  fonts.fonts = with pkgs; [
+    fira-code
+    roboto
+  ];
 }

@@ -22,7 +22,7 @@
       jq
       kubectl
       kubernetes-helm
-      kubeseal
+      # kubeseal
       kustomize
       mosh
       mosquitto
