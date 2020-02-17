@@ -120,4 +120,14 @@ with builtins; {
       source -q ~/.tmuxline-theme.conf
     '';
   };
+
+  npm = {
+    enable = true;
+    npmrc = {
+      enable = true;
+      # followXDG = true;
+    };
+
+    prefix = ".local/lib/node_modules";
+  };
 }
