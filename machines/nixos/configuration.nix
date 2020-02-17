@@ -34,6 +34,10 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  networking.hosts = {
+    "127.0.0.1" = ["scraping.obs.coe.int" "scraping-staging.obs.coe.int"];
+  };
+
   console = {
     font = "Lat2-Terminus16";
     useXkbConfig = true;
@@ -64,7 +68,7 @@
 
   services.fwupd.enable = true;
 
-  services.tcsd.enable = true;
+  # services.tcsd.enable = true;
 
   services.zfs = {
     autoScrub = {
@@ -112,6 +116,31 @@
     xkbVariant = "mac";
   };
 
+  virtualisation.docker = {
+    enable = true;
+    storageDriver = "zfs";
+  };
+
+  docker-containers = {
+    traefik = {
+      cmd = [
+        "--api.insecure=true"
+        "--providers.docker"
+        "--providers.docker.defaultRule=Host(`{{ trimPrefix `/` .Name }}.localhost`)"
+      ];
+      volumes = [
+        "/var/run/docker.sock:/var/run/docker.sock"
+      ];
+      image = "library/traefik:v2.1";
+      ports = [
+        "80:80"
+      ];
+      extraDockerOptions = [
+        "--label=traefik.http.services.traefik.loadbalancer.server.port=8080"
+      ];
+    };
+  };
+
   users = {
     groups.sandhose = { };
     users.sandhose = {
@@ -120,7 +149,7 @@
       group = "sandhose";
       home = "/home/sandhose";
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "docker" ];
 
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKI3JrkOofavtPW8jV/GYM5Mv1gn/h732JPm82SGGj50 sandhose@sandhose-laptop"

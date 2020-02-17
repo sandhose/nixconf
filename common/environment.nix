@@ -6,6 +6,7 @@
       bazel
       curl
       doctl
+      docker-compose
       editorconfig-core-c
       fly
       git
@@ -22,12 +23,13 @@
       jq
       kubectl
       kubernetes-helm
-      # kubeseal
+      kubeseal
       kustomize
       mosh
       mosquitto
       neovim
       nix-du
+      nix-index
       nmap
       nodejs
       pandoc

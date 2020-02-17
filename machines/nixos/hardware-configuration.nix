@@ -33,6 +33,11 @@
       fsType = "zfs";
     };
 
+  fileSystems."/var/lib/docker" =
+    { device = "rpool/root/docker";
+      fsType = "zfs";
+    };
+
   fileSystems."/nix" =
     { device = "rpool/nix";
       fsType = "zfs";
