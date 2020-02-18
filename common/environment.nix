@@ -8,7 +8,7 @@
       doctl
       docker-compose
       editorconfig-core-c
-      fly
+      # fly
       git
       git-lfs
       gnupg
