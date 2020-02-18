@@ -79,7 +79,10 @@ with builtins; {
       base16-vim
       vim-airline-themes
       # edkolev/tmuxline.vim
-      vim-polyglot
+      # vim-polyglot
+      yats-vim
+      # typescript-vim
+      vim-jsx-pretty
       vim-go
       # vim-scripts/scons.vim
       # flowtype/vim-flow
@@ -97,7 +100,7 @@ with builtins; {
       # stfl/meson.vim
       goyo-vim
       limelight-vim
-      vim-indent-guides
+      # vim-indent-guides
     ];
   };
 

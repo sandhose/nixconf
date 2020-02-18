@@ -50,12 +50,27 @@ let g:tmuxline_preset = {
       \'cwin' : '#I #W',
       \'x'    : '%a %d %b',
       \'y'    : '%R',
-      \'z'    : '#(~/.local/bin/music.sh)#h',
+      \'z'    : '#h',
       \'options': { 'status-justify': 'left' },
       \'win_options': { 'window-status-activity-attr': 'none' }}
 
 
 let g:autoswap_detect_tmux = 1
+
+let g:LanguageClient_diagnosticsEnable=0
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['typescript-language-server', '--stdio'],
+    \ 'javascriptreact': ['typescript-language-server', '--stdio'],
+    \ 'typescript': ['typescript-language-server', '--stdio'],
+    \ 'typescriptreact': ['typescript-language-server', '--stdio'],
+    \ }
+
+let g:LanguageClient_rootMarkers = {
+    \ 'javascript': ['jsconfig.json'],
+    \ 'javascriptreact': ['jsconfig.json'],
+    \ 'typescript': ['tsconfig.json'],
+    \ 'typescriptreact': ['tsconfig.json'],
+    \ }
 
 
 " Syntax highlighting {{{
@@ -120,7 +135,7 @@ set noshowmode " Don't show the current mode (airline.vim takes care of us)
 set nostartofline " Don't reset cursor to start of line when moving around
 set nu " Enable line numbers
 set ofu=syntaxcomplete#Complete " Set omni-completion method
-set regexpengine=1 " Use the old regular expression engine (it's faster for certain language syntaxes)
+set regexpengine=0 " Use the old regular expression engine (it's faster for certain language syntaxes)
 set report=0 " Show all changes
 set ruler " Show the cursor position
 set scrolloff=3 " Start scrolling three lines before horizontal border of window
@@ -211,4 +226,11 @@ nnoremap <Leader>m :set list!<CR>
 nnoremap <Leader>jp :%!json_pp<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
 " }}}

@@ -57,5 +57,7 @@
       youtube-dl
       yq
       zsh-funcs
+
+      nodePackages.typescript-language-server
     ];
 }
