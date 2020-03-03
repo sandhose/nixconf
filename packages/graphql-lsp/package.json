@@ -1,0 +1,11 @@
+{
+  "name": "graphql-lsp",
+  "version": "1.0.0",
+  "dependencies": {
+    "graphql": "14.6.0",
+    "graphql-language-service": "2.4.0-alpha.1"
+  },
+  "bin": {
+    "graphql-lsp": "index.js"
+  }
+}

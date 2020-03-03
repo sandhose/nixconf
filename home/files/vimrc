@@ -3,9 +3,11 @@
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
+let g:polyglot_disabled = ['typescript']
 
 let g:ale_linters = {
     \   'python': ['pyls'],
+    \   'go': [],
     \}
 "   \   'haskell': ['stack_build', 'hie'],
 
@@ -58,18 +60,13 @@ let g:tmuxline_preset = {
 let g:autoswap_detect_tmux = 1
 
 let g:LanguageClient_diagnosticsEnable=0
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['typescript-language-server', '--stdio'],
-    \ 'javascriptreact': ['typescript-language-server', '--stdio'],
-    \ 'typescript': ['typescript-language-server', '--stdio'],
-    \ 'typescriptreact': ['typescript-language-server', '--stdio'],
-    \ }
 
 let g:LanguageClient_rootMarkers = {
     \ 'javascript': ['jsconfig.json'],
     \ 'javascriptreact': ['jsconfig.json'],
     \ 'typescript': ['tsconfig.json'],
     \ 'typescriptreact': ['tsconfig.json'],
+    \ 'go': ['go.mod'],
     \ }
 
 

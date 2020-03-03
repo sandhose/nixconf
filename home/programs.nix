@@ -37,6 +37,7 @@ with builtins; {
 
     shellAliases = {
       zmv = "noglob zmv -W";
+      dr = "docker run -it --rm";
     };
 
     plugins = [{
@@ -56,7 +57,21 @@ with builtins; {
     enable = true;
     vimAlias = true;
 
-    extraConfig = readFile ./files/vimrc;
+    extraConfig = (readFile ./files/vimrc) + ''
+      let g:LanguageClient_serverCommands = {
+          \ 'javascript': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
+          \ 'javascriptreact': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
+          \ 'typescript': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
+          \ 'typescriptreact': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
+          \ 'graphql': ['${pkgs.nodePackages.graphql-lsp}/bin/graphql-lsp'],
+          \ 'go': ['${pkgs.gotools}/bin/gopls'],
+          \ }
+
+      let g:ale_go_go_executable = '${pkgs.go}/bin/go'
+      let g:ale_go_gopls_executable = '${pkgs.gotools}/bin/gopls'
+      let g:ale_go_golint_executable = '${pkgs.golint}/bin/golint'
+      let g:ale_go_gometalinter_executable = '${pkgs.gometalinter}/bin/gometalinter'
+    '';
 
     plugins = with pkgs.vimPlugins; [
       undotree
@@ -84,7 +99,7 @@ with builtins; {
       base16-vim
       vim-airline-themes
       # edkolev/tmuxline.vim
-      # vim-polyglot
+      vim-polyglot
       yats-vim
       # typescript-vim
       vim-jsx-pretty

@@ -3,7 +3,8 @@
 {
   systemPackages =
     with pkgs; [
-      bazel
+      # bazel
+      # openshift
       curl
       doctl
       docker-compose
@@ -58,6 +59,6 @@
       yq
       zsh-funcs
 
-      nodePackages.typescript-language-server
+      # nodePackages.typescript-language-server
     ];
 }
