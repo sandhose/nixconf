@@ -21,6 +21,14 @@ with builtins; {
     userName = "Quentin Gliech";
   };
 
+  fzf = {
+    enable = true;
+    historyWidgetOptions = [
+      "--layout=reverse"
+      "--inline-info"
+    ];
+  };
+
   zsh = {
     enable = true;
 
@@ -63,15 +71,16 @@ with builtins; {
           \ 'javascriptreact': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
           \ 'typescript': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
           \ 'typescriptreact': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
-          \ 'graphql': ['${pkgs.nodePackages.graphql-lsp}/bin/graphql-lsp'],
-          \ 'go': ['${pkgs.gotools}/bin/gopls'],
+          \ 'rust': ['~/.local/bin/rust-analyzer'],
+          \ 'python': ['${pkgs.python37Packages.python-language-server}/bin/pyls'],
+          \ 'go': ['${pkgs.gopls}/bin/gopls'],
           \ }
 
       let g:ale_go_go_executable = '${pkgs.go}/bin/go'
       let g:ale_go_gopls_executable = '${pkgs.gotools}/bin/gopls'
       let g:ale_go_golint_executable = '${pkgs.golint}/bin/golint'
-      let g:ale_go_gometalinter_executable = '${pkgs.gometalinter}/bin/gometalinter'
     '';
+    # \ 'graphql': ['${pkgs.nodePackages.graphql-lsp}/bin/graphql-lsp'],
 
     plugins = with pkgs.vimPlugins; [
       undotree
@@ -101,8 +110,9 @@ with builtins; {
       # edkolev/tmuxline.vim
       vim-polyglot
       yats-vim
+      vim-jsonnet
       # typescript-vim
-      vim-jsx-pretty
+      # vim-jsx-pretty
       vim-go
       # vim-scripts/scons.vim
       # flowtype/vim-flow
@@ -138,9 +148,27 @@ with builtins; {
       set -g mouse on
       bind R move-window -r
       bind P attach -c "#{pane_current_path}"
+      bind S swap-window
       set -g default-command "${pkgs.zsh}/bin/zsh"
 
-      source -q ~/.tmuxline-theme.conf
+      set -g status-justify "left"
+      set -g status "on"
+      set -g status-left-style "none"
+      set -g message-command-style "fg=colour254,bg=colour237"
+      set -g status-right-style "none"
+      set -g pane-active-border-style "fg=colour143"
+      set -g status-style "none,bg=colour235"
+      set -g message-style "fg=colour254,bg=colour237"
+      set -g pane-border-style "fg=colour237"
+      set -g status-right-length "100"
+      set -g status-left-length "100"
+      setw -g window-status-activity-style "none,fg=colour143,bg=colour235"
+      setw -g window-status-separator ""
+      setw -g window-status-style "none,fg=colour173,bg=colour235"
+      set -g status-left "#[fg=colour235,bg=colour143] #S "
+      set -g status-right "#[fg=colour173,bg=colour235] #(${pkgs.myutils}/bin/kubestate) | %a %d %b #[fg=colour254,bg=colour237] %R #[fg=colour143,bg=colour237]#[fg=colour235,bg=colour143] #h "
+      setw -g window-status-format "#[default] #I #W#F "
+      setw -g window-status-current-format "#[fg=colour254,bg=colour237] #I #W#F "
     '';
   };
 

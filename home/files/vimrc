@@ -178,8 +178,8 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 "
 "" better key bindings for UltiSnipsExpandTrigger
 "let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<C-tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-s-tab>"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
 " }}}
 
 " Autocmd {{{
@@ -223,6 +223,11 @@ nnoremap <Leader>m :set list!<CR>
 nnoremap <Leader>jp :%!json_pp<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nnoremap <C-p> :GFiles<CR>
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately

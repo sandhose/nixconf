@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -9,7 +9,7 @@
   programs = {
     nix-index.enable = true;
   };
-  nix = import ./nix.nix { inherit pkgs; };
+  nix = import ./nix.nix { inherit pkgs; inherit lib; };
   system = import ./system.nix;
 
   users.users = {

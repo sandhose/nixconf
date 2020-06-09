@@ -3,7 +3,7 @@
 {
   systemPackages =
     with pkgs; [
-      # bazel
+      bazel
       # openshift
       curl
       doctl
@@ -27,12 +27,12 @@
       kubeseal
       kustomize
       mosh
-      mosquitto
+      # mosquitto
       neovim
       nix-du
       nix-index
       nmap
-      nodejs
+      nodejs-13_x
       pandoc
       parallel
       pgcli
@@ -58,6 +58,9 @@
       youtube-dl
       yq
       zsh-funcs
+
+      fontconfig
+      (texlive.combine { inherit (texlive) scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem; })
 
       # nodePackages.typescript-language-server
     ];

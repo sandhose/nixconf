@@ -1,10 +1,6 @@
 { pkgs }:
 
 {
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/configuration.nix
-  darwinConfig = "$HOME/.config/nixpkgs/configuration.nix";
-
   systemPackages =
     with pkgs; [
       cocoapods
@@ -37,8 +33,8 @@
       # mysql-client
       msmtp
 
-      # xquartz
-      # wireshark
+      xquartz
+      wireshark
     ];
 
   variables = {
