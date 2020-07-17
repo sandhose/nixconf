@@ -70,6 +70,7 @@ with builtins; {
           \ 'javascript': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
           \ 'javascriptreact': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
           \ 'typescript': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
+          \ 'typescript.tsx': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
           \ 'typescriptreact': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
           \ 'rust': ['~/.local/bin/rust-analyzer'],
           \ 'python': ['${pkgs.python37Packages.python-language-server}/bin/pyls'],

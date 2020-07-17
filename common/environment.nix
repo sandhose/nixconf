@@ -3,7 +3,7 @@
 {
   systemPackages =
     with pkgs; [
-      bazel
+      # bazel
       # openshift
       curl
       doctl

@@ -8,10 +8,6 @@
   environment = import ./environment.nix { inherit pkgs; };
 
   nixpkgs.config = {
-    packageOverrides = pkgs: {
-      zsh-funcs = pkgs.callPackage ../packages/zsh-funcs { };
-    };
-
     allowBroken = true;
     allowUnsupportedSystem = true;
     allowUnfree = true;
@@ -30,6 +26,7 @@
   fonts = {
     enableFontDir = true;
     fonts = with pkgs; [
+      fork-awesome
       fira-code
       roboto
       roboto-mono

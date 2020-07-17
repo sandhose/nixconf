@@ -1,6 +1,14 @@
 { config, pkgs, lib, ... }:
 
 {
+  nixpkgs = {
+    overlays = [
+      (import ../../overlays/my.nix)
+      (import ../../overlays/neomutt.nix)
+      (import ../../overlays/node.nix)
+    ];
+  };
+
   imports = [
     <home-manager/nix-darwin>
     ../../common
