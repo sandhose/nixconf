@@ -13,4 +13,37 @@
       ];
     };
   };
+
+  file.".config/nvim/coc-settings.json".text = builtins.toJSON {
+    rust-analyzer = {
+      serverPath = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+      procMacro.enable = true;
+      cargo.loadOutDirsFromCheck = true;
+    };
+    languageserver = {
+      golang = {
+        command = "${pkgs.gopls}/bin/gopls";
+        rootPatterns = ["go.mod" ".vim/" ".git/"];
+        filetypes = ["go"];
+        disableWorkspaceFolders = true;
+        initializationOptions = {
+          completeUnimported = true;
+        };
+      };
+    };
+    yaml = {
+      schemas = {
+        "https://json.schemastore.org/kustomization" = "kustomization.yaml";
+        "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" = "docker-compose.yaml";
+      };
+    };
+    coc = {
+      preferences = {
+        formatOnSaveFiletypes = [
+          "css" "markdown" "yaml" "rust" "javascript" "javascriptreact"
+          "typescript" "json" "graphql"
+        ];
+      };
+    };
+  };
 }

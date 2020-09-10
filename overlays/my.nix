@@ -3,4 +3,5 @@
     zsh-funcs = super.callPackage ../packages/zsh-funcs { };
     myutils = import ../packages/utils super;
     fork-awesome = import ../packages/fork-awesome super;
+    virgil = import ../packages/virgil super;
 })

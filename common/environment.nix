@@ -32,7 +32,7 @@
       nix-du
       nix-index
       nmap
-      nodejs-13_x
+      nodejs-14_x
       pandoc
       parallel
       pgcli
@@ -59,8 +59,15 @@
       yq
       zsh-funcs
 
+      fig2dev
       fontconfig
-      (texlive.combine { inherit (texlive) scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem; })
+      (texlive.combine {
+        inherit (texlive)
+          scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem
+          fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind
+          titling unamth-template bib-fr synttree wrapfig;
+      })
+      gnome3.librsvg
 
       # nodePackages.typescript-language-server
     ];

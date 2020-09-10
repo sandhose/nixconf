@@ -39,6 +39,8 @@
       merriweather
       opensans-ttf
       raleway
+      cascadia-code
+      virgil
     ];
   };
 }

@@ -65,43 +65,50 @@ with builtins; {
     enable = true;
     vimAlias = true;
 
-    extraConfig = (readFile ./files/vimrc) + ''
-      let g:LanguageClient_serverCommands = {
-          \ 'javascript': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
-          \ 'javascriptreact': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
-          \ 'typescript': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
-          \ 'typescript.tsx': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
-          \ 'typescriptreact': ['${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server', '--stdio'],
-          \ 'rust': ['~/.local/bin/rust-analyzer'],
-          \ 'python': ['${pkgs.python37Packages.python-language-server}/bin/pyls'],
-          \ 'go': ['${pkgs.gopls}/bin/gopls'],
-          \ }
-
-      let g:ale_go_go_executable = '${pkgs.go}/bin/go'
-      let g:ale_go_gopls_executable = '${pkgs.gotools}/bin/gopls'
-      let g:ale_go_golint_executable = '${pkgs.golint}/bin/golint'
-    '';
-    # \ 'graphql': ['${pkgs.nodePackages.graphql-lsp}/bin/graphql-lsp'],
+    extraConfig = (readFile ./files/vimrc);
 
     plugins = with pkgs.vimPlugins; [
       undotree
       nerdtree
       nerdtree-git-plugin
       vim-fugitive
-      vim-gitgutter
+      # vim-gitgutter
       vim-surround
       vim-easy-align
-      supertab
+      # supertab
       editorconfig-vim
-      ale
+      # ale
       fzf-vim
-      LanguageClient-neovim
-      ncm2
-      nvim-yarp
-      ncm2-bufword
-      ncm2-path
-      ncm2-ultisnips
+      # LanguageClient-neovim
+      # ncm2
+      # nvim-yarp
+      # ncm2-bufword
+      # ncm2-path
+      # ncm2-ultisnips
       # ncm2-go
+
+      coc-nvim
+      coc-git
+      coc-highlight
+      coc-html
+      coc-json
+      coc-snippets
+      coc-tsserver
+      coc-tslint-plugin
+      coc-prettier
+      coc-css
+      coc-python
+      coc-yank
+      coc-jest
+      coc-eslint
+      coc-lists
+      coc-yaml
+      coc-stylelint
+
+      coc-fzf
+      coc-rust-analyzer
+      # coc-go
+
       ultisnips
       vim-snippets
       # andrewstuart/vim-kubernetes
@@ -114,7 +121,7 @@ with builtins; {
       vim-jsonnet
       # typescript-vim
       # vim-jsx-pretty
-      vim-go
+      # vim-go
       # vim-scripts/scons.vim
       # flowtype/vim-flow
       # vim-scripts/coq-syntax
