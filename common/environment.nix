@@ -29,7 +29,7 @@
       mosh
       # mosquitto
       neovim
-      nix-du
+      # nix-du
       nix-index
       nmap
       nodejs-14_x
@@ -56,9 +56,11 @@
       wget
       wrk
       youtube-dl
-      yq
+      # yq
       zsh-funcs
+      clang-tools
 
+      elixir
       fig2dev
       fontconfig
       (texlive.combine {

@@ -33,7 +33,7 @@
       # mysql-client
       msmtp
 
-      xquartz
+      # xquartz
       wireshark
     ];
 

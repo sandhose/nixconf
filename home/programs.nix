@@ -107,6 +107,7 @@ with builtins; {
 
       coc-fzf
       coc-rust-analyzer
+      # coc-xml
       # coc-go
 
       ultisnips

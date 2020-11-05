@@ -35,7 +35,7 @@
       source-code-pro
       source-serif-pro
       ibm-plex
-      liberation_ttf_v2
+      # liberation_ttf_v2
       merriweather
       opensans-ttf
       raleway
