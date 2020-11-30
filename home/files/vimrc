@@ -1,77 +1,7 @@
 " vim:fdm=marker
 
-"autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
-let g:polyglot_disabled = ['typescript']
-
-let g:ale_linters = {
-    \   'python': ['pyls'],
-    \   'go': [],
-    \}
-"   \   'haskell': ['stack_build', 'hie'],
-
-let g:ale_fixers = {
-    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \   'javascript': ['eslint'],
-    \   'typescript': ['eslint'],
-    \   'typescriptreact': ['eslint'],
-    \   'python': ['isort', 'black'],
-    \   'go': ['gofmt'],
-    \}
-
-let g:ale_sign_column_always = 1
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 0
-let g:ale_set_highlights = 0
-
-let g:airline#extensions#ale#enabled = 1
-
-
+"let g:polyglot_disabled = ['typescript']
 let g:default_base16 = 1
-
-let g:tmuxline_powerline_separators = 0
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme = 'base16_default'
-let g:airline_highlighting_cache = 1
-
-let g:ale_lint_delay = 800
-
-let g:ale_c_clang_options = '-std=c99 -Wall -Wextra -pedantic'
-let g:ale_c_gcc_options = '-std=c99 -Wall -Wextra -pedantic'
-let g:ale_cpp_clangtidy_options = '-Wall -std=c++11 -x c++'
-let g:ale_c_build_dir = 'build'
-
-let g:airline_left_sep = ' '
-let g:airline_left_alt_sep = '|'
-let g:airline_right_sep = ' '
-let g:airline_right_alt_sep = '|'
-
-let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'win'  : '#I #W',
-      \'cwin' : '#I #W',
-      \'x'    : '%a %d %b',
-      \'y'    : '%R',
-      \'z'    : '#h',
-      \'options': { 'status-justify': 'left' },
-      \'win_options': { 'window-status-activity-attr': 'none' }}
-
-
-let g:autoswap_detect_tmux = 1
-
-let g:LanguageClient_diagnosticsEnable=0
-
-let g:LanguageClient_rootMarkers = {
-    \ 'javascript': ['jsconfig.json'],
-    \ 'javascriptreact': ['jsconfig.json'],
-    \ 'typescript': ['tsconfig.json'],
-    \ 'typescript.tsx': ['eslint'],
-    \ 'typescriptreact': ['tsconfig.json'],
-    \ 'go': ['go.mod'],
-    \ }
-
 
 " Syntax highlighting {{{
 syntax on
@@ -171,39 +101,25 @@ set wrapscan " Searches wrap around end of file
 " Plugin options {{{
 "let g:python_host_prog = '/run/current-system/sw/bin/python2'
 "let g:python3_host_prog = '/run/current-system/sw/bin/python3'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
-" make YCM compatible with UltiSnips (using supertab)
-"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-" let g:SuperTabDefaultCompletionType = '<C-n>'
 "
-"" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<nop>"
-let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsExpandTrigger       = "<nop>"
+let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:lightline = {
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste', 'spell', 'readonly' ],
+  \     [ 'git', 'diagnostic', 'cocstatus', 'relativepath', 'method' ]
+  \   ],
+  \   'right':[
+  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+  \   ],
+  \ },
+\ }
+
 " }}}
 
 " Autocmd {{{
-" Enable omni completion.
-"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType python setlocal omnifunc=jedi#completions
-"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-"autocmd FileType ocaml setlocal omnifunc=merlin#Complete
-"autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
-" Autosave remove trailing whitespace
-"augroup fmt
-"  autocmd!
-"  autocmd BufWritePre * Neoformat
-"augroup END
-"autocmd BufWritePre * :%s/\s\+$//e
-"autocmd! BufWritePost,BufEnter * Neomake
-"autocmd VimEnter,BufWinEnter * syn match ErrorMsg " "
-
 " }}}
 
 " coc.nvim config {{{
@@ -343,13 +259,8 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " }}}
 
 " Keybindings {{{
-" Tab to complete
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-nnoremap <Leader>b :NERDTreeToggle<CR>
-nnoremap <Leader>t :UndotreeToggle<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>ln :lnext<CR>
@@ -360,18 +271,93 @@ nnoremap <Leader>p :!pandoc --pdf-engine=xelatex -o %:t:r.pdf %; open %:t:r.pdf<
 vnoremap <Leader>s :!psql<CR>
 nnoremap <Leader>m :set list!<CR>
 nnoremap <Leader>jp :%!json_pp<CR>
-"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-"nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nnoremap <C-p> :GFiles<CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
+nmap <Leader>b :CocCommand explorer<CR>
+" nnoremap <Leader>b :Defx -toggle -auto-cd -split=vertical -winwidth=30 -direction=topleft -session-file=~/.config/nvim/defx_session<CR>
 
-
-"nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-"" Or map each action separately
-"nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-"nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-"nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
+" " Define mappings
+" autocmd FileType denite call s:denite_my_settings()
+" function! s:denite_my_settings() abort
+"   nnoremap <silent><buffer><expr> <CR>
+"   \ denite#do_map('do_action')
+"   nnoremap <silent><buffer><expr> d
+"   \ denite#do_map('do_action', 'delete')
+"   nnoremap <silent><buffer><expr> p
+"   \ denite#do_map('do_action', 'preview')
+"   nnoremap <silent><buffer><expr> q
+"   \ denite#do_map('quit')
+"   nnoremap <silent><buffer><expr> i
+"   \ denite#do_map('open_filter_buffer')
+"   nnoremap <silent><buffer><expr> <Space>
+"   \ denite#do_map('toggle_select').'j'
+" endfunction
+" 
+" autocmd FileType defx call s:defx_my_settings()
+" function! s:defx_my_settings() abort
+"   " Define mappings
+"   nnoremap <silent><buffer><expr> <CR>
+"   \ defx#do_action('open')
+"   nnoremap <silent><buffer><expr> c
+"   \ defx#do_action('copy')
+"   nnoremap <silent><buffer><expr> m
+"   \ defx#do_action('move')
+"   nnoremap <silent><buffer><expr> p
+"   \ defx#do_action('paste')
+"   nnoremap <silent><buffer><expr> l
+"   \ defx#do_action('open')
+"   nnoremap <silent><buffer><expr> E
+"   \ defx#do_action('open', 'vsplit')
+"   nnoremap <silent><buffer><expr> P
+"   \ defx#do_action('preview')
+"   nnoremap <silent><buffer><expr> o
+"   \ defx#do_action('open_tree', 'toggle')
+"   nnoremap <silent><buffer><expr> K
+"   \ defx#do_action('new_directory')
+"   nnoremap <silent><buffer><expr> N
+"   \ defx#do_action('new_file')
+"   nnoremap <silent><buffer><expr> M
+"   \ defx#do_action('new_multiple_files')
+"   nnoremap <silent><buffer><expr> C
+"   \ defx#do_action('toggle_columns',
+"   \                'mark:indent:icon:filename:type:size:time')
+"   nnoremap <silent><buffer><expr> S
+"   \ defx#do_action('toggle_sort', 'time')
+"   nnoremap <silent><buffer><expr> d
+"   \ defx#do_action('remove')
+"   nnoremap <silent><buffer><expr> r
+"   \ defx#do_action('rename')
+"   nnoremap <silent><buffer><expr> !
+"   \ defx#do_action('execute_command')
+"   nnoremap <silent><buffer><expr> x
+"   \ defx#do_action('execute_system')
+"   nnoremap <silent><buffer><expr> yy
+"   \ defx#do_action('yank_path')
+"   nnoremap <silent><buffer><expr> .
+"   \ defx#do_action('toggle_ignored_files')
+"   nnoremap <silent><buffer><expr> ;
+"   \ defx#do_action('repeat')
+"   nnoremap <silent><buffer><expr> h
+"   \ defx#do_action('cd', ['..'])
+"   nnoremap <silent><buffer><expr> ~
+"   \ defx#do_action('cd')
+"   nnoremap <silent><buffer><expr> q
+"   \ defx#do_action('quit')
+"   nnoremap <silent><buffer><expr> <Space>
+"   \ defx#do_action('toggle_select') . 'j'
+"   nnoremap <silent><buffer><expr> *
+"   \ defx#do_action('toggle_select_all')
+"   nnoremap <silent><buffer><expr> j
+"   \ line('.') == line('$') ? 'gg' : 'j'
+"   nnoremap <silent><buffer><expr> k
+"   \ line('.') == 1 ? 'G' : 'k'
+"   nnoremap <silent><buffer><expr> <C-l>
+"   \ defx#do_action('redraw')
+"   nnoremap <silent><buffer><expr> <C-g>
+"   \ defx#do_action('print')
+"   nnoremap <silent><buffer><expr> cd
+"   \ defx#do_action('change_vim_cwd')
+" endfunction
 " }}}

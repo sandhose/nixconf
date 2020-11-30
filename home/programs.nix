@@ -72,20 +72,11 @@ with builtins; {
       nerdtree
       nerdtree-git-plugin
       vim-fugitive
-      # vim-gitgutter
+      vim-gitgutter
       vim-surround
       vim-easy-align
-      # supertab
       editorconfig-vim
-      # ale
-      fzf-vim
-      # LanguageClient-neovim
-      # ncm2
-      # nvim-yarp
-      # ncm2-bufword
-      # ncm2-path
-      # ncm2-ultisnips
-      # ncm2-go
+      # fzf-vim
 
       coc-nvim
       coc-git
@@ -104,42 +95,28 @@ with builtins; {
       coc-lists
       coc-yaml
       coc-stylelint
-
-      coc-fzf
+      coc-git
       coc-rust-analyzer
+
+      coc-explorer
+
+      # coc-fzf
       # coc-xml
       # coc-go
 
+      lightline-vim
+
+      # coc-denite
+      # denite-nvim
+      # defx-nvim
+
       ultisnips
       vim-snippets
-      # andrewstuart/vim-kubernetes
-      vim-airline
       base16-vim
-      vim-airline-themes
-      # edkolev/tmuxline.vim
       vim-polyglot
-      yats-vim
       vim-jsonnet
-      # typescript-vim
-      # vim-jsx-pretty
-      # vim-go
-      # vim-scripts/scons.vim
-      # flowtype/vim-flow
-      # vim-scripts/coq-syntax
-      # andreshazard/vim-freemarker
-      # jparise/vim-graphql
-      # Harenome/vim-mipssyntax
-      # fremff/vim-css-syntax
-      # vim-scripts/lbnf.vim
-      # leafo/moonscript-vim
-      # quabug/vim-gdscript
-      # jxnblk/vim-mdx-js
-      # b4b4r07/vim-hcl
-      # tpope/vim-db
-      # stfl/meson.vim
       goyo-vim
       limelight-vim
-      # vim-indent-guides
     ];
   };
 
