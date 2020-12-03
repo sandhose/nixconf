@@ -2,6 +2,7 @@
 
 with pkgs; [
   # bazel
+  cachix
   curl
   doctl
   docker-compose
