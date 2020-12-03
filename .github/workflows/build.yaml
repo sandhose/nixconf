@@ -6,6 +6,7 @@ jobs:
   tests:
     runs-on: macos-latest
     steps:
+      - run: curl https://raw.githubusercontent.com/NixOS/nix/master/scripts/create-darwin-volume.sh | bash
       - uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
