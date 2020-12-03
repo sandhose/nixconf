@@ -8,17 +8,12 @@
 
   networking = {
     hostName = "sandhose-desktop";
-    hostId = "788f8807";
+    hostId = "f61bc842";
   };
 
   fileSystems."/" =
-    { device = "rpool/root/nixos";
+    { device = "rpool/safe/root/nixos";
       fsType = "zfs";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/FF20-C636";
-      fsType = "vfat";
     };
 
   fileSystems."/home" =
@@ -26,16 +21,17 @@
       fsType = "zfs";
     };
 
-  fileSystems."/tmp" =
-    { device = "rpool/root/tmp";
-      fsType = "zfs";
-    };
-
   fileSystems."/nix" =
-    { device = "rpool/nix";
+    { device = "rpool/local/nix";
       fsType = "zfs";
     };
 
-  nix.maxJobs = lib.mkDefault 8;
+  fileSystems."/boot/efi" =
+    { device = "/dev/md127";
+      fsType = "vfat";
+    };
+
+  swapDevices = [ ];
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
