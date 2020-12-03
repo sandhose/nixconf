@@ -25,8 +25,8 @@
       });
 
       darwinConfigurations."sandhose-laptop" = darwin.lib.darwinSystem {
-        inputs = { my = self; };
         modules = [
+          { nixpkgs.overlays = [ self.overlay ]; }
           ./common
           ./darwin
           home-manager.darwinModules.home-manager
@@ -35,8 +35,8 @@
 
       nixosConfigurations."sandhose-desktop" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        inputs = { my = self; };
         modules = [
+          { nixpkgs.overlays = [ self.overlay ]; }
           ./common
           ./hosts/sandhose-desktop
           nixpkgs.nixosModules.notDetected

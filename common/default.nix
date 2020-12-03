@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, lib, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   imports = [
@@ -8,8 +8,6 @@
   environment = {
     systemPackages = import ./packages.nix { inherit pkgs; };
   };
-
-  nixpkgs.overlays = [ inputs.my.overlay ];
 
   nixpkgs.config = {
     allowBroken = true;
