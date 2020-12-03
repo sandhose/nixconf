@@ -32,5 +32,16 @@
           home-manager.darwinModules.home-manager
         ];
       };
+
+      nixosConfigurations."sandhose-desktop" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        inputs = { my = self; };
+        modules = [
+          ./common
+          ./hosts/sandhose-desktop
+          nixpkgs.nixosModules.notDetected
+          home-manager.nixosModules.home-manager
+        ];
+      };
     };
 }

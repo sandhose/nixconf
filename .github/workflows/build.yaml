@@ -4,18 +4,32 @@ on:
   push:
 jobs:
   tests:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-20.04
+            target: .#nixosConfigurations.sandhose-desktop.system
+          - os: macos-10.15
+            target: .#darwinConfigurations.sandhose-laptop.system
+
     steps:
       - uses: actions/checkout@v2.3.4
         with:
           fetch-depth: 0
+
       - uses: cachix/install-nix-action@v12
         with:
           install_url: https://github.com/sandhose/nix-flakes-installer/releases/download/nix-2.4pre20201203_8ad2c9c/install
           extra_nix_config: |
             experimental-features = nix-command flakes
+
       - uses: cachix/cachix-action@v8
         with:
           name: sandhose
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-      - run: nix build .#darwinConfigurations.sandhose-laptop.system
+
+      - name: Build system
+        env:
+          TARGET: "${{ matrix.target }}"
+        run: nix build $TARGET
