@@ -23,11 +23,7 @@
       };
     };
     zsh.enable = true;
-    nix-index.enable = true;
   };
-
-
-  services.nix-daemon.enable = true;
 
   fonts = {
     enableFontDir = true;

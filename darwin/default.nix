@@ -65,6 +65,9 @@
     stateVersion = 4;
   };
 
+  programs.nix-index.enable = true;
+  services.nix-daemon.enable = true;
+
   users.users = {
     sandhose = {
       description = "Quentin Gliech";

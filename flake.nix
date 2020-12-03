@@ -38,6 +38,7 @@
         modules = [
           { nixpkgs.overlays = [ self.overlay ]; }
           ./common
+          ./nixos
           ./hosts/sandhose-desktop
           nixpkgs.nixosModules.notDetected
           home-manager.nixosModules.home-manager
