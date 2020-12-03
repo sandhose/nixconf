@@ -1,11 +1,15 @@
-{ pkgs, config, system, ... }:
+{ inputs, pkgs, config, lib, ... }:
 
 {
   imports = [
     ../home
   ];
 
-  environment = import ./environment.nix { inherit pkgs; };
+  environment = {
+    systemPackages = import ./packages.nix { inherit pkgs; };
+  };
+
+  nixpkgs.overlays = [ inputs.my.overlay ];
 
   nixpkgs.config = {
     allowBroken = true;
@@ -21,12 +25,15 @@
       };
     };
     zsh.enable = true;
+    nix-index.enable = true;
   };
+
+
+  services.nix-daemon.enable = true;
 
   fonts = {
     enableFontDir = true;
     fonts = with pkgs; [
-      fork-awesome
       fira-code
       roboto
       roboto-mono
@@ -40,7 +47,8 @@
       opensans-ttf
       raleway
       cascadia-code
-      virgil
+      my.fork-awesome
+      my.virgil
     ];
   };
 }
