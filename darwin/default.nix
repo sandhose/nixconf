@@ -11,6 +11,7 @@
         my.neomutt
         msmtp
         wireshark
+        xquartz
       ];
 
     variables = {

@@ -65,4 +65,36 @@ with pkgs; [
       titling unamth-template bib-fr synttree wrapfig;
   })
   gnome3.librsvg
+
+  maven
+  argocd
+  autoconf
+  autogen
+  automake
+  bazel-buildtools
+  # bazel-watcher
+  bazelisk
+  cargo-bloat
+  cargo-edit
+  cloc
+  cmake
+  dos2unix
+  ffmpeg
+  fluxctl
+  gawk
+  gitAndTools.gh
+  go
+  inkscape
+  # jabref
+  keybase
+  kind
+  librsvg
+  libtool
+  buildpack
+  shellcheck
+  sops
+  weechat
+  xmlsec
+  xz
+  yarn
 ]
