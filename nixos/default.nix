@@ -15,7 +15,7 @@
   environment = {
     systemPackages =
       with pkgs; [
-        gnome-tweaks
+        gnome3.gnome-tweaks
         google-chrome
         keepassxc
         libvirt
