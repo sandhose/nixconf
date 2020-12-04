@@ -50,6 +50,7 @@
       driSupport32Bit = true;
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
+    cpu.intel.updateMicrocode = true;
   };
 
   services.xserver = {
