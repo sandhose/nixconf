@@ -40,6 +40,8 @@
     fwupd.enable = true;
   };
 
+  virtualisation.libvirtd.enable = true;
+
   sound.enable = true;
   hardware = {
     pulseaudio = {
