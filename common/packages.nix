@@ -98,4 +98,11 @@ with pkgs; [
   xmlsec
   xz
   yarn
+
+  bazel
+  gnumake
+  go
+  llvm-binutils
+  lldb
+  file
 ]

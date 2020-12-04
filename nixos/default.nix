@@ -15,8 +15,14 @@
   environment = {
     systemPackages =
       with pkgs; [
+        gnome-tweaks
         google-chrome
+        keepassxc
+        libvirt
+        mumble
         steam
+        virt-manager
+        vlc
       ];
   };
 
@@ -66,7 +72,7 @@
       group = "sandhose";
       home = "/home/sandhose";
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "docker" ];
+      extraGroups = [ "wheel" "docker" "libvirtd" ];
 
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKI3JrkOofavtPW8jV/GYM5Mv1gn/h732JPm82SGGj50 sandhose@sandhose-laptop"
