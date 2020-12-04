@@ -102,7 +102,6 @@ with pkgs; [
   bazel
   gnumake
   go
-  llvm-binutils
   lldb
   file
 ]
