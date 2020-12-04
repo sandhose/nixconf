@@ -26,7 +26,7 @@
       fsType = "zfs";
     };
 
-  fileSystems."/boot/efi" =
+  fileSystems."/boot" =
     { device = "/dev/md127";
       fsType = "vfat";
     };
