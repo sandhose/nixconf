@@ -17,7 +17,7 @@
     };
 
   fileSystems."/home" =
-    { device = "rpool/root/home";
+    { device = "rpool/safe/home";
       fsType = "zfs";
     };
 
