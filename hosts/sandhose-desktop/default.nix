@@ -1,9 +1,9 @@
 { pkgs, lib, ... }:
 
 {
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   networking = {
@@ -12,8 +12,8 @@
   };
 
   fileSystems."/" =
-    { device = "rpool/safe/root/nixos";
-      fsType = "zfs";
+    { device = "/dev/disk/by-label/root";
+      fsType = "xfs";
     };
 
   fileSystems."/home" =
@@ -21,13 +21,8 @@
       fsType = "zfs";
     };
 
-  fileSystems."/nix" =
-    { device = "rpool/local/nix";
-      fsType = "zfs";
-    };
-
   fileSystems."/boot" =
-    { device = "/dev/sda1";
+    { device = "/dev/disk/by-partlabel/efi";
       fsType = "vfat";
     };
 

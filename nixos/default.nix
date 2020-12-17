@@ -12,16 +12,19 @@
     kernelPackages = pkgs.linuxPackages_latest;
 
     extraModprobeConfig = ''
-      options kvm_intel nested=1
-      options kvm_intel emulate_invalid_guest_state=0
       options kvm ignore_msrs=1 report_ignored_msrs=0
     '';
+    kernelModules = [ "kvmgt" "vfio-iommu-type1" "vfio-mdev" ];
   };
 
   environment = {
     systemPackages =
       with pkgs; [
+        clang
+        clang-manpages
+        clang-tools
         gnome3.gnome-tweaks
+        gnome3.gnome-boxes
         google-chrome
         keepassxc
         libvirt
@@ -44,10 +47,21 @@
   services = {
     openssh.enable = true;
     fwupd.enable = true;
+    syncthing.enable = true;
   };
 
+  networking.firewall.allowedTCPPorts = [ 22 2376 ];
+  virtualisation.docker = {
+    enable = true;
+    listenOptions = [
+      "/run/docker.sock"
+      "[::]:2376"
+    ];
+    extraOptions = "--experimental";
+  };
   virtualisation.libvirtd.enable = true;
   virtualisation.kvmgt.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   sound.enable = true;
   hardware = {
@@ -59,7 +73,7 @@
       driSupport32Bit = true;
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
-    cpu.intel.updateMicrocode = true;
+    cpu.amd.updateMicrocode = true;
   };
 
   services.xserver = {
@@ -71,7 +85,7 @@
     xkbModel = "pc105";
     xkbVariant = "mac";
 
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = [ "nouveau" ];
   };
 
   users = {
@@ -82,7 +96,7 @@
       group = "sandhose";
       home = "/home/sandhose";
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "docker" "libvirtd" ];
+      extraGroups = [ "wheel" "docker" "libvirtd" "kvm" "dialout" "syncthing" ];
 
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKI3JrkOofavtPW8jV/GYM5Mv1gn/h732JPm82SGGj50 sandhose@sandhose-laptop"
