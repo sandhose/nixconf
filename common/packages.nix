@@ -100,7 +100,6 @@ with pkgs; [
   xz
   yarn
 
-  bazel
   gnumake
   go
   lldb
