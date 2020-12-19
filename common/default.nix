@@ -37,6 +37,7 @@
       source-code-pro
       source-serif-pro
       ibm-plex
+      corefonts
       # liberation_ttf_v2
       merriweather
       opensans-ttf

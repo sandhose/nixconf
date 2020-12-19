@@ -20,6 +20,7 @@ with pkgs; [
   iperf
   isync
   jq
+  kind
   kubectl
   kubernetes-helm
   kubeseal

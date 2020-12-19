@@ -5,16 +5,21 @@
     supportedFilesystems = [ "zfs" ];
 
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        memtest86.enable = true;
+      };
       efi.canTouchEfiVariables = true;
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
 
-    extraModprobeConfig = ''
-      options kvm ignore_msrs=1 report_ignored_msrs=0
-    '';
-    kernelModules = [ "kvmgt" "vfio-iommu-type1" "vfio-mdev" ];
+    # extraModprobeConfig = ''
+    #   options vfio-pci ids=10de:11c0,10de:0e0b
+    # '';
+    kernelParams = [ "amd_iommu=on" "pcie_aspm=off" ];
+    kernelModules = [ "vfio-pci" "kvm-amd" ];
+    blacklistedKernelModules = [ "nouveau" ];
   };
 
   environment = {
@@ -23,11 +28,15 @@
         clang
         clang-manpages
         clang-tools
+        flatpak-builder
+        gcc
         gnome3.gnome-tweaks
         gnome3.gnome-boxes
+        gnome-builder
         google-chrome
         keepassxc
         libvirt
+        looking-glass-client
         mumble
         steam
         virt-manager
@@ -41,6 +50,8 @@
 
     extraOptions = ''
       experimental-features = nix-command flakes
+      keep-outputs = true
+      keep-derivations = true
     '';
   };
 
@@ -48,6 +59,7 @@
     openssh.enable = true;
     fwupd.enable = true;
     syncthing.enable = true;
+    flatpak.enable = true;
   };
 
   networking.firewall.allowedTCPPorts = [ 22 2376 ];
@@ -59,9 +71,15 @@
     ];
     extraOptions = "--experimental";
   };
-  virtualisation.libvirtd.enable = true;
-  virtualisation.kvmgt.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemuOvmf = true;
+  };
   virtualisation.spiceUSBRedirection.enable = true;
+
+  systemd.tmpfiles.rules = [
+    "f /dev/shm/looking-glass 0660 sandhose qemu-libvirtd -"
+  ];
 
   sound.enable = true;
   hardware = {
@@ -85,7 +103,7 @@
     xkbModel = "pc105";
     xkbVariant = "mac";
 
-    videoDrivers = [ "nouveau" ];
+    videoDrivers = [ "nvidia" ];
   };
 
   users = {
@@ -101,6 +119,16 @@
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKI3JrkOofavtPW8jV/GYM5Mv1gn/h732JPm82SGGj50 sandhose@sandhose-laptop"
       ];
+    };
+  };
+
+  home-manager.users.sandhose = { ... }: {
+    gtk = {
+      enable = true;
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
+      theme.name = "Adwaita-dark";
     };
   };
 

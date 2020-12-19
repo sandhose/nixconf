@@ -28,7 +28,7 @@
         coc-tslint-plugin
         coc-prettier
         coc-css
-        coc-python
+        # coc-pyright
         coc-yank
         coc-jest
         coc-eslint
@@ -69,6 +69,21 @@
             completeUnimported = true;
           };
         };
+      };
+      python = {
+        jediEnabled = false;
+        pipenvPath = "${pkgs.pipenv}/bin/pipenv";
+        poetryPath = "${pkgs.python38Packages.poetry}/bin/poetry";
+        linting.pylintPath = "${pkgs.python38Packages.pylint}/bin/pylint";
+        linting.pylamaPath = "${pkgs.python39Packages.pylama}/bin/pylama";
+        linting.pydocstylePath = "${pkgs.python39Packages.pydocstyle}/bin/pydocstyle";
+        # linting.prospector = "${pkgs.prospector}/bin/prospector";
+        linting.pep8Path = "${pkgs.python39Packages.pep8}/bin/pep8";
+        linting.mypyPath = "${pkgs.python39Packages.mypy}/bin/mypy";
+        linting.banditPath = "${pkgs.python39Packages.bandit}/bin/bandit";
+        linting.flake8Path = "${pkgs.python39Packages.flake8}/bin/flake8";
+        formatting.autopep8Path = "${pkgs.python39Packages.autopep8}/bin/autopep8";
+        formatting.black = "${pkgs.python39Packages.black}/bin/black";
       };
       yaml = {
         schemas = {

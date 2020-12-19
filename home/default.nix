@@ -28,6 +28,10 @@
     };
 
     programs = {
+      direnv = {
+        enable = true;
+        enableNixDirenvIntegration = true;
+      };
       fzf = {
         enable = true;
         historyWidgetOptions = [
