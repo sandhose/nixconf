@@ -26,11 +26,12 @@
 
       darwinConfigurations."sandhose-laptop" = darwin.lib.darwinSystem {
         modules = [
-          { nixpkgs.overlays = [ self.overlay ]; nix.registry.nixpkgs.flake = nixpkgs; }
+          { nixpkgs.overlays = [ self.overlay ]; /* nix.registry.nixpkgs.flake = nixpkgs; */ }
           ./common
           ./darwin
           home-manager.darwinModules.home-manager
         ];
+        inputs = { inherit darwin nixpkgs; };
       };
 
       nixosConfigurations."sandhose-desktop" = nixpkgs.lib.nixosSystem {
