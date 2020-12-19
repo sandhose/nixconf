@@ -32,4 +32,4 @@ jobs:
       - name: Build system
         env:
           TARGET: "${{ matrix.target }}"
-        run: nix build $TARGET
+        run: nix build $TARGET --show-trace
