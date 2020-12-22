@@ -4,7 +4,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     darwin = {
-      url = "github:lnl7/nix-darwin/master";
+      url = "github:sandhose/nix-darwin/flake-registry";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -14,7 +14,7 @@
     };
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, flake-utils }:
+  outputs = { self, darwin, nixpkgs, home-manager, flake-utils }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
     let systemPkgs = import nixpkgs { inherit system; };
     in {
@@ -26,18 +26,20 @@
 
       darwinConfigurations."sandhose-laptop" = darwin.lib.darwinSystem {
         modules = [
-          { nixpkgs.overlays = [ self.overlay ]; /* nix.registry.nixpkgs.flake = nixpkgs; */ }
           ./common
           ./darwin
           home-manager.darwinModules.home-manager
         ];
-        inputs = { inherit darwin nixpkgs; };
+        inputs = inputs;
       };
 
       nixosConfigurations."sandhose-desktop" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs;
+        };
+
         modules = [
-          { nixpkgs.overlays = [ self.overlay ]; nix.registry.nixpkgs.flake = nixpkgs; }
           ./common
           ./nixos
           ./hosts/sandhose-desktop

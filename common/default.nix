@@ -1,10 +1,13 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, inputs, ... }:
 
 {
   imports = [
     ./cachix.nix
     ../home
   ];
+
+  nixpkgs.overlays = [ inputs.self.overlay ];
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   environment = {
     systemPackages = import ./packages.nix { inherit pkgs; };
