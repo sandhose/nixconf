@@ -1,8 +1,6 @@
-name: "Build & push to cache"
+name: "Build pull request"
 on:
-  push:
-    branches:
-      - master
+  pull_request:
 jobs:
   tests:
     runs-on: ${{ matrix.os }}
@@ -28,7 +26,7 @@ jobs:
       - uses: cachix/cachix-action@v8
         with:
           name: sandhose
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          skipPush: true
 
       - name: Build system
         env:
