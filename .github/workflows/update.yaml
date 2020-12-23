@@ -26,5 +26,18 @@ jobs:
       - name: Update lock file
         run: nix flake update --no-registries --recreate-lock-file --commit-lock-file
 
+      - name: Get commit message
+        id: commit
+        run: |
+          message="$(git log -1 --pretty=%B | tail +3)"
+          message="${message//'%'/'%25'}"
+          message="${message//$'\n'/'%0A'}"
+          message="${message//$'\r'/'%0D'}"
+          echo "::set-output name=message::$message"
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
+        with:
+          title: "Automated Flake update"
+          body: "${{ steps.commit.outputs.message }}"
+          delete-branch: true
