@@ -12,6 +12,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - uses: cachix/install-nix-action@v12
         with:
           install_url: https://github.com/sandhose/nix-flakes-installer/releases/download/nix-2.4pre20201203_8ad2c9c/install
@@ -38,6 +44,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
+          token: "${{ steps.generate-token.outputs.token }}"
           title: "Automated Flake update"
           body: "${{ steps.commit.outputs.message }}"
           delete-branch: true
