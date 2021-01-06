@@ -5,11 +5,13 @@
   home-manager.useUserPackages = true;
   home-manager.users.sandhose = { pkgs, ... }: {
     imports = [ 
+      ./modules/alacritty
       ./modules/npm
       ./modules/vim
       ./modules/tmux
       ./modules/zsh
       ./modules/git
+      ./modules/firefox
     ];
 
     home = {

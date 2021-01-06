@@ -6,7 +6,7 @@
     ../home
   ];
 
-  nixpkgs.overlays = [ inputs.self.overlay ];
+  nixpkgs.overlays = [ inputs.self.overlay inputs.nur.overlay ];
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
   environment = {

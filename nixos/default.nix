@@ -41,6 +41,7 @@
         steam
         virt-manager
         vlc
+        zoom-us
       ];
   };
 

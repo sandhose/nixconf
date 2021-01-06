@@ -2,6 +2,7 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR";
 
     darwin = {
       url = "github:sandhose/nix-darwin/flake-registry";
@@ -14,7 +15,7 @@
     };
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, flake-utils }@inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, flake-utils, nur }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
     let systemPkgs = import nixpkgs { inherit system; };
     in {
