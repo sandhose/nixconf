@@ -91,7 +91,6 @@ with pkgs; [
   keybase
   kind
   librsvg
-  libtool
   buildpack
   shellcheck
   sops

@@ -35,6 +35,7 @@
         gnome-builder
         google-chrome
         keepassxc
+        libtool
         libvirt
         looking-glass-client
         mumble

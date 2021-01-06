@@ -2,7 +2,7 @@
 
 {
   programs.firefox = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
 
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin
