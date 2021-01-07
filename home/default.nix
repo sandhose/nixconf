@@ -6,12 +6,15 @@
   home-manager.users.sandhose = { pkgs, ... }: {
     imports = [ 
       ./modules/alacritty
-      ./modules/npm
-      ./modules/vim
-      ./modules/tmux
-      ./modules/zsh
-      ./modules/git
+      ./modules/direnv
       ./modules/firefox
+      ./modules/fzf
+      ./modules/git
+      ./modules/npm
+      ./modules/syncthing
+      ./modules/tmux
+      ./modules/vim
+      ./modules/zsh
     ];
 
     home = {
@@ -21,25 +24,12 @@
         LESS            = "-I -M -R --shift 5";
         PATH            = "$NPM_BIN:$HOME/go/bin:$HOME/.local/bin:$PATH";
         GIT_SSL_CAINFO  = "/run/current-system/etc/ssl/certs/ca-certificates.crt";
+      } // lib.mkIf (pkgs.stdenv.isDarwin) {
         FONTCONFIG_FILE = pkgs.makeFontsConf {
           fontDirectories = [
             "/Library/Fonts"
           ];
         };
-      };
-    };
-
-    programs = {
-      direnv = {
-        enable = true;
-        enableNixDirenvIntegration = true;
-      };
-      fzf = {
-        enable = true;
-        historyWidgetOptions = [
-          "--layout=reverse"
-          "--inline-info"
-        ];
       };
     };
   };
