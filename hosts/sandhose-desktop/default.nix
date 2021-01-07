@@ -12,7 +12,7 @@
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/root";
+    { device = "/dev/disk/by-partlabel/root";
       fsType = "xfs";
     };
 
