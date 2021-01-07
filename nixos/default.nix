@@ -7,6 +7,7 @@
     loader = {
       systemd-boot = {
         enable = true;
+        editor = false;
         memtest86.enable = true;
       };
       efi.canTouchEfiVariables = true;
@@ -46,21 +47,9 @@
       ];
   };
 
-  nix = {
-    trustedUsers = [ "@wheel" ];
-    package = pkgs.nixFlakes;
-
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      keep-outputs = true
-      keep-derivations = true
-    '';
-  };
-
   services = {
     openssh.enable = true;
     fwupd.enable = true;
-    syncthing.enable = true;
     flatpak.enable = true;
   };
 
@@ -116,21 +105,11 @@
       group = "sandhose";
       home = "/home/sandhose";
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "docker" "libvirtd" "kvm" "dialout" "syncthing" ];
+      extraGroups = [ "wheel" "docker" "libvirtd" "kvm" "dialout" ];
 
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKI3JrkOofavtPW8jV/GYM5Mv1gn/h732JPm82SGGj50 sandhose@sandhose-laptop"
       ];
-    };
-  };
-
-  home-manager.users.sandhose = { ... }: {
-    gtk = {
-      enable = true;
-      gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = true;
-      };
-      theme.name = "Adwaita-dark";
     };
   };
 

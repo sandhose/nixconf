@@ -10,6 +10,7 @@
       ./modules/firefox
       ./modules/fzf
       ./modules/git
+      ./modules/gtk
       ./modules/npm
       ./modules/syncthing
       ./modules/tmux

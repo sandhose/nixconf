@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  imports = [ ./system.nix ];
   environment = {
     systemPackages =
       with pkgs; [
@@ -20,51 +21,6 @@
     };
   };
 
-  nix = {
-    trustedUsers = [ "@admin" ];
-
-    useSandbox = false;
-    package = pkgs.nixFlakes;
-
-    maxJobs = 3;
-    buildCores = 3;
-
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
-  system = {
-    defaults = {
-      trackpad = {
-        ActuationStrength = 1; # force click
-        Clicking = true; # tap to click
-
-        # Firm click
-        FirstClickThreshold = 2;
-        SecondClickThreshold = 2;
-
-        # Two-finger right click
-        TrackpadRightClick = true;
-      };
-
-      dock = {
-        autohide = true;
-        tilesize = 48;
-        orientation = "bottom";
-        show-process-indicators = true;
-        show-recents = false;
-      };
-
-      finder = {
-        AppleShowAllExtensions = true;
-        FXEnableExtensionChangeWarning = false;
-      };
-    };
-
-    stateVersion = 4;
-  };
-
   programs.nix-index.enable = true;
   services.nix-daemon.enable = true;
 
@@ -75,4 +31,6 @@
       home = "/Users/sandhose";
     };
   };
+
+  system.stateVersion = 4;
 }
