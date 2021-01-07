@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, lib, ... }:
 
 {
   boot = {
@@ -118,4 +118,6 @@
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "20.03"; # Did you read the comment?
+
+  system.configurationRevision = lib.mkIf (inputs.self ? rev) inputs.self.rev;
 }
