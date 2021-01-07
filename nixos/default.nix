@@ -9,7 +9,7 @@
         enable = true;
         memtest86.enable = true;
       };
-      efi.canTouchEfiVariables = false; # Temporary
+      efi.canTouchEfiVariables = true;
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
