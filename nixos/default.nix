@@ -97,6 +97,8 @@
     videoDrivers = [ "nvidia" ];
   };
 
+  fonts.fontDir.enable = true;
+
   users = {
     groups.sandhose = { };
     users.sandhose = {

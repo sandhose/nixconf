@@ -23,6 +23,7 @@
 
   programs.nix-index.enable = true;
   services.nix-daemon.enable = true;
+  fonts.enableFontDir = true;
 
   users.users = {
     sandhose = {
