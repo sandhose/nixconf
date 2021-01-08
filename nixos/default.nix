@@ -2,7 +2,7 @@
 
 {
   boot = {
-    supportedFilesystems = [ "zfs" ];
+    supportedFilesystems = [ "zfs" "ntfs" ];
 
     loader = {
       systemd-boot = {
@@ -29,6 +29,7 @@
         clang
         clang-manpages
         clang-tools
+        darktable
         flatpak-builder
         gcc
         gnome3.gnome-tweaks
