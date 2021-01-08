@@ -99,6 +99,7 @@
   };
 
   fonts.fontDir.enable = true;
+  time.timeZone = "Europe/Paris";
 
   users = {
     groups.sandhose = { };
