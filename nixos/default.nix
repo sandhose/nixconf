@@ -2,7 +2,7 @@
 
 {
   boot = {
-    supportedFilesystems = [ "zfs" "ntfs" ];
+    supportedFilesystems = [ "zfs" "ntfs" "xfs" ];
 
     loader = {
       systemd-boot = {
@@ -52,7 +52,25 @@
     openssh.enable = true;
     fwupd.enable = true;
     flatpak.enable = true;
+    zfs = {
+      autoSnapshot.enable = true;
+      trim.enable = true;
+      autoScrub.enable = true;
+    };
+    xserver = {
+      enable = true;
+      displayManager.gdm.enable = true;
+      desktopManager.gnome3.enable = true;
+      libinput.enable = true;
+      layout = "fr";
+      xkbModel = "pc105";
+      xkbVariant = "mac";
+
+      videoDrivers = [ "nvidia" ];
+    };
   };
+
+  console.useXkbConfig = true;
 
   networking.firewall.allowedTCPPorts = [ 22 2376 ];
   virtualisation.docker = {
@@ -84,18 +102,6 @@
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
     cpu.amd.updateMicrocode = true;
-  };
-
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome3.enable = true;
-    libinput.enable = true;
-    layout = "fr";
-    xkbModel = "pc105";
-    xkbVariant = "mac";
-
-    videoDrivers = [ "nvidia" ];
   };
 
   fonts.fontDir.enable = true;
