@@ -68,7 +68,17 @@
 
       videoDrivers = [ "nvidia" ];
     };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
   };
+
+  # Pipewire uses this
+  security.rtkit.enable = true;
 
   console.useXkbConfig = true;
 
@@ -91,12 +101,9 @@
     "f /dev/shm/looking-glass 0660 sandhose qemu-libvirtd -"
   ];
 
-  sound.enable = true;
   hardware = {
-    pulseaudio = {
-      enable = true;
-      support32Bit = true;
-    };
+    # Explicitely disable pulseaudio, because we are using pipewire
+    pulseaudio.enable = false;
     opengl = {
       driSupport32Bit = true;
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
