@@ -7,17 +7,31 @@
         ]
       },
       "locked": {
-        "lastModified": 1608662661,
-        "narHash": "sha256-tO/Qv3GaAn1Uata0K5OTbD2S1pfJB/yZTquiNcHmrEI=",
-        "owner": "sandhose",
+        "lastModified": 1608628442,
+        "narHash": "sha256-MNpNlZ2TqaQNiYuP8UcudfQoZAT/ocwFwFxhANSRt1c=",
+        "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "456f17b4d9ecc8c2aa86be07b1829f8b59d331d0",
+        "rev": "8834df431736c3037bbef017b24c62bc4ace4645",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
+    "darwin-compat": {
+      "locked": {
+        "lastModified": 1610876568,
+        "narHash": "sha256-GwluX6b10uDL5fegutNWujHBjpn6Y+7FabP1w5vyh70=",
+        "owner": "sandhose",
+        "repo": "nix-darwin-compat",
+        "rev": "bca5613ed1531cd870f34ae324ea1e2c04dbe9b7",
         "type": "github"
       },
       "original": {
         "owner": "sandhose",
-        "ref": "flake-registry",
-        "repo": "nix-darwin",
+        "repo": "nix-darwin-compat",
         "type": "github"
       }
     },
@@ -106,6 +120,7 @@
     "root": {
       "inputs": {
         "darwin": "darwin",
+        "darwin-compat": "darwin-compat",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",

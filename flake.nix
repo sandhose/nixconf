@@ -4,9 +4,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     sops-nix.url = "github:Mic92/sops-nix";
+    darwin-compat.url = "github:sandhose/nix-darwin-compat";
 
     darwin = {
-      url = "github:sandhose/nix-darwin/flake-registry";
+      url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -16,7 +17,7 @@
     };
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, sops-nix, flake-utils, nur }@inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, sops-nix, flake-utils, nur, darwin-compat }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
     let systemPkgs = import nixpkgs { inherit system; };
     in {
@@ -37,6 +38,7 @@
           ./common
           ./darwin
           home-manager.darwinModules.home-manager
+          darwin-compat.darwinModules.flake-registry
         ];
         inputs = inputs;
       };
