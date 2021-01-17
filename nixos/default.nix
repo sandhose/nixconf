@@ -104,6 +104,7 @@
   hardware = {
     # Explicitely disable pulseaudio, because we are using pipewire
     pulseaudio.enable = false;
+    steam-hardware.enable = true;
     opengl = {
       driSupport32Bit = true;
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
