@@ -3,7 +3,6 @@
 lib.mkMerge [
   {
     nix = {
-      useSandbox = true;
       package = pkgs.nixFlakes;
 
       extraOptions = ''
@@ -15,10 +14,12 @@ lib.mkMerge [
   }
 
   (lib.mkIf pkgs.stdenv.isLinux {
+    nix.useSandbox = true;
     nix.trustedUsers = [ "@admin" ];
   })
 
   (lib.mkIf pkgs.stdenv.isDarwin {
+    nix.useSandbox = false; # For some reason does not work on my laptop
     nix.trustedUsers = [ "@wheel" ];
   })
 ]
