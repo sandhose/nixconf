@@ -44,7 +44,7 @@ with pkgs; [
   socat
   sqlite
   sshpass
-  terraform
+  terraform_0_14
   tmux
   unixtools.watch
   unrar
@@ -83,7 +83,7 @@ with pkgs; [
   cmake
   dos2unix
   ffmpeg
-  fluxctl
+  fluxcd
   gawk
   gitAndTools.gh
   go
