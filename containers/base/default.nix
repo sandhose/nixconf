@@ -1,4 +1,4 @@
-{ inputs, ... }: 
+{ inputs, ... }:
 
 with inputs; {
   boot.isContainer = true;

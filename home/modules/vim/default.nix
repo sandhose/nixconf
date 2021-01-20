@@ -62,12 +62,10 @@
       languageserver = {
         golang = {
           command = "${pkgs.gopls}/bin/gopls";
-          rootPatterns = ["go.mod" ".vim/" ".git/"];
-          filetypes = ["go"];
+          rootPatterns = [ "go.mod" ".vim/" ".git/" ];
+          filetypes = [ "go" ];
           disableWorkspaceFolders = true;
-          initializationOptions = {
-            completeUnimported = true;
-          };
+          initializationOptions = { completeUnimported = true; };
         };
       };
       python = {
@@ -76,26 +74,36 @@
         poetryPath = "${pkgs.python38Packages.poetry}/bin/poetry";
         linting.pylintPath = "${pkgs.python38Packages.pylint}/bin/pylint";
         linting.pylamaPath = "${pkgs.python39Packages.pylama}/bin/pylama";
-        linting.pydocstylePath = "${pkgs.python39Packages.pydocstyle}/bin/pydocstyle";
+        linting.pydocstylePath =
+          "${pkgs.python39Packages.pydocstyle}/bin/pydocstyle";
         # linting.prospector = "${pkgs.prospector}/bin/prospector";
         linting.pep8Path = "${pkgs.python39Packages.pep8}/bin/pep8";
         linting.mypyPath = "${pkgs.python39Packages.mypy}/bin/mypy";
         linting.banditPath = "${pkgs.python39Packages.bandit}/bin/bandit";
         linting.flake8Path = "${pkgs.python39Packages.flake8}/bin/flake8";
-        formatting.autopep8Path = "${pkgs.python39Packages.autopep8}/bin/autopep8";
+        formatting.autopep8Path =
+          "${pkgs.python39Packages.autopep8}/bin/autopep8";
         formatting.black = "${pkgs.python39Packages.black}/bin/black";
       };
       yaml = {
         schemas = {
           "https://json.schemastore.org/kustomization" = "kustomization.yaml";
-          "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" = "docker-compose.yaml";
+          "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" =
+            "docker-compose.yaml";
         };
       };
       coc = {
         preferences = {
           formatOnSaveFiletypes = [
-            "css" "markdown" "yaml" "rust" "javascript" "javascriptreact"
-            "typescript" "json" "graphql"
+            "css"
+            "markdown"
+            "yaml"
+            "rust"
+            "javascript"
+            "javascriptreact"
+            "typescript"
+            "json"
+            "graphql"
           ];
         };
       };

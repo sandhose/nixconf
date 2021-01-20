@@ -17,70 +17,60 @@
     };
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, sops-nix, flake-utils, nur, darwin-compat }@inputs:
+  outputs = { self, darwin, nixpkgs, home-manager, sops-nix, flake-utils, nur
+    , darwin-compat }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
-    let systemPkgs = import nixpkgs { inherit system; };
-    in {
-      packages = import ./packages { nixpkgs = systemPkgs; };
-      devShell = with systemPkgs; mkShell {
-        sopsPGPKeyDirs = [ "./keys" ];
-        nativeBuildInputs = [
-          sops-nix.packages.${system}.sops-pgp-hook
-        ];
-      };
-    })) // {
-      overlay = (final: prev: {
-        my = self.packages.${final.system};
-      });
+      let systemPkgs = import nixpkgs { inherit system; };
+      in {
+        packages = import ./packages { nixpkgs = systemPkgs; };
+        devShell = with systemPkgs;
+          mkShell {
+            sopsPGPKeyDirs = [ "./keys" ];
+            nativeBuildInputs =
+              [ sops-nix.packages.${system}.sops-pgp-hook nixfmt ];
+          };
+      })) // {
+        overlay = (final: prev: { my = self.packages.${final.system}; });
 
-      darwinConfigurations."sandhose-laptop" = darwin.lib.darwinSystem {
-        modules = [
-          ./common
-          ./darwin
-          home-manager.darwinModules.home-manager
-          darwin-compat.darwinModules.flake-registry
-        ];
-        inputs = inputs;
-      };
-
-      nixosConfigurations."sandhose-desktop" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
+        darwinConfigurations."sandhose-laptop" = darwin.lib.darwinSystem {
+          modules = [
+            ./common
+            ./darwin
+            home-manager.darwinModules.home-manager
+            darwin-compat.darwinModules.flake-registry
+          ];
+          inputs = inputs;
         };
 
-        modules = [
-          ./common
-          ./nixos
-          ./hosts/sandhose-desktop
-          nixpkgs.nixosModules.notDetected
-          home-manager.nixosModules.home-manager
-        ];
-      };
+        nixosConfigurations."sandhose-desktop" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
 
-      nixosConfigurations."murmur" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
+          modules = [
+            ./common
+            ./nixos
+            ./hosts/sandhose-desktop
+            nixpkgs.nixosModules.notDetected
+            home-manager.nixosModules.home-manager
+          ];
         };
 
-        modules = [
-          ./containers/base
-          ./containers/murmur 
-        ];
-      };
+        nixosConfigurations."murmur" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
 
-      nixosConfigurations."home-assistant" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
+          modules = [ ./containers/base ./containers/murmur ];
         };
 
-        modules = [
-          ./containers/base
-          ./containers/home-assistant
-          sops-nix.nixosModules.sops
-        ];
+        nixosConfigurations."home-assistant" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+
+          modules = [
+            ./containers/base
+            ./containers/home-assistant
+            sops-nix.nixosModules.sops
+          ];
+        };
       };
-    };
 }

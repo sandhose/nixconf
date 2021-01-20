@@ -15,8 +15,6 @@
       facebook-container
     ];
 
-    profiles = {
-      default = { id = 0; };
-    };
+    profiles = { default = { id = 0; }; };
   };
 }

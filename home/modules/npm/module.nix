@@ -4,10 +4,8 @@ with lib;
 
 let
   cfg = config.programs.npm;
-  npmrcType = with types;
-    attrsOf (oneOf [ str bool path int ]);
-in
-{
+  npmrcType = with types; attrsOf (oneOf [ str bool path int ]);
+in {
 
   options = {
     programs.npm = {
@@ -52,38 +50,35 @@ in
         default = null;
       };
 
-      bin = mkOption {
-        type = types.str;
-      };
+      bin = mkOption { type = types.str; };
     };
   };
 
-  config = mkIf cfg.enable (
-    mkMerge [
-      {
-        home.packages = [ cfg.package ];
-      }
+  config = mkIf cfg.enable (mkMerge [
+    { home.packages = [ cfg.package ]; }
 
-      (mkIf (cfg.prefix != null) {
-        programs.npm.npmrc.content.prefix = builtins.toPath "${config.home.homeDirectory}/${cfg.prefix}";
-        programs.npm.bin = builtins.toPath "${config.home.homeDirectory}/${cfg.prefix}/bin";
-        home.file."${cfg.prefix}/.keep".text = "";
-      })
+    (mkIf (cfg.prefix != null) {
+      programs.npm.npmrc.content.prefix =
+        builtins.toPath "${config.home.homeDirectory}/${cfg.prefix}";
+      programs.npm.bin =
+        builtins.toPath "${config.home.homeDirectory}/${cfg.prefix}/bin";
+      home.file."${cfg.prefix}/.keep".text = "";
+    })
 
-      (mkIf cfg.npmrc.enable {
-        programs.npm.npmrc.file = pkgs.writeText "npmrc" (generators.toKeyValue {} cfg.npmrc.content);
-      })
+    (mkIf cfg.npmrc.enable {
+      programs.npm.npmrc.file =
+        pkgs.writeText "npmrc" (generators.toKeyValue { } cfg.npmrc.content);
+    })
 
-      # (mkIf (cfg.npmrc.enable && cfg.npmrc.followXDG) {
-      #   xdg.configFile = {
-      #     "npm/config".source = cfg.npmrc.file;
-      #   };
-      # })
+    # (mkIf (cfg.npmrc.enable && cfg.npmrc.followXDG) {
+    #   xdg.configFile = {
+    #     "npm/config".source = cfg.npmrc.file;
+    #   };
+    # })
 
-      (mkIf (cfg.npmrc.enable && cfg.npmrc.injectEnv) {
-        home.sessionVariables.NPM_CONFIG_USERCONFIG = cfg.npmrc.file;
-        home.sessionVariables.NPM_BIN = cfg.bin;
-      })
-    ]
-  );
+    (mkIf (cfg.npmrc.enable && cfg.npmrc.injectEnv) {
+      home.sessionVariables.NPM_CONFIG_USERCONFIG = cfg.npmrc.file;
+      home.sessionVariables.NPM_BIN = cfg.bin;
+    })
+  ]);
 }

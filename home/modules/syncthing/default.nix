@@ -1,7 +1,5 @@
 { pkgs, ... }:
 
 {
-  services.syncthing = {
-    enable = pkgs.stdenv.isLinux;
-  };
+  services.syncthing = { enable = pkgs.stdenv.isLinux; };
 }

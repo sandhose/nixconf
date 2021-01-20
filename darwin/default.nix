@@ -3,17 +3,16 @@
 {
   imports = [ ./system.nix ];
   environment = {
-    systemPackages =
-      with pkgs; [
-        postgresql_12
-        pinentry_mac
-        reattach-to-user-namespace
-        notmuch
-        my.neomutt
-        msmtp
-        wireshark
-        xquartz
-      ];
+    systemPackages = with pkgs; [
+      postgresql_12
+      pinentry_mac
+      reattach-to-user-namespace
+      notmuch
+      my.neomutt
+      msmtp
+      wireshark
+      xquartz
+    ];
 
     variables = {
       EDITOR = "${pkgs.neovim}/bin/nvim";

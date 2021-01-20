@@ -24,28 +24,27 @@
   };
 
   environment = {
-    systemPackages =
-      with pkgs; [
-        clang
-        clang-manpages
-        clang-tools
-        darktable
-        flatpak-builder
-        gcc
-        gnome3.gnome-tweaks
-        gnome3.gnome-boxes
-        gnome-builder
-        google-chrome
-        keepassxc
-        libtool
-        libvirt
-        looking-glass-client
-        mumble
-        steam
-        virt-manager
-        vlc
-        zoom-us
-      ];
+    systemPackages = with pkgs; [
+      clang
+      clang-manpages
+      clang-tools
+      darktable
+      flatpak-builder
+      gcc
+      gnome3.gnome-tweaks
+      gnome3.gnome-boxes
+      gnome-builder
+      google-chrome
+      keepassxc
+      libtool
+      libvirt
+      looking-glass-client
+      mumble
+      steam
+      virt-manager
+      vlc
+      zoom-us
+    ];
   };
 
   services = {
@@ -85,10 +84,7 @@
   networking.firewall.allowedTCPPorts = [ 22 2376 ];
   virtualisation.docker = {
     enable = true;
-    listenOptions = [
-      "/run/docker.sock"
-      "[::]:2376"
-    ];
+    listenOptions = [ "/run/docker.sock" "[::]:2376" ];
     extraOptions = "--experimental";
   };
   virtualisation.libvirtd = {
@@ -97,9 +93,8 @@
   };
   virtualisation.spiceUSBRedirection.enable = true;
 
-  systemd.tmpfiles.rules = [
-    "f /dev/shm/looking-glass 0660 sandhose qemu-libvirtd -"
-  ];
+  systemd.tmpfiles.rules =
+    [ "f /dev/shm/looking-glass 0660 sandhose qemu-libvirtd -" ];
 
   hardware = {
     # Explicitely disable pulseaudio, because we are using pipewire

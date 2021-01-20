@@ -4,7 +4,7 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.sandhose = { pkgs, ... }: {
-    imports = [ 
+    imports = [
       ./modules/alacritty
       ./modules/direnv
       ./modules/environment
