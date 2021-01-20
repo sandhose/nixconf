@@ -42,35 +42,37 @@
           inputs = inputs;
         };
 
-        nixosConfigurations."sandhose-desktop" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+        nixosConfigurations = (nixpkgs.lib.genAttrs [
+          "home-assistant"
+          "minecraft"
+          "murmur"
+          "plex"
+          "samba"
+          "transmission"
+        ] (name:
+          nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs; };
+            modules = [ (./containers + "/${name}") ];
+          })) // {
+            "sandhose-desktop" = nixpkgs.lib.nixosSystem {
+              system = "x86_64-linux";
+              specialArgs = { inherit inputs; };
 
-          modules = [
-            ./common
-            ./nixos
-            ./hosts/sandhose-desktop
-            nixpkgs.nixosModules.notDetected
-            home-manager.nixosModules.home-manager
-          ];
-        };
+              modules = [
+                ./common
+                ./nixos
+                ./hosts/sandhose-desktop
+                nixpkgs.nixosModules.notDetected
+                home-manager.nixosModules.home-manager
+              ];
+            };
 
-        nixosConfigurations."murmur" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-
-          modules = [ ./containers/base ./containers/murmur ];
-        };
-
-        nixosConfigurations."home-assistant" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-
-          modules = [
-            ./containers/base
-            ./containers/home-assistant
-            sops-nix.nixosModules.sops
-          ];
-        };
+            "spaetzle" = nixpkgs.lib.nixosSystem {
+              system = "x86_64-linux";
+              specialArgs = { inherit inputs; };
+              modules = [ ./containers/base ./hosts/spaetzle ];
+            };
+          };
       };
 }

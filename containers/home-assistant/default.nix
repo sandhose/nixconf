@@ -1,6 +1,10 @@
-{ config, ... }:
+{ config, inputs, ... }:
 
 {
+  imports = [ inputs.sops-nix.nixosModules.sops ../base ];
+
+  networking.hostName = "home-assistant";
+
   services.home-assistant = {
     enable = true;
     openFirewall = true;
