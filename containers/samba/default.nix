@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  imports = [ ../base ];
+  imports = [ ../../profiles/container ];
 
   networking.hostName = "samba";
 

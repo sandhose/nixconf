@@ -1,7 +1,7 @@
 { config, inputs, ... }:
 
 {
-  imports = [ inputs.sops-nix.nixosModules.sops ../base ];
+  imports = [ inputs.sops-nix.nixosModules.sops ../../profiles/container ];
 
   networking.hostName = "home-assistant";
 

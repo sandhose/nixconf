@@ -7,6 +7,8 @@ let
     self.nixosConfigurations.${name}.config.system.build.toplevel;
 
 in {
+  imports = [ ../../profiles/container ];
+
   boot.enableContainers = true;
   networking.hostName = "spaetzle";
   boot.kernel.sysctl."net.ipv4.ip_forward" = "1";

@@ -33,12 +33,7 @@
         overlay = (final: prev: { my = self.packages.${final.system}; });
 
         darwinConfigurations."sandhose-laptop" = darwin.lib.darwinSystem {
-          modules = [
-            ./common
-            ./darwin
-            home-manager.darwinModules.home-manager
-            darwin-compat.darwinModules.flake-registry
-          ];
+          modules = [ ./hosts/sandhose-laptop ];
           inputs = inputs;
         };
 
@@ -58,20 +53,13 @@
             "sandhose-desktop" = nixpkgs.lib.nixosSystem {
               system = "x86_64-linux";
               specialArgs = { inherit inputs; };
-
-              modules = [
-                ./common
-                ./nixos
-                ./hosts/sandhose-desktop
-                nixpkgs.nixosModules.notDetected
-                home-manager.nixosModules.home-manager
-              ];
+              modules = [ ./hosts/sandhose-desktop ];
             };
 
             "spaetzle" = nixpkgs.lib.nixosSystem {
               system = "x86_64-linux";
               specialArgs = { inherit inputs; };
-              modules = [ ./containers/base ./hosts/spaetzle ];
+              modules = [ ./hosts/spaetzle ];
             };
           };
       };

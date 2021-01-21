@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 {
-  imports = [ ../base ];
+  imports = [ ../../profiles/container ];
 
   networking.hostName = "plex";
 

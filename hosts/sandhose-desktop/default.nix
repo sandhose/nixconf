@@ -1,6 +1,14 @@
 { pkgs, lib, ... }:
 
 {
+  imports = [
+    ../../profiles/common
+    ../../profiles/nixos
+    ../../profiles/home-manager
+    ../../users/sandhose/nixos-gui.nix
+    ../../users/root/nixos.nix
+  ];
+
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ehci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];

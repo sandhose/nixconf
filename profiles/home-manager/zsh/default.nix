@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    my.zsh-funcs
+  ];
+
   programs = {
     zsh = {
       enable = true;

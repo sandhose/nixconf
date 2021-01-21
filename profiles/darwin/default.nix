@@ -1,7 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
-{
-  imports = [ ./system.nix ];
+with inputs; {
+  imports = [
+    home-manager.darwinModules.home-manager
+    darwin-compat.darwinModules.flake-registry
+    ./system.nix
+  ];
+
   environment = {
     systemPackages = with pkgs; [
       postgresql_12

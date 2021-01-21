@@ -1,6 +1,9 @@
 { pkgs, inputs, lib, ... }:
 
-{
+with inputs; {
+  imports =
+    [ nixpkgs.nixosModules.notDetected home-manager.nixosModules.home-manager ];
+
   boot = {
     supportedFilesystems = [ "zfs" "ntfs" "xfs" ];
 
@@ -110,27 +113,11 @@
   fonts.fontDir.enable = true;
   time.timeZone = "Europe/Paris";
 
-  users = {
-    groups.sandhose = { };
-    users.sandhose = {
-      description = "Quentin Gliech";
-      isNormalUser = true;
-      group = "sandhose";
-      home = "/home/sandhose";
-      shell = pkgs.zsh;
-      extraGroups = [ "wheel" "docker" "libvirtd" "kvm" "dialout" ];
-
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKI3JrkOofavtPW8jV/GYM5Mv1gn/h732JPm82SGGj50 sandhose@sandhose-laptop"
-      ];
-    };
-  };
-
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "20.03"; # Did you read the comment?
 
-  system.configurationRevision = lib.mkIf (inputs.self ? rev) inputs.self.rev;
+  system.configurationRevision = lib.mkIf (self ? rev) self.rev;
 }
