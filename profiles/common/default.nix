@@ -1,6 +1,10 @@
 { pkgs, config, lib, inputs, ... }:
 
-with inputs; {
+let
+  inherit (inputs) self nur nixpkgs;
+
+in
+{
   imports = [ ./nix.nix ./cachix.nix ./fonts.nix ];
 
   nixpkgs.overlays = [ self.overlay nur.overlay ];

@@ -5,14 +5,11 @@
     users.sandhose = {
       description = "Quentin Gliech";
       shell = pkgs.zsh;
-
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKI3JrkOofavtPW8jV/GYM5Mv1gn/h732JPm82SGGj50 sandhose@sandhose-laptop"
-      ];
     };
   };
 
   home-manager.users.sandhose = { ... }: {
+    home.stateVersion = "20.03";
     imports = [
       ../../profiles/home-manager/direnv
       ../../profiles/home-manager/environment

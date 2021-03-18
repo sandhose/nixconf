@@ -33,8 +33,12 @@
         overlay = (final: prev: { my = self.packages.${final.system}; });
 
         darwinConfigurations."sandhose-laptop" = darwin.lib.darwinSystem {
-          modules = [ ./hosts/sandhose-laptop ];
-          inputs = inputs;
+          inherit inputs;
+          modules = [
+            # This needs to be imported here because of some weird infinite recursions issues
+            home-manager.darwinModules.home-manager
+            ./hosts/sandhose-laptop
+          ];
         };
 
         nixosConfigurations = (nixpkgs.lib.genAttrs [

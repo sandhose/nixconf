@@ -1,11 +1,7 @@
 { pkgs, inputs, ... }:
 
 with inputs; {
-  imports = [
-    home-manager.darwinModules.home-manager
-    darwin-compat.darwinModules.flake-registry
-    ./system.nix
-  ];
+  imports = [ ./system.nix ];
 
   environment = {
     systemPackages = with pkgs; [
@@ -28,14 +24,6 @@ with inputs; {
   programs.nix-index.enable = true;
   services.nix-daemon.enable = true;
   fonts.enableFontDir = true;
-
-  users.users = {
-    sandhose = {
-      description = "Quentin Gliech";
-      shell = pkgs.zsh;
-      home = "/Users/sandhose";
-    };
-  };
 
   system.stateVersion = 4;
 }
