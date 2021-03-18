@@ -71,8 +71,8 @@
       python = {
         jediEnabled = false;
         pipenvPath = "${pkgs.pipenv}/bin/pipenv";
-        poetryPath = "${pkgs.python38Packages.poetry}/bin/poetry";
-        linting.pylintPath = "${pkgs.python38Packages.pylint}/bin/pylint";
+        # poetryPath = "${pkgs.python39Packages.poetry}/bin/poetry";
+        # linting.pylintPath = "${pkgs.python39Packages.pylint}/bin/pylint";
         linting.pylamaPath = "${pkgs.python39Packages.pylama}/bin/pylama";
         linting.pydocstylePath =
           "${pkgs.python39Packages.pydocstyle}/bin/pydocstyle";

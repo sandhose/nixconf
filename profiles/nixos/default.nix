@@ -45,9 +45,9 @@ with inputs; {
       manpages
       minecraft
       mumble
-      signal-desktop
-      steam
-      teams
+      # signal-desktop
+      # steam
+      # teams
       virt-manager
       vlc
       zoom-us

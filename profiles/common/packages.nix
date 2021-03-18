@@ -58,7 +58,7 @@ with pkgs; [
   my.zsh-funcs
   clang-tools
 
-  elixir
+  # elixir
   # fig2dev
   fontconfig
   (texlive.combine {
@@ -70,7 +70,7 @@ with pkgs; [
   gnome3.librsvg
 
   maven
-  argocd
+  # argocd
   autoconf
   autogen
   automake
