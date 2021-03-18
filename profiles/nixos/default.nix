@@ -18,9 +18,9 @@ with inputs; {
 
     kernelPackages = pkgs.linuxPackages_latest;
 
-    # extraModprobeConfig = ''
-    #   options vfio-pci ids=10de:11c0,10de:0e0b
-    # '';
+    extraModprobeConfig = ''
+      options hid_apple iso_layout=0
+    '';
     kernelParams = [ "amd_iommu=on" "pcie_aspm=off" ];
     kernelModules = [ "vfio-pci" "kvm-amd" ];
     blacklistedKernelModules = [ "nouveau" ];
@@ -31,6 +31,7 @@ with inputs; {
       clang
       clang-manpages
       clang-tools
+      citrix_workspace
       darktable
       flatpak-builder
       gcc
@@ -42,8 +43,12 @@ with inputs; {
       libtool
       libvirt
       looking-glass-client
+      manpages
+      minecraft
       mumble
+      signal-desktop
       steam
+      teams
       virt-manager
       vlc
       zoom-us
@@ -77,19 +82,37 @@ with inputs; {
       pulse.enable = true;
       jack.enable = true;
     };
+    resolved.enable = true;
   };
 
-  # Pipewire uses this
-  security.rtkit.enable = true;
+  security = {
+    # Pipewire uses this
+    rtkit.enable = true;
+    apparmor.enable = true;
+    auditd.enable = true;
+
+    pam.loginLimits = [
+      { domain = "@audio"; item = "memlock"; type = "soft"; value = "64"; }
+      { domain = "@audio"; item = "memlock"; type = "hard"; value = "128"; }
+    ];
+  };
+
+  systemd.user.services.pipewire.serviceConfig.LimitMEMLOCK = "131072";
 
   console.useXkbConfig = true;
 
-  networking.firewall.allowedTCPPorts = [ 22 2376 ];
+  networking.firewall.allowedTCPPorts = [ 22 2376 9200 24642 ];
+  networking.firewall.allowedUDPPorts = [ 24642 ];
   virtualisation.docker = {
     enable = true;
     listenOptions = [ "/run/docker.sock" "[::]:2376" ];
     extraOptions = "--experimental";
   };
+
+  environment.etc."docker/daemon.json".text = builtins.toJSON {
+    features.buildkit = true;
+  };
+
   virtualisation.libvirtd = {
     enable = true;
     qemuOvmf = true;
@@ -108,10 +131,40 @@ with inputs; {
       extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
     };
     cpu.amd.updateMicrocode = true;
+    enableAllFirmware = true;
+    enableRedistributableFirmware = true;
+    bluetooth = {
+      enable = true;
+      package = pkgs.bluezFull;
+      hsphfpd.enable = true;
+    };
   };
 
   fonts.fontDir.enable = true;
   time.timeZone = "Europe/Paris";
+
+  nixpkgs.overlays = [ (self: super: {
+    sandhose-dbus = super.writeTextFile {
+      name = "sandhose-dbus";
+      destination = "/share/dbus-1/system.d/fr.sandhose.conf";
+      text = ''
+        <!DOCTYPE busconfig PUBLIC "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
+          "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd">
+        <busconfig>
+          <policy user="sandhose">
+            <allow own_prefix="fr.sandhose"/>
+            <allow send_destination="fr.sandhose"/>
+          </policy>
+
+          <policy context="default">
+            <allow send_destination="fr.sandhose.Player"/>
+          </policy>
+        </busconfig>
+      '';
+    };
+  }) ];
+
+  services.dbus.packages = [ pkgs.sandhose-dbus ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
