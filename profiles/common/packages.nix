@@ -59,7 +59,7 @@ with pkgs; [
   clang-tools
 
   elixir
-  fig2dev
+  # fig2dev
   fontconfig
   (texlive.combine {
     inherit (texlive)
