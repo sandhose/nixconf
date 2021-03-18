@@ -31,7 +31,6 @@ with inputs; {
       clang
       clang-manpages
       clang-tools
-      citrix_workspace
       darktable
       flatpak-builder
       gcc

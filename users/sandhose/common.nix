@@ -16,6 +16,7 @@
       ../../profiles/home-manager/fzf
       ../../profiles/home-manager/git
       ../../profiles/home-manager/git/sandhose.nix
+      ../../profiles/home-manager/nix
       ../../profiles/home-manager/npm
       ../../profiles/home-manager/tmux
       ../../profiles/home-manager/vim
