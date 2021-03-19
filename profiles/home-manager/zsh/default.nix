@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    my.zsh-funcs
-  ];
+  home.packages = with pkgs; [ my.zsh-funcs ];
 
   programs = {
     zsh = {

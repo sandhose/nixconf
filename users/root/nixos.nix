@@ -3,15 +3,12 @@
 {
   # Those directories don't seem to be created in containers
   # TODO: open an issue and/or move that somewhere else
-  system.activationScripts.nix-per-user =
-    ''
-      install -d -m 755 /nix/var/nix/profiles/per-user/root
-      install -d -m 755 /nix/var/nix/gcroots/per-user/root
-    '';
+  system.activationScripts.nix-per-user = ''
+    install -d -m 755 /nix/var/nix/profiles/per-user/root
+    install -d -m 755 /nix/var/nix/gcroots/per-user/root
+  '';
 
-  users.users.root = {
-    shell = pkgs.zsh;
-  };
+  users.users.root = { shell = pkgs.zsh; };
 
   home-manager.users.root = { ... }: {
     imports = [

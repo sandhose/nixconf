@@ -7,7 +7,7 @@ let
     self.nixosConfigurations.${name}.config.system.build.toplevel;
 
 in {
-  imports = [ ../../profiles/container ];
+  imports = [ ../../profiles/base ../../profiles/container ];
 
   boot.enableContainers = true;
   networking.hostName = "spaetzle";

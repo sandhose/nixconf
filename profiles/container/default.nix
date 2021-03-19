@@ -1,14 +1,11 @@
 { inputs, ... }:
 
 with inputs; {
-  imports = [ 
+  imports = [
     home-manager.nixosModules.home-manager
     ../home-manager
     ../../users/root/nixos.nix
   ];
-
-  nixpkgs.overlays = [ self.overlay nur.overlay ];
-  nix.registry.nixpkgs.flake = nixpkgs;
 
   boot.isContainer = true;
   system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;

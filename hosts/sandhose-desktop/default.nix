@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../../profiles/base
     ../../profiles/common
     ../../profiles/nixos
     ../../profiles/home-manager
@@ -35,7 +36,10 @@
     fsType = "vfat";
   };
 
-  swapDevices = [ { device = "/swapfile"; size = 32768; } ];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 32768;
+  }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
