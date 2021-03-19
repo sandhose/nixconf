@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, lib, ... }:
 
 with inputs;
 
@@ -7,11 +7,23 @@ let
     self.nixosConfigurations.${name}.config.system.build.toplevel;
 
 in {
-  imports = [ ../../profiles/base ../../profiles/container ];
+  imports = [
+    ../../profiles/container
+    ../../profiles/nixos/host.nix
+    ../../profiles/nixos/efi.nix
+    ../../profiles/nixos/zfs.nix
+  ];
 
   boot.enableContainers = true;
-  networking.hostName = "spaetzle";
+  networking = {
+    hostId = "c47b7531";
+    hostName = "spaetzle";
+  };
   boot.kernel.sysctl."net.ipv4.ip_forward" = "1";
+
+  # TODO: disable those since we're in a container
+  security.apparmor.enable = lib.mkForce false;
+  services.resolved.enable = lib.mkForce false;
 
   containers = {
     murmur = {

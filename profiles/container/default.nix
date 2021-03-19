@@ -1,16 +1,16 @@
 { inputs, ... }:
 
-with inputs; {
+let 
+  inherit (inputs) home-manager;
+
+in {
   imports = [
-    home-manager.nixosModules.home-manager
-    ../home-manager
+    ../base
+    ../common
+    ../nixos/base.nix
     ../../users/root/nixos.nix
   ];
 
   boot.isContainer = true;
-  system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
   networking.useDHCP = false;
-
-  # TODO: refactor this
-  programs.zsh.enable = true;
 }

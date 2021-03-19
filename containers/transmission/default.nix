@@ -1,7 +1,7 @@
 { config, ... }:
 
 {
-  imports = [ ../../profiles/base ../../profiles/container ];
+  imports = [ ../../profiles/container ];
 
   networking.hostName = "transmission";
 

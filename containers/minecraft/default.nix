@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 {
-  imports = [ ../../profiles/base ../../profiles/container ];
+  imports = [ ../../profiles/container ];
 
   networking.hostName = "minecraft";
 
