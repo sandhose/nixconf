@@ -16,9 +16,7 @@ with inputs; {
     ./zfs.nix
   ];
 
-  boot = {
-    supportedFilesystems = [ "ntfs" "xfs" ];
-  };
+  boot.supportedFilesystems = [ "ntfs" "xfs" ];
 
   environment = {
     systemPackages = with pkgs; [

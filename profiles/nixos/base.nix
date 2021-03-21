@@ -1,7 +1,6 @@
 { lib, inputs, ... }:
 
-let
-  inherit (inputs) self home-manager nixpkgs;
+let inherit (inputs) self home-manager nixpkgs;
 
 in {
   imports = [
