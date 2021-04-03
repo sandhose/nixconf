@@ -15,6 +15,10 @@ jobs:
             target: .#darwinConfigurations.sandhose-laptop.system
 
     steps:
+      - name: Create Nix mount point
+        if: contains(matrix.os, 'ubuntu')
+        run: mkdir /nix
+
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         if: contains(matrix.os, 'ubuntu')
