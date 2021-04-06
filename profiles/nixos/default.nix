@@ -27,7 +27,6 @@ with inputs; {
       flatpak-builder
       gcc
       gnome3.gnome-tweaks
-      gnome3.gnome-boxes
       gnome-builder
       google-chrome
       keepassxc

@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    gnome3.gnome-boxes
+    # gnome3.gnome-boxes
     libvirt
     looking-glass-client
     virt-manager

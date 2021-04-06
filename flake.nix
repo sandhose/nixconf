@@ -65,6 +65,12 @@
               specialArgs = { inherit inputs; };
               modules = [ ./hosts/spaetzle ];
             };
+
+            "raspberry" = nixpkgs.lib.nixosSystem {
+              system = "aarch64-linux";
+              specialArgs = { inherit inputs; };
+              modules = [ ./hosts/raspberry ];
+            };
           };
       };
 }
