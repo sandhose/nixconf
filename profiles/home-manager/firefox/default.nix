@@ -4,7 +4,7 @@
   programs.firefox = {
     enable = true;
 
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    extensions = with pkgs.firefox-addons; [
       ublock-origin
       reddit-enhancement-suite
       react-devtools

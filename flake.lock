@@ -102,21 +102,6 @@
         "type": "github"
       }
     },
-    "nur": {
-      "locked": {
-        "lastModified": 1618163853,
-        "narHash": "sha256-MpqCxNKpbesP3JHvnyi6SDzBGr6jabb/w09jfTOEhUY=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "c4a22550b15bfcc3780ea25714b5661cb769b8f5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "darwin": "darwin",
@@ -124,8 +109,24 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nur": "nur",
+        "rycee": "rycee",
         "sops-nix": "sops-nix"
+      }
+    },
+    "rycee": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1618163712,
+        "narHash": "sha256-kTQabBp6gptve14bFqh+p33bkMdYcxyLCKygc7I0c+E=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "ce25a2e030a77a1c10d6f2c6fa787e661744151b",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "type": "gitlab"
       }
     },
     "sops-nix": {

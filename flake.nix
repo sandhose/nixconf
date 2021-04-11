@@ -2,9 +2,12 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
     sops-nix.url = "github:Mic92/sops-nix";
     darwin-compat.url = "github:sandhose/nix-darwin-compat";
+    rycee = {
+      url = "gitlab:rycee/nur-expressions";
+      flake = false;
+    };
 
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -17,7 +20,7 @@
     };
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, sops-nix, flake-utils, nur
+  outputs = { self, darwin, nixpkgs, home-manager, sops-nix, flake-utils, rycee
     , darwin-compat }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let systemPkgs = import nixpkgs { inherit system; };
