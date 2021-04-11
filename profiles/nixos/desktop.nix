@@ -26,17 +26,11 @@
 
     printing = {
       enable = true;
-      drivers = with pkgs; [
-        gutenprint
-        gutenprintBin
-        canon-cups-ufr2
-      ];
+      drivers = with pkgs; [ gutenprint gutenprintBin canon-cups-ufr2 ];
     };
   };
 
-  environment.gnome3.excludePackages = with pkgs.gnome3; [
-    cheese
-  ];
+  environment.gnome3.excludePackages = with pkgs.gnome3; [ cheese ];
 
   # programs.steam.enable = true;
 
