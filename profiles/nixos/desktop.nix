@@ -35,6 +35,7 @@
     };
   };
 
+  environment.systemPackages = [ pkgs.openrgb ];
   environment.gnome3.excludePackages = with pkgs.gnome3; [ cheese ];
 
   # programs.steam.enable = true;
