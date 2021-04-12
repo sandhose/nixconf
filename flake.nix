@@ -2,7 +2,10 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     darwin-compat.url = "github:sandhose/nix-darwin-compat";
     rycee = {
       url = "gitlab:rycee/nur-expressions";
