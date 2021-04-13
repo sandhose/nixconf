@@ -65,7 +65,7 @@ with pkgs; [
     inherit (texlive)
       scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem
       fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind titling
-      unamth-template bib-fr synttree wrapfig;
+      unamth-template bib-fr synttree wrapfig lastpage;
   })
   gnome3.librsvg
 
