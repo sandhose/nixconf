@@ -31,7 +31,7 @@
 
     printing = {
       enable = true;
-      drivers = with pkgs; [ gutenprint gutenprintBin canon-cups-ufr2 ];
+      drivers = with pkgs; [ gutenprint gutenprintBin carps-cups canon-cups-ufr2 cups-bjnp cnijfilter2 ];
     };
   };
 
