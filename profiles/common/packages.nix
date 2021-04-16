@@ -33,7 +33,7 @@ with pkgs; [
   nodejs-15_x
   pandoc
   parallel
-  pgcli
+  # pgcli
   protobuf
   pwgen
   python
