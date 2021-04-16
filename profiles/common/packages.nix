@@ -38,7 +38,7 @@ with pkgs; [
   pwgen
   python
   python3
-  python37Packages.ansible
+  # python37Packages.ansible
   redis
   rustup
   socat
