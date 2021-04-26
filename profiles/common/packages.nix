@@ -38,6 +38,7 @@ with pkgs; [
   pwgen
   python
   python3
+  python39Full
   # python37Packages.ansible
   redis
   rustup
@@ -87,7 +88,7 @@ with pkgs; [
   gawk
   gitAndTools.gh
   go
-  inkscape
+  # inkscape
   # jabref
   keybase
   kind
