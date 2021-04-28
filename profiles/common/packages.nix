@@ -36,8 +36,8 @@ with pkgs; [
   # pgcli
   protobuf
   pwgen
-  python
-  python3
+  # python
+  # python3
   python39Full
   # python37Packages.ansible
   redis
