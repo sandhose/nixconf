@@ -9,7 +9,7 @@
   };
 
   home-manager.users.sandhose = { ... }: {
-    home.stateVersion = "20.03";
+    home.stateVersion = "20.09";
     imports = [
       ../../profiles/home-manager/direnv
       ../../profiles/home-manager/environment

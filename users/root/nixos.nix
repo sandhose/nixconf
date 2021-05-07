@@ -11,6 +11,7 @@
   users.users.root = { shell = pkgs.zsh; };
 
   home-manager.users.root = { ... }: {
+    home.stateVersion = "20.09";
     imports = [
       ../../profiles/home-manager/direnv
       ../../profiles/home-manager/environment
