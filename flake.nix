@@ -9,9 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dwarffs = {
-      url = "github:edolstra/dwarffs";
-    };
+    dwarffs = { url = "github:edolstra/dwarffs"; };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
