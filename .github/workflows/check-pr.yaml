@@ -46,6 +46,7 @@ jobs:
         with:
           name: sandhose
           skipPush: true
+          extraPullNames: nix-community
 
       - name: Build system
         env:

@@ -48,6 +48,7 @@ jobs:
         with:
           name: sandhose
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          extraPullNames: nix-community
 
       - name: Build system
         env:

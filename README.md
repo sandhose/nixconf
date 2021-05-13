@@ -19,3 +19,9 @@ This is my personal [nix](https://nixos.org/) configuration.
   ```sh
   nixos-install --flake 'github:sandhose/nixconf#sandhose-desktop' --root /mnt --impure
   ```
+
+# Adding new cachix caches
+
+```
+cachix use <cache> -m nixos -d ./profiles/base/
+```
