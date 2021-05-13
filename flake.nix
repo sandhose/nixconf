@@ -1,12 +1,25 @@
 {
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:sandhose/nixpkgs/gnome-40";
+
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    nix = {
+      url = "github:NixOS/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dwarffs = {
+      url = "github:edolstra/dwarffs";
+    };
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     darwin-compat.url = "github:sandhose/nix-darwin-compat";
+
     rycee = {
       url = "gitlab:rycee/nur-expressions";
       flake = false;
@@ -24,7 +37,7 @@
   };
 
   outputs = { self, darwin, nixpkgs, home-manager, sops-nix, flake-utils, rycee
-    , darwin-compat }@inputs:
+    , darwin-compat, dwarffs, nix }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let systemPkgs = import nixpkgs { inherit system; };
       in {
