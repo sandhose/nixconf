@@ -11,7 +11,7 @@
       };
 
       font = {
-        normal.family = "Fira Code";
+        normal.family = "FiraCode Nerd Font";
         offset.y = 2;
         size = 11;
       };

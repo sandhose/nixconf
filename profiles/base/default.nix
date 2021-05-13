@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 
-let inherit (inputs) self rycee nixpkgs nix;
+let inherit (inputs) self rycee nixpkgs nix fenix neovim;
 
 in {
   imports = [ ./cachix.nix ./nix.nix ];
@@ -8,6 +8,8 @@ in {
   nixpkgs.overlays = [
     self.overlay
     nix.overlay
+    fenix.overlay
+    neovim.overlay
     (final: prev: {
       firefox-addons = (import rycee { pkgs = prev; }).firefox-addons;
     })

@@ -9,7 +9,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dwarffs = { url = "github:edolstra/dwarffs"; };
+    dwarffs = {
+      url = "github:edolstra/dwarffs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix.follows = "nix";
+    };
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    neovim = {
+      url = "github:neovim/neovim?dir=contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -35,7 +50,7 @@
   };
 
   outputs = { self, darwin, nixpkgs, home-manager, sops-nix, flake-utils, rycee
-    , darwin-compat, dwarffs, nix }@inputs:
+    , darwin-compat, dwarffs, nix, fenix, neovim }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
       let systemPkgs = import nixpkgs { inherit system; };
       in {

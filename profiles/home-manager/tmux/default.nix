@@ -18,6 +18,8 @@
         bind P attach -c "#{pane_current_path}"
         bind S swap-window
         set -g default-command "${pkgs.zsh}/bin/zsh"
+        set-option -sa terminal-overrides ',alacritty:RGB'
+        set-option -g focus-events on
 
         set -g status-justify "left"
         set -g status "on"

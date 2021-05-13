@@ -3,6 +3,7 @@
 {
   fonts.fonts = with pkgs; [
     fira-code
+    nerdfonts
     roboto
     roboto-mono
     roboto-slab
