@@ -115,4 +115,9 @@ with pkgs; [
       rustfmt-preview
       rust-src
     ]))
+
+  # Needed by Telescope.nvim
+  fd
+  bat
+  ripgrep
 ]

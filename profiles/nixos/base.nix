@@ -1,8 +1,10 @@
 { lib, inputs, ... }:
 
-let inherit (inputs) self home-manager nixpkgs dwarffs;
+let
+  inherit (inputs) self home-manager nixpkgs dwarffs;
 
-in {
+in
+{
   imports = [
     nixpkgs.nixosModules.notDetected
     home-manager.nixosModules.home-manager
@@ -11,6 +13,12 @@ in {
   ];
 
   fonts.fontDir.enable = true;
+
+  # TODO: move this elsewhere and ensure emoji always go first
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts.monospace = [ "FiraCode Nerd Font" "Noto Color Emoji" ];
+  };
   time.timeZone = "Europe/Paris";
 
   # This value determines the NixOS release with which your system is to be

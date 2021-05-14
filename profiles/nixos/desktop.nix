@@ -6,7 +6,7 @@
     xserver = {
       enable = true;
       displayManager.gdm.enable = true;
-      desktopManager.gnome3.enable = true;
+      desktopManager.gnome.enable = true;
       libinput.enable = true;
       layout = "fr";
       xkbModel = "pc105";
@@ -21,12 +21,14 @@
         local all all trust
         host all all ::1/128 trust
       '';
-      ensureUsers = [{
-        name = "sandhose";
-        ensurePermissions = {
-          "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
-        };
-      }];
+      ensureUsers = [
+        {
+          name = "sandhose";
+          ensurePermissions = {
+            "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
+          };
+        }
+      ];
     };
 
     printing = {
@@ -43,7 +45,6 @@
   };
 
   environment.systemPackages = [ pkgs.openrgb ];
-  environment.gnome3.excludePackages = with pkgs.gnome3; [ cheese ];
 
   # programs.steam.enable = true;
 
