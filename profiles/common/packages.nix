@@ -62,12 +62,15 @@ with pkgs; [
   # elixir
   # fig2dev
   fontconfig
-  (texlive.combine {
-    inherit (texlive)
-      scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem
-      fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind titling
-      unamth-template bib-fr synttree wrapfig lastpage;
-  })
+  (
+    texlive.combine {
+      inherit (texlive)
+        scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem
+        fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind titling
+        unamth-template bib-fr synttree wrapfig lastpage
+        ;
+    }
+  )
   gnome3.librsvg
 
   maven
@@ -105,16 +108,6 @@ with pkgs; [
   go
   lldb
   file
-
-  (with fenix;
-    combine (with stable; [
-      cargo
-      clippy-preview
-      rust-std
-      rustc
-      rustfmt-preview
-      rust-src
-    ]))
 
   # Needed by Telescope.nvim
   fd

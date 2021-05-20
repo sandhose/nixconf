@@ -20,6 +20,15 @@ with inputs; {
   boot.cleanTmpDir = true;
   boot.tmpOnTmpfs = true;
 
+  nixpkgs.overlays = [
+    (
+      self: super: {
+        # Change pkgs.rust-analyzer with the one from fenix
+        rust-analyzer = self.fenix.rust-analyzer;
+      }
+    )
+  ];
+
   environment = {
     systemPackages = with pkgs; [
       clang
@@ -41,6 +50,20 @@ with inputs; {
       # teams
       vlc
       zoom-us
+
+      (
+        with fenix;
+        combine (
+          with stable; [
+            cargo
+            clippy-preview
+            rust-std
+            rustc
+            rustfmt-preview
+            rust-src
+          ]
+        )
+      )
     ];
   };
 
