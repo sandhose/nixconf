@@ -1,4 +1,5 @@
-require'base16-colorscheme'.setup('default-dark')
+vim.g.material_style = "darker"
+require'material'.set()
 
 require'my.options'
 
@@ -10,6 +11,7 @@ require'nvim-treesitter.configs'.setup {
   incremental_selection = {
     enable = true,
     keymaps = {
+      -- TODO
       init_selection = "gnn",
       node_incremental = "grn",
       scope_incremental = "grc",
@@ -23,3 +25,4 @@ require'nvim-treesitter.configs'.setup {
 
 require'my.lsp'
 require'my.completion'
+require'my.galaxyline'

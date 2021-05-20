@@ -53,7 +53,7 @@ in
             (pluginWithDeps telescope-nvim [ plenary-nvim popup-nvim ]);
         in
           [
-            pkgs.my.nvim-base16
+            pkgs.my.material-nvim # Color scheme
             undotree
             vim-fugitive
             vim-surround
@@ -104,8 +104,9 @@ in
             vim-vsnip-integ
             friendly-snippets
             lspkind-nvim
+            galaxyline-nvim
 
-            lightline-vim
+            # lightline-vim
 
             vim-polyglot
             vim-jsonnet

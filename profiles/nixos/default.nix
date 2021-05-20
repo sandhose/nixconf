@@ -10,13 +10,15 @@ with inputs; {
     ./efi.nix
     ./host.nix
     ./libvirt.nix
-    ./nvidia.nix
+    # ./nvidia.nix
     ./pipewire.nix
     ./wireless.nix
     ./zfs.nix
   ];
 
   boot.supportedFilesystems = [ "ntfs" "xfs" ];
+  boot.cleanTmpDir = true;
+  boot.tmpOnTmpfs = true;
 
   environment = {
     systemPackages = with pkgs; [

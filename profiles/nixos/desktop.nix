@@ -6,6 +6,7 @@
     xserver = {
       enable = true;
       displayManager.gdm.enable = true;
+      displayManager.gdm.wayland = true;
       desktopManager.gnome.enable = true;
       libinput.enable = true;
       layout = "fr";
@@ -44,15 +45,33 @@
     };
   };
 
+  services.gnome.experimental-features.realtime-scheduling = true;
+
+  boot.plymouth = {
+    enable = true;
+  };
+
   environment.systemPackages = [ pkgs.openrgb ];
 
-  # programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+  };
 
   hardware = {
     steam-hardware.enable = true;
     opengl = {
       driSupport32Bit = true;
-      extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
+      extraPackages = with pkgs; [
+        libva
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [
+        libva
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
       setLdLibraryPath = true;
     };
   };
