@@ -12,7 +12,6 @@ in
       package = pkgs.neovim;
 
       extraPackages = with pkgs; [
-        neovim-remote
         gcc
         tree-sitter
 
