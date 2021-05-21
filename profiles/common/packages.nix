@@ -30,7 +30,7 @@ with pkgs; [
   neovim
   nix-index
   nmap
-  nodejs
+  nodejs_latest
   pandoc
   parallel
   # pgcli
