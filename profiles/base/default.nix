@@ -1,13 +1,12 @@
 { inputs, pkgs, ... }:
 
-let inherit (inputs) self rycee nixpkgs nix fenix neovim;
+let inherit (inputs) self rycee nixpkgs fenix neovim;
 
 in {
   imports = [ ./cachix.nix ./nix.nix ];
 
   nixpkgs.overlays = [
     self.overlay
-    nix.overlay
     fenix.overlay
     neovim.overlay
     (final: prev: {

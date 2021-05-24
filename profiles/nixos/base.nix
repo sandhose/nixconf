@@ -1,7 +1,7 @@
 { lib, inputs, ... }:
 
 let
-  inherit (inputs) self home-manager nixpkgs dwarffs;
+  inherit (inputs) self home-manager nixpkgs dwarffs nix;
 
 in
 {
@@ -11,6 +11,10 @@ in
     dwarffs.nixosModules.dwarffs
     ../home-manager
   ];
+
+  nixpkgs.overlay = [ nix.overlay ];
+
+  nix.package = lib.mkForce pkgs.nix;
 
   fonts.fontDir.enable = true;
 

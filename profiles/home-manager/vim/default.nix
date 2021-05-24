@@ -48,6 +48,21 @@ in
 
       plugins = with pkgs.vimPlugins;
         let
+          fixGrammar = p: p.overrideAttrs (oldAttrs: rec {
+            buildPhase = ''
+              runHook preBuild
+              scanner_cc="$src/src/scanner.cc"
+              if [ ! -f "$scanner_cc" ]; then
+                scanner_cc=""
+              fi
+              scanner_c="$src/src/scanner.c"
+              if [ ! -f "$scanner_c" ]; then
+                scanner_c=""
+              fi
+              $CXX -I$src/src/ -shared -o parser -Os $src/src/parser.c $scanner_cc $scanner_c -lstdc++
+              runHook postBuild
+            '';
+          });
           telescope =
             (pluginWithDeps telescope-nvim [ plenary-nvim popup-nvim ]);
         in
@@ -68,27 +83,29 @@ in
               nvim-treesitter.withPlugins (
                 p: [
                   # TODO: package tree-sitter-comment
-                  p.tree-sitter-bash
+                  (fixGrammar p.tree-sitter-bash)
                   p.tree-sitter-c
-                  p.tree-sitter-cpp
+                  (fixGrammar p.tree-sitter-cpp)
                   p.tree-sitter-css
                   p.tree-sitter-go
-                  p.tree-sitter-html
+                  (fixGrammar p.tree-sitter-html)
                   p.tree-sitter-java
                   p.tree-sitter-javascript
                   p.tree-sitter-jsdoc
                   p.tree-sitter-json
-                  # p.tree-sitter-lua # Broken
-                  p.tree-sitter-markdown
+                  # (p.tree-sitter-lua.overrideAttrs (_: {
+                  #   patches = [ ./tree-sitter-lua.patch ];
+                  # }))
+                  (fixGrammar p.tree-sitter-markdown)
                   p.tree-sitter-nix
-                  p.tree-sitter-php
-                  p.tree-sitter-python
+                  (fixGrammar p.tree-sitter-php)
+                  (fixGrammar p.tree-sitter-python)
                   p.tree-sitter-regex
-                  p.tree-sitter-ruby
+                  (fixGrammar p.tree-sitter-ruby)
                   p.tree-sitter-rust
                   p.tree-sitter-tsx
                   p.tree-sitter-typescript
-                  p.tree-sitter-yaml
+                  (fixGrammar p.tree-sitter-yaml)
                 ]
               )
             )

@@ -3,7 +3,7 @@
 lib.mkMerge [
   {
     nix = {
-      package = pkgs.nix;
+      package = pkgs.nixUnstable;
 
       extraOptions = ''
         experimental-features = nix-command flakes ca-references
