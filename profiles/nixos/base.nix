@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ lib, inputs, pkgs, ... }:
 
 let
   inherit (inputs) self home-manager nixpkgs dwarffs nix;
