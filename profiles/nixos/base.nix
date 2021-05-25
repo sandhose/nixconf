@@ -12,7 +12,7 @@ in
     ../home-manager
   ];
 
-  nixpkgs.overlay = [ nix.overlay ];
+  nixpkgs.overlays = [ nix.overlay ];
 
   nix.package = lib.mkForce pkgs.nix;
 
