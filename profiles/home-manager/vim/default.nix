@@ -48,21 +48,26 @@ in
 
       plugins = with pkgs.vimPlugins;
         let
-          fixGrammar = p: p.overrideAttrs (oldAttrs: rec {
-            buildPhase = ''
-              runHook preBuild
-              scanner_cc="$src/src/scanner.cc"
-              if [ ! -f "$scanner_cc" ]; then
-                scanner_cc=""
-              fi
-              scanner_c="$src/src/scanner.c"
-              if [ ! -f "$scanner_c" ]; then
-                scanner_c=""
-              fi
-              $CXX -I$src/src/ -shared -o parser -Os $src/src/parser.c $scanner_cc $scanner_c -lstdc++
-              runHook postBuild
-            '';
-          });
+          fixGrammar = p: p.overrideAttrs (
+            oldAttrs: rec {
+              buildPhase = ''
+                runHook preBuild
+                objects=""
+                scanner_cc="$src/src/scanner.cc"
+                if [ -f "$scanner_cc" ]; then
+                  $CXX -I$src/src/ "$scanner_cc" -c -o scanner_cc.o
+                  objects="$objects scanner_cc.o"
+                fi
+                scanner_c="$src/src/scanner.c"
+                if [ -f "$scanner_c" ]; then
+                  $CC -I$src/src/ "$scanner_c" -c -o scanner_c.o
+                  objects="$objects scanner_c.o"
+                fi
+                $CC -I$src/src/ -shared -o parser -Os $src/src/parser.c $objects -lstdc++
+                runHook postBuild
+              '';
+            }
+          );
           telescope =
             (pluginWithDeps telescope-nvim [ plenary-nvim popup-nvim ]);
         in
@@ -81,32 +86,35 @@ in
             nvim-lspconfig
             (
               nvim-treesitter.withPlugins (
-                p: [
-                  # TODO: package tree-sitter-comment
-                  (fixGrammar p.tree-sitter-bash)
-                  p.tree-sitter-c
-                  (fixGrammar p.tree-sitter-cpp)
-                  p.tree-sitter-css
-                  p.tree-sitter-go
-                  (fixGrammar p.tree-sitter-html)
-                  p.tree-sitter-java
-                  p.tree-sitter-javascript
-                  p.tree-sitter-jsdoc
-                  p.tree-sitter-json
-                  # (p.tree-sitter-lua.overrideAttrs (_: {
-                  #   patches = [ ./tree-sitter-lua.patch ];
-                  # }))
-                  (fixGrammar p.tree-sitter-markdown)
-                  p.tree-sitter-nix
-                  (fixGrammar p.tree-sitter-php)
-                  (fixGrammar p.tree-sitter-python)
-                  p.tree-sitter-regex
-                  (fixGrammar p.tree-sitter-ruby)
-                  p.tree-sitter-rust
-                  p.tree-sitter-tsx
-                  p.tree-sitter-typescript
-                  (fixGrammar p.tree-sitter-yaml)
-                ]
+                origGrammars: let
+                  grammars = lib.mapAttrs (_: fixGrammar) origGrammars;
+                in
+                  [
+                    # TODO: package tree-sitter-comment
+                    grammars.tree-sitter-bash
+                    grammars.tree-sitter-c
+                    grammars.tree-sitter-cpp
+                    grammars.tree-sitter-css
+                    grammars.tree-sitter-go
+                    grammars.tree-sitter-html
+                    grammars.tree-sitter-java
+                    grammars.tree-sitter-javascript
+                    grammars.tree-sitter-jsdoc
+                    grammars.tree-sitter-json
+                    # (grammars.tree-sitter-lua.overrideAttrs (_: {
+                    #   patches = [ ./tree-sitter-lua.patch ];
+                    # }))
+                    grammars.tree-sitter-markdown
+                    grammars.tree-sitter-nix
+                    grammars.tree-sitter-php
+                    grammars.tree-sitter-python
+                    grammars.tree-sitter-regex
+                    grammars.tree-sitter-ruby
+                    grammars.tree-sitter-rust
+                    grammars.tree-sitter-tsx
+                    grammars.tree-sitter-typescript
+                    grammars.tree-sitter-yaml
+                  ]
               )
             )
             nvim-web-devicons
