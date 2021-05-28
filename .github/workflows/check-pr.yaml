@@ -30,6 +30,7 @@ jobs:
           remove-android: "true"
           remove-haskell: "true"
           build-mount-path: "/nix"
+          overprovision-lvm: "true"
 
       - uses: actions/checkout@v2.3.4
         with:
