@@ -35,7 +35,7 @@ jobs:
       - name: Get commit message
         id: commit
         run: |
-          message="$(git log -1 --pretty=%B | tail +3)"
+          message="$(git log -1 --pretty=%B | tail +3 | awk -f ./misc/flake-to-markdown.awk)"
           message="${message//'%'/'%25'}"
           message="${message//$'\n'/'%0A'}"
           message="${message//$'\r'/'%0D'}"
