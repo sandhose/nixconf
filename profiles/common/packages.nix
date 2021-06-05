@@ -113,4 +113,17 @@ with pkgs; [
   fd
   bat
   ripgrep
+
+  (
+    with fenix; combine (
+      with stable; [
+        cargo
+        clippy-preview
+        rust-std
+        rustc
+        rustfmt-preview
+        rust-src
+      ]
+    )
+  )
 ]
