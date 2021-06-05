@@ -13,8 +13,6 @@ with inputs; {
       msmtp
       wireshark
       xquartz
-      # fenix does not work on darwin
-      rustup
     ];
 
     variables = {

@@ -21,7 +21,7 @@ in
         ripgrep
 
         # Various language servers
-        rust-analyzer
+        fenix.rust-analyzer
         nodePackages.bash-language-server
         clang-tools
         nodePackages.vscode-css-languageserver-bin
