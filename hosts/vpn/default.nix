@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, lib, pkgs, ... }:
 
 let
   inherit (inputs) nixpkgs;
@@ -9,8 +9,7 @@ in
     ../../profiles/base
     ../../profiles/nixos/base.nix
     ../../profiles/nixos/host.nix
-    ../../users/root/nixos.nix
-    ../../users/sandhose/nixos.nix
+    # ../../users/root/nixos.nix
   ];
 
   networking = {
