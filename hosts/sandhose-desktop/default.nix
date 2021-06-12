@@ -14,7 +14,7 @@
     [ "xhci_pci" "ehci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" "r8125" ];
-  boot.extraModulePackages = [ pkgs.linuxPackages_5_11.r8125 ];
+  boot.extraModulePackages = [ pkgs.linuxPackages_5_12.r8125 ];
 
   networking = {
     hostName = "sandhose-desktop";
