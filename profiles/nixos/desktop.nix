@@ -51,12 +51,14 @@
     enable = true;
   };
 
-  environment.systemPackages = [ pkgs.openrgb ];
+  environment.systemPackages = [ pkgs.openrgb pkgs.wireshark ];
 
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
   };
+
+  programs.wireshark.enable = true;
 
   hardware = {
     steam-hardware.enable = true;
