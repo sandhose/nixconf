@@ -31,8 +31,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    darwin-compat.url = "github:sandhose/nix-darwin-compat";
-
     rycee = {
       url = "gitlab:rycee/nur-expressions";
       flake = false;
@@ -47,21 +45,48 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, darwin, nixpkgs, home-manager, sops-nix, flake-utils, rycee
-    , darwin-compat, dwarffs, nix, fenix, neovim }@inputs:
-    (flake-utils.lib.eachDefaultSystem (system:
-      let systemPkgs = import nixpkgs { inherit system; };
-      in {
-        packages = import ./packages { nixpkgs = systemPkgs; };
-        devShell = with systemPkgs;
-          mkShell {
-            sopsPGPKeyDirs = [ "./keys" ];
-            nativeBuildInputs =
-              [ sops-nix.packages.${system}.sops-pgp-hook nixfmt ];
-          };
-      })) // {
+  outputs =
+    { self
+    , darwin
+    , dwarffs
+    , fenix
+    , flake-utils
+    , home-manager
+    , neovim
+    , nix
+    , nixos-generators
+    , nixpkgs
+    , rycee
+    , sops-nix
+    }@inputs:
+      (
+        flake-utils.lib.eachDefaultSystem (
+          system:
+            let
+              systemPkgs = import nixpkgs { inherit system; };
+            in
+              {
+                packages = import ./packages { nixpkgs = systemPkgs; };
+                devShell = with systemPkgs;
+                  mkShell {
+                    sopsPGPKeyDirs = [ "./keys" ];
+                    nativeBuildInputs =
+                      [
+                        sops-nix.packages.${system}.sops-pgp-hook
+                        nixos-generators.packages.${system}.nixos-generators
+                        nixfmt
+                      ];
+                  };
+              }
+        )
+      ) // {
         overlay = (final: prev: { my = self.packages.${final.system}; });
 
         darwinConfigurations."sandhose-laptop" = darwin.lib.darwinSystem {
@@ -73,36 +98,46 @@
           ];
         };
 
-        nixosConfigurations = (nixpkgs.lib.genAttrs [
-          "home-assistant"
-          "minecraft"
-          "murmur"
-          "plex"
-          "samba"
-          "transmission"
-        ] (name:
-          nixpkgs.lib.nixosSystem {
+        nixosConfigurations = (
+          nixpkgs.lib.genAttrs [
+            "home-assistant"
+            "minecraft"
+            "murmur"
+            "plex"
+            "samba"
+            "transmission"
+          ] (
+            name:
+              nixpkgs.lib.nixosSystem {
+                system = "x86_64-linux";
+                specialArgs = { inherit inputs; };
+                modules = [ (./containers + "/${name}") ];
+              }
+          )
+        ) // {
+          "sandhose-desktop" = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             specialArgs = { inherit inputs; };
-            modules = [ (./containers + "/${name}") ];
-          })) // {
-            "sandhose-desktop" = nixpkgs.lib.nixosSystem {
-              system = "x86_64-linux";
-              specialArgs = { inherit inputs; };
-              modules = [ ./hosts/sandhose-desktop ];
-            };
-
-            "spaetzle" = nixpkgs.lib.nixosSystem {
-              system = "x86_64-linux";
-              specialArgs = { inherit inputs; };
-              modules = [ ./hosts/spaetzle ];
-            };
-
-            "raspberry" = nixpkgs.lib.nixosSystem {
-              system = "aarch64-linux";
-              specialArgs = { inherit inputs; };
-              modules = [ ./hosts/raspberry ];
-            };
+            modules = [ ./hosts/sandhose-desktop ];
           };
+
+          "spaetzle" = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs; };
+            modules = [ ./hosts/spaetzle ];
+          };
+
+          "raspberry" = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+            specialArgs = { inherit inputs; };
+            modules = [ ./hosts/raspberry ];
+          };
+
+          "vpn" = nixpkgs.lib.makeOverridable nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit inputs; };
+            modules = [ ./hosts/vpn ];
+          };
+        };
       };
 }
