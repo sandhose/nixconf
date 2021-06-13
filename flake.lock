@@ -102,11 +102,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1623343236,
-        "narHash": "sha256-Cl/0/WW3AWjkO7gphw9FqUr4P7T98KKyFCX3Vxv22Sk=",
+        "lastModified": 1623484558,
+        "narHash": "sha256-/pHiSArhS3Eker0RVKO0dgrqf/isqufPgSgx5cRwhMg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "666eee4f72979b0ebbd2e065a3846d7a8a16895c",
+        "rev": "fb50102daf904c4ced33374816f9ee2cfde24c01",
         "type": "github"
       },
       "original": {
@@ -249,11 +249,11 @@
     "rycee": {
       "flake": false,
       "locked": {
-        "lastModified": 1623470801,
-        "narHash": "sha256-iiGmFIlgO2v9c6rfyXouzottThxIHCOW3rIAei+zhxM=",
+        "lastModified": 1623571199,
+        "narHash": "sha256-XmJLynsZ92mIzWUbOi+A7F3bLM5gGSiL3CFAiW3s++0=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "0723f0b5c672e7a40b0868cd736d0171f5e92197",
+        "rev": "2cf30ad06dfdc4fc12debac433c45dc0ef891412",
         "type": "gitlab"
       },
       "original": {
