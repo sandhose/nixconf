@@ -2,6 +2,7 @@
 
 {
   services = {
+    teamviewer.enable = true;
     flatpak.enable = true;
     xserver = {
       enable = true;
@@ -51,7 +52,7 @@
     enable = true;
   };
 
-  environment.systemPackages = [ pkgs.openrgb pkgs.wireshark ];
+  environment.systemPackages = [ pkgs.openrgb pkgs.wireshark pkgs.teamviewer pkgs.authy ];
 
   programs.steam = {
     enable = true;
