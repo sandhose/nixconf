@@ -99,7 +99,7 @@ with pkgs; [
   buildpack
   shellcheck
   sops
-  weechat
+  # weechat
   xmlsec
   xz
   yarn
