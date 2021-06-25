@@ -32,7 +32,7 @@ jobs:
           git config user.email 'noreply@github.com'
 
       - name: Update lock file
-        run: nix flake update --no-registries --recreate-lock-file --commit-lock-file
+        run: nix flake update --no-registries --commit-lock-file
 
       - name: Get commit message
         id: commit
