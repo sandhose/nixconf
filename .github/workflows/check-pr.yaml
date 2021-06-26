@@ -67,4 +67,21 @@ jobs:
         run: nix build $TARGET -v --log-format raw --profile ./profile
 
       - name: Diff profile
-        run: nix profile diff-closures --profile ./profile
+        id: diff
+        run: |
+          diff="$(nix profile diff-closures --profile ./profile)"
+          diff="${message//'%'/'%25'}"
+          diff="${message//$'\n'/'%0A'}"
+          diff="${message//$'\r'/'%0D'}"
+          echo "::set-output name=diff::$diff"
+
+      - name: Comment PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: ".#${{ matrix.target }}"
+          message: |
+            ### Diff of `${{ matrix.target }}`
+
+            ```
+            ${{ steps.diff.output.diff }}
+            ```
