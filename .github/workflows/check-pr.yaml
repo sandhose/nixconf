@@ -69,10 +69,12 @@ jobs:
       - name: Diff profile
         id: diff
         run: |
-          diff="$(nix profile diff-closures --profile ./profile | sed 's/\x1b\[[0-9;]*m//g')"
-          diff="${message//'%'/'%25'}"
-          diff="${message//$'\n'/'%0A'}"
-          diff="${message//$'\r'/'%0D'}"
+          diff="$(nix profile diff-closures --profile ./profile)"
+          echo "$diff"
+          diff="$(echo "$diff" | sed 's/\x1b\[[0-9;]*m//g')"
+          diff="${diff//'%'/'%25'}"
+          diff="${diff//$'\n'/'%0A'}"
+          diff="${diff//$'\r'/'%0D'}"
           echo "::set-output name=diff::$diff"
 
       - name: Comment PR
