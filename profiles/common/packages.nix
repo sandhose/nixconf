@@ -24,7 +24,7 @@ with pkgs; [
   kind
   kubectl
   kubernetes-helm
-  kubeseal
+  # kubeseal
   kustomize
   mosh
   neovim
@@ -34,7 +34,7 @@ with pkgs; [
   pandoc
   parallel
   # pgcli
-  protobuf
+  # protobuf
   pwgen
   # python
   # python3
@@ -45,7 +45,7 @@ with pkgs; [
   socat
   sqlite
   sshpass
-  terraform_0_14
+  terraform_1_0
   tmux
   unixtools.watch
   unrar
@@ -71,20 +71,20 @@ with pkgs; [
         ;
     }
   )
-  gnome3.librsvg
+  # gnome3.librsvg
 
   maven
   # argocd
-  autoconf
-  autogen
-  automake
+  # autoconf
+  # autogen
+  # automake
   bazel-buildtools
   # bazel-watcher
   bazelisk
   cargo-bloat
   cargo-edit
   cloc
-  cmake
+  # cmake
   dos2unix
   ffmpeg
   fluxcd
@@ -96,7 +96,7 @@ with pkgs; [
   keybase
   kind
   librsvg
-  buildpack
+  # buildpack
   shellcheck
   sops
   # weechat

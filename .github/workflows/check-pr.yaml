@@ -55,3 +55,35 @@ jobs:
         env:
           TARGET: ".#${{ matrix.target }}"
         run: nix build $TARGET --show-trace --fallback -v --log-format raw
+
+      - name: Fetch old system to profile
+        env:
+          TARGET: "github:sandhose/nixconf#${{ matrix.target }}"
+        run: nix build $TARGET -v --log-format raw --profile ./profile
+
+      - name: Add new system to profile
+        env:
+          TARGET: ".#${{ matrix.target }}"
+        run: nix build $TARGET -v --log-format raw --profile ./profile
+
+      - name: Diff profile
+        id: diff
+        run: |
+          diff="$(nix profile diff-closures --profile ./profile)"
+          echo "$diff"
+          diff="$(echo "$diff" | sed 's/\x1b\[[0-9;]*m//g')"
+          diff="${diff//'%'/'%25'}"
+          diff="${diff//$'\n'/'%0A'}"
+          diff="${diff//$'\r'/'%0D'}"
+          echo "::set-output name=diff::$diff"
+
+      - name: Comment PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: ".#${{ matrix.target }}"
+          message: |
+            ### Diff of `${{ matrix.target }}`
+
+            ```
+            ${{ steps.diff.outputs.diff }}
+            ```
