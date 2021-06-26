@@ -50,26 +50,6 @@ in
 
       plugins = with pkgs.vimPlugins;
         let
-          fixGrammar = p: p.overrideAttrs (
-            oldAttrs: rec {
-              buildPhase = ''
-                runHook preBuild
-                objects=""
-                scanner_cc="$src/src/scanner.cc"
-                if [ -f "$scanner_cc" ]; then
-                  $CXX -I$src/src/ "$scanner_cc" -c -o scanner_cc.o
-                  objects="$objects scanner_cc.o"
-                fi
-                scanner_c="$src/src/scanner.c"
-                if [ -f "$scanner_c" ]; then
-                  $CC -I$src/src/ "$scanner_c" -c -o scanner_c.o
-                  objects="$objects scanner_c.o"
-                fi
-                $CC -I$src/src/ -shared -o parser -Os $src/src/parser.c $objects -lstdc++
-                runHook postBuild
-              '';
-            }
-          );
           telescope =
             (pluginWithDeps telescope-nvim [ plenary-nvim popup-nvim ]);
         in
@@ -88,9 +68,7 @@ in
             nvim-lspconfig
             (
               nvim-treesitter.withPlugins (
-                origGrammars: let
-                  grammars = lib.mapAttrs (_: fixGrammar) origGrammars;
-                in
+                grammars:
                   [
                     # TODO: package tree-sitter-comment
                     grammars.tree-sitter-bash
