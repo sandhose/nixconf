@@ -55,3 +55,16 @@ jobs:
         env:
           TARGET: ".#${{ matrix.target }}"
         run: nix build $TARGET --show-trace --fallback -v --log-format raw
+
+      - name: Fetch old system to profile
+        env:
+          TARGET: "github:sandhose/nixconf#${{ matrix.target }}"
+        run: nix build $TARGET -v --log-format raw --profile /nix/var/nix/profiles/ci
+
+      - name: Add new system to profile
+        env:
+          TARGET: ".#${{ matrix.target }}"
+        run: nix build $TARGET -v --log-format raw --profile /nix/var/nix/profiles/ci
+
+      - name: Diff profile
+        run: nix profile diff-closures --profile /nix/var/nix/profiles/ci
