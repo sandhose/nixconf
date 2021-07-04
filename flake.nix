@@ -79,7 +79,7 @@
                     sopsPGPKeyDirs = [ "./keys" ];
                     nativeBuildInputs =
                       [
-                        sops-nix.packages.${system}.sops-pgp-hook
+                        sops-nix.packages.${system}.sops-import-keys-hook
                         nixos-generators.packages.${system}.nixos-generators
                         nixfmt
                       ];
