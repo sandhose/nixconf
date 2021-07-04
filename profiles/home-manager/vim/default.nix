@@ -20,6 +20,9 @@ in
         fd
         ripgrep
 
+        # For nvim-dap
+        lldb
+
         # Various language servers
         fenix.rust-analyzer
         nodePackages.bash-language-server
@@ -54,7 +57,7 @@ in
             (pluginWithDeps telescope-nvim [ plenary-nvim popup-nvim ]);
         in
           [
-            pkgs.my.material-nvim # Color scheme
+            (pluginWithDeps gruvbox-nvim [ lush-nvim ])
             undotree
             vim-fugitive
             vim-surround
@@ -81,9 +84,7 @@ in
                     grammars.tree-sitter-javascript
                     grammars.tree-sitter-jsdoc
                     grammars.tree-sitter-json
-                    # (grammars.tree-sitter-lua.overrideAttrs (_: {
-                    #   patches = [ ./tree-sitter-lua.patch ];
-                    # }))
+                    grammars.tree-sitter-lua
                     grammars.tree-sitter-markdown
                     grammars.tree-sitter-nix
                     grammars.tree-sitter-php
@@ -108,7 +109,12 @@ in
             vim-vsnip-integ
             friendly-snippets
             lspkind-nvim
-            galaxyline-nvim
+            lualine-nvim
+            trouble-nvim
+
+            nvim-dap
+            telescope-dap-nvim
+            rust-tools-nvim
 
             # lightline-vim
 

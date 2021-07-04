@@ -1,32 +1,13 @@
 " vim:fdm=marker
 
+colorscheme gruvbox
+
 " Plugin options {{{
-function! LspStatus() abort
-  let status = luaeval('require("lsp-status").status()')
-  return trim(status)
-endfunction
-
-let g:lightline = {
-  \ 'active': {
-  \   'left': [
-  \     [ 'mode', 'paste', 'spell', 'readonly' ],
-  \     [ 'git', 'diagnostic', 'relativepath', 'method' ]
-  \   ],
-  \   'right':[
-  \     [ 'lspstatus', 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
-  \   ],
-  \ },
-  \ 'component_function': {
-  \   'lspstatus': 'LspStatus',
-  \ },
-\ }
-
 " Highlight on yank
 augroup LuaHighlight
   autocmd!
   autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
 augroup END
-
 " }}}
 
 " Keybindings {{{

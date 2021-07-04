@@ -1,8 +1,6 @@
-vim.g.material_style = "darker"
-require'material'.set()
-
 require'my.options'
 
+require'trouble'.setup()
 require'gitsigns'.setup()
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -19,10 +17,12 @@ require'nvim-treesitter.configs'.setup {
     },
   },
   indent = {
-    enable = true,
+    enable = false,
   },
 }
 
-require'my.lsp'
 require'my.completion'
-require'my.galaxyline'
+require'my.dap'
+require'my.lsp'
+require'my.lualine'
+require'my.telescope'
