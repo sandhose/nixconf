@@ -2,7 +2,7 @@
 
 {
   boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.enableUnstable = true;
+  # boot.zfs.enableUnstable = true;
 
   services.zfs = {
     autoSnapshot.enable = true;
