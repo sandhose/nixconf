@@ -118,11 +118,11 @@ with pkgs; [
     with fenix; combine (
       with stable; [
         cargo
-        clippy-preview
         rust-std
         rustc
-        rustfmt-preview
-        rust-src
+        clippy-preview
+        latest.rustfmt-preview
+        latest.rust-src
       ]
     )
   )
