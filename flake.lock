@@ -87,11 +87,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1626073055,
-        "narHash": "sha256-vocByfpVu6m9zvtJugDvmd6/9iT2HJuG4tmDICKd0lI=",
+        "lastModified": 1626356862,
+        "narHash": "sha256-4ONLWH4UygF4pI0XBej8+2OMUrdb8HsUUFsiRDFmjrk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "775cb20bd4af7781fbf336fb201df02ee3d544bb",
+        "rev": "c476cc61b2dd8c7f868b213b7757b565bdf2bb7d",
         "type": "github"
       },
       "original": {
@@ -170,11 +170,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1626211675,
-        "narHash": "sha256-4a1rH5N7IQF61QG7SoS8bYKec9X1z7IcF0f3Tcc0eHw=",
+        "lastModified": 1626370218,
+        "narHash": "sha256-UroW9YvtqJVBM9RkXdgEnRBWkvARahSHcafgVQUbi2M=",
         "owner": "NixOS",
         "repo": "nix",
-        "rev": "bee71d692a10c9fcdc78f589945b9710f676cefb",
+        "rev": "db4d4cf4ba42727edd8cc5a6c516554fb8a6b688",
         "type": "github"
       },
       "original": {
@@ -221,11 +221,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1626216800,
-        "narHash": "sha256-rENRelK5xaXp+rIi68Sow0uPYx00kUA38yGOUcjWivI=",
+        "lastModified": 1626300184,
+        "narHash": "sha256-1B5P7EUAFeA+P7m6jzbHtrMKcIkPCjQj7lfQPmrYL44=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5e9429689a988bac273a98b3f85cb71d1aa15eb0",
+        "rev": "23cd13167a1432550e48734079c2ffeeb441fb96",
         "type": "github"
       },
       "original": {
@@ -270,11 +270,11 @@
     "rycee": {
       "flake": false,
       "locked": {
-        "lastModified": 1626148927,
-        "narHash": "sha256-/Qbovm5RYboC8TkVboh8xGeD/vywJygKedO9OlTyyEU=",
+        "lastModified": 1626357118,
+        "narHash": "sha256-8ek1yTq7qCYVXbXw5cQYJ+VY6hj3s5zkiuinY8CgxWw=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "ff4aaf962bb5bb4a1cf093663447483485e2dda3",
+        "rev": "575fb01a2b2d469249bb1217d660026a17c1c57d",
         "type": "gitlab"
       },
       "original": {
