@@ -24,7 +24,7 @@ in
         lldb
 
         # Various language servers
-        fenix.rust-analyzer
+        rust-analyzer
         nodePackages.bash-language-server
         clang-tools
         nodePackages.vscode-css-languageserver-bin
