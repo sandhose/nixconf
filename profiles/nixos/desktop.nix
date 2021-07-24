@@ -2,7 +2,7 @@
 
 {
   services = {
-    # teamviewer.enable = true; -- broken
+    teamviewer.enable = true;
     flatpak.enable = true;
     xserver = {
       enable = true;
