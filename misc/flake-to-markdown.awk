@@ -44,7 +44,7 @@ $2 ~ /^Updated$/ {
   to_commit = parsed_to["commit"];
 
   if (type == "github") {
-    printf(" - Updated `%s`: [`%s` ➡️ `%s`](https://github.com/%s/compare/%s..%s)\n", input, short(from_commit), short(to_commit), repo, from_commit, to_commit);
+    printf(" - Updated `%s`: [`%s` ➡️ `%s`](https://github.com/%s/compare/%s...%s)\n", input, short(from_commit), short(to_commit), repo, from_commit, to_commit);
   } else if (type == "gitlab") {
     printf(" - Updated `%s`: [`%s` ➡️ `%s`](https://gitlab.com/%s/-/compare/%s...%s)\n", input, short(from_commit), short(to_commit), repo, from_commit, to_commit);
   } else {
