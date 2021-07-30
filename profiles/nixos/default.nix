@@ -22,8 +22,9 @@ with inputs; {
 
   environment = {
     systemPackages = with pkgs; [
-      clang
-      clang-manpages
+      llvmPackages_latest.bintools
+      llvmPackages_latest.clang
+      llvmPackages_latest.clang-manpages
       clang-tools
       darktable
       flatpak-builder

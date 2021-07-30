@@ -16,4 +16,10 @@
       ];
     };
   };
+
+  home-manager.users.sandhose = { ... }: {
+    imports = [
+      ../../profiles/home-manager/cargo/nixos.nix
+    ];
+  };
 }
