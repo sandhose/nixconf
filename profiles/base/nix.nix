@@ -1,9 +1,14 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 
+let
+  inherit (inputs) nixpkgs;
+
+in
 lib.mkMerge [
   {
     nix = {
       package = pkgs.nixUnstable;
+      nixPath = [ "nixpkgs=${nixpkgs}" ];
 
       extraOptions = ''
         experimental-features = nix-command flakes ca-references
@@ -13,13 +18,17 @@ lib.mkMerge [
     };
   }
 
-  (lib.mkIf pkgs.stdenv.isLinux {
-    nix.useSandbox = true;
-    nix.trustedUsers = [ "@admin" ];
-  })
+  (
+    lib.mkIf pkgs.stdenv.isLinux {
+      nix.useSandbox = true;
+      nix.trustedUsers = [ "@admin" ];
+    }
+  )
 
-  (lib.mkIf pkgs.stdenv.isDarwin {
-    nix.useSandbox = false; # For some reason does not work on my laptop
-    nix.trustedUsers = [ "@wheel" ];
-  })
+  (
+    lib.mkIf pkgs.stdenv.isDarwin {
+      nix.useSandbox = false; # For some reason does not work on my laptop
+      nix.trustedUsers = [ "@wheel" ];
+    }
+  )
 ]
