@@ -42,6 +42,7 @@ with pkgs; [
   # python37Packages.ansible
   redis
   # rustup
+  my.s3cmd
   socat
   sqlite
   sshpass
