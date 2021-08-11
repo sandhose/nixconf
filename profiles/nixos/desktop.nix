@@ -52,7 +52,11 @@
     enable = true;
   };
 
-  environment.systemPackages = [ pkgs.openrgb pkgs.wireshark pkgs.teamviewer pkgs.authy ];
+  environment.systemPackages = [ pkgs.openrgb pkgs.wireshark pkgs.teamviewer pkgs.authy pkgs.qt5.qtwayland pkgs.qgnomeplatform ];
+  environment.variables = {
+    QT_QPA_PLATFORM = "wayland-egl";
+    QT_QPA_PLATFORMTHEME = "gnome";
+  };
 
   programs.steam = {
     enable = true;
