@@ -39,7 +39,7 @@
         gutenprint
         gutenprintBin
         carps-cups
-        canon-cups-ufr2
+        # canon-cups-ufr2 # Broken
         cups-bjnp
         cnijfilter2
       ];
