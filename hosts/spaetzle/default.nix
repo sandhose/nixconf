@@ -67,8 +67,40 @@ in
     } // genAddr 5;
   };
 
+  fileSystems."/" = {
+    device = "rpool/system/root";
+    fsType = "zfs";
+  };
+
+  fileSystems."/var" = {
+    device = "rpool/system/root";
+    fsType = "zfs";
+  };
+
+  fileSystems."/home" = {
+    device = "rpool/user";
+    fsType = "zfs";
+  };
+
+  fileSystems."/home/sandhose" = {
+    device = "rpool/user/sandhose";
+    fsType = "zfs";
+  };
+
+  fileSystems."/nix" = {
+    device = "rpool/local/nix";
+    fsType = "zfs";
+  };
+
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-partlabel/efi";
+    fsType = "vfat";
+  };
+
+
   networking.wireguard = {
-    enable = true;
+    enable = false; # We need a private key, let's skip that for now
     interfaces.wg0 = {
       ips = [ "10.42.6.255/24" "2a01:e34:ec48:3616::2:ffff/112" ];
       listenPort = 51820;
