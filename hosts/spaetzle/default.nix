@@ -9,14 +9,14 @@ let
   genAddr = num:
     {
       privateNetwork = true;
-      hostAddress = "10.42.5.${num * 2 + 1}";
-      localAddress = "10.42.5.${num * 2 + 2}";
+      hostAddress = "10.42.5.${builtins.toString (num * 2 + 1)}";
+      localAddress = "10.42.5.${builtins.toString (num * 2 + 2)}";
       hostAddress6 = "2a01:e34:ec48:3616::1:${lib.trivial.toHexString (num * 2 + 1)}";
       localAddress6 = "2a01:e34:ec48:3616::1:${lib.trivial.toHexString (num * 2 + 2)}";
     };
   peer = num: publicKey: {
     inherit publicKey;
-    allowedIPs = [ "10.42.6.${num}/32" "2a01:e34:ec48:3616::2:${lib.trivial.toHexString num}/128" ];
+    allowedIPs = [ "10.42.6.${builtins.toString num}/32" "2a01:e34:ec48:3616::2:${lib.trivial.toHexString num}/128" ];
   };
 
 in
