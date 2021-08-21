@@ -6,9 +6,26 @@ let
   systemPath = name:
     self.nixosConfigurations.${name}.config.system.build.toplevel;
 
-in {
+  genAddr = num:
+    {
+      privateNetwork = true;
+      hostAddress = "10.42.5.${num * 2 + 1}";
+      localAddress = "10.42.5.${num * 2 + 2}";
+      hostAddress6 = "2a01:e34:ec48:3616::1:${lib.trivial.toHexString (num * 2 + 1)}";
+      localAddress6 = "2a01:e34:ec48:3616::1:${lib.trivial.toHexString (num * 2 + 2)}";
+    };
+  peer = num: publicKey: {
+    inherit publicKey;
+    allowedIPs = [ "10.42.6.${num}/32" "2a01:e34:ec48:3616::2:${lib.trivial.toHexString num}/128" ];
+  };
+
+in
+{
   imports = [
-    ../../profiles/container
+    ../../profiles/base
+    ../../profiles/common
+    ../../profiles/home-manager
+    ../../profiles/nixos/base.nix
     ../../profiles/nixos/host.nix
     ../../profiles/nixos/efi.nix
     ../../profiles/nixos/zfs.nix
@@ -20,50 +37,45 @@ in {
     hostName = "spaetzle";
   };
   boot.kernel.sysctl."net.ipv4.ip_forward" = "1";
-
-  # TODO: disable those since we're in a container
-  security.apparmor.enable = lib.mkForce false;
-  services.resolved.enable = lib.mkForce false;
+  boot.cleanTmpDir = true;
+  boot.tmpOnTmpfs = true;
 
   containers = {
     murmur = {
       path = systemPath "murmur";
       autoStart = true;
-      privateNetwork = true;
-      hostAddress = "10.42.5.1";
-      localAddress = "10.42.5.2";
-    };
+    } // genAddr 1;
 
     transmission = {
       path = systemPath "transmission";
       autoStart = true;
-      privateNetwork = true;
-      hostAddress = "10.42.5.3";
-      localAddress = "10.42.5.4";
-    };
+    } // genAddr 2;
 
     minecraft = {
       path = systemPath "minecraft";
       autoStart = true;
-      privateNetwork = true;
-      hostAddress = "10.42.5.5";
-      localAddress = "10.42.5.6";
-    };
+    } // genAddr 3;
 
     plex = {
       path = systemPath "plex";
       autoStart = true;
-      privateNetwork = true;
-      hostAddress = "10.42.5.7";
-      localAddress = "10.42.5.8";
-    };
+    } // genAddr 4;
 
     samba = {
       path = systemPath "samba";
       autoStart = true;
-      privateNetwork = true;
-      hostAddress = "10.42.5.9";
-      localAddress = "10.42.5.10";
+    } // genAddr 5;
+  };
+
+  networking.wireguard = {
+    enable = true;
+    interfaces.wg0 = {
+      ips = [ "10.42.6.255/24" "2a01:e34:ec48:3616::2:ffff/112" ];
+      listenPort = 51820;
+      allowedIPsAsRoutes = false; # Let's rely on iface IPs instead of peers allowedIPs
+      peers = [
+        (peer 1 "Cb665kMFY7Im8bj4bgnn/TUWVWA6s4FfKnJOAUHm1Wc=") # sandhose-laptop
+      ];
     };
   };
 }
