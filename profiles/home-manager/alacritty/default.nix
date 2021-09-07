@@ -5,6 +5,10 @@
     enable = true;
 
     settings = {
+      env = {
+        TERM = "alacritty-direct";
+      };
+
       window = {
         startup_mode = "Maximized";
         dynamic_title = true;

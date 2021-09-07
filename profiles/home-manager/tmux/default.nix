@@ -6,7 +6,7 @@
       enable = true;
       sensibleOnTop = false;
       shortcut = "a";
-      terminal = "screen-256color";
+      terminal = "tmux-256color";
       escapeTime = 50;
       clock24 = true;
       aggressiveResize = true;
