@@ -90,6 +90,7 @@
         overlay = (final: prev: { my = self.packages.${final.system}; });
 
         darwinConfigurations."sandhose-laptop" = darwin.lib.darwinSystem {
+          system = "x86_64-darwin";
           inherit inputs;
           modules = [
             # This needs to be imported here because of some weird infinite recursions issues
