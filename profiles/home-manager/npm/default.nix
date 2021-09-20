@@ -12,7 +12,7 @@
         # followXDG = true;
       };
 
-      prefix = ".local/lib/node_modules";
+      prefix = ".local";
     };
   };
 }
