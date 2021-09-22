@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
-  boot.kernelPackages = pkgs.linuxPackages_5_13;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   security = {
