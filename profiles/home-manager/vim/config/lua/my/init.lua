@@ -20,6 +20,12 @@ require'nvim-treesitter.configs'.setup {
     enable = false,
   },
 }
+require'nvim-tree'.setup {
+  lsp_diagnostics = true,
+  update_focused_file = {
+    enable = true,
+  },
+}
 
 require'my.completion'
 require'my.dap'
