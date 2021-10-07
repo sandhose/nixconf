@@ -22,6 +22,7 @@
       extraConfig = {
         pull.rebase = true;
         rebase.autoStash = true;
+        init.defaultBranch = "main";
       };
     };
   };
