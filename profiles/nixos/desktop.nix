@@ -77,5 +77,9 @@
       ];
       setLdLibraryPath = true;
     };
+    logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
+    };
   };
 }

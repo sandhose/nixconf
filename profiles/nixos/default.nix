@@ -42,6 +42,8 @@ with inputs; {
       # teams
       vlc
       zoom-us
+
+      fenix.rust-analyzer
     ];
   };
 
