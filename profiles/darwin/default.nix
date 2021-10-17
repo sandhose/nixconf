@@ -9,7 +9,8 @@ with inputs; {
       pinentry_mac
       reattach-to-user-namespace
       notmuch
-      my.neomutt
+      #my.neomutt
+      neomutt
       msmtp
       wireshark
       xquartz
