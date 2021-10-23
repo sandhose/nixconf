@@ -12,7 +12,7 @@ with inputs; {
       #my.neomutt
       neomutt
       msmtp
-      wireshark
+      #wireshark
       xquartz
     ];
 
