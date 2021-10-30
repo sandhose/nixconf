@@ -8,6 +8,9 @@
     allowBroken = true;
     allowUnsupportedSystem = true;
     allowUnfree = true;
+    permittedInsecurePackages = [
+      "electron-9.4.4"
+    ];
   };
 
   programs = {
