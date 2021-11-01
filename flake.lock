@@ -64,6 +64,31 @@
         "type": "github"
       }
     },
+    "firefox-addons": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "pkgs/firefox-addons",
+        "lastModified": 1635739377,
+        "narHash": "sha256-Jt+g3UVz2IAq5nDPu5hUCb80oNJAMMjReNhbBs0UBus=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "91e243906abfc13b7654f1eb849ce61a36a4984a",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "pkgs/firefox-addons",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "type": "gitlab"
+      }
+    },
     "flake-utils": {
       "locked": {
         "lastModified": 1634851050,
@@ -218,13 +243,13 @@
         "darwin": "darwin",
         "dwarffs": "dwarffs",
         "fenix": "fenix",
+        "firefox-addons": "firefox-addons",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "neovim": "neovim",
         "nix": "nix",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs",
-        "rycee": "rycee",
         "sops-nix": "sops-nix"
       }
     },
@@ -243,22 +268,6 @@
         "ref": "nightly",
         "repo": "rust-analyzer",
         "type": "github"
-      }
-    },
-    "rycee": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1635739377,
-        "narHash": "sha256-Jt+g3UVz2IAq5nDPu5hUCb80oNJAMMjReNhbBs0UBus=",
-        "owner": "rycee",
-        "repo": "nur-expressions",
-        "rev": "91e243906abfc13b7654f1eb849ce61a36a4984a",
-        "type": "gitlab"
-      },
-      "original": {
-        "owner": "rycee",
-        "repo": "nur-expressions",
-        "type": "gitlab"
       }
     },
     "sops-nix": {
