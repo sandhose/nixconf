@@ -10,7 +10,7 @@
 
   virtualisation.libvirtd = {
     enable = true;
-    qemuOvmf = true;
+    qemu.ovmf.enable = true;
   };
   virtualisation.spiceUSBRedirection.enable = true;
 
