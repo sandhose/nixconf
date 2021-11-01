@@ -52,7 +52,7 @@
     enable = true;
   };
 
-  environment.systemPackages = [ pkgs.openrgb pkgs.wireshark pkgs.teamviewer pkgs.authy pkgs.qt5.qtwayland pkgs.qgnomeplatform ];
+  environment.systemPackages = [ pkgs.openrgb pkgs.wireshark pkgs.teamviewer pkgs.authy pkgs.qt5.qtwayland pkgs.qgnomeplatform pkgs.lutris ];
 
   programs.steam = {
     enable = true;

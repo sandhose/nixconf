@@ -110,6 +110,10 @@ with pkgs; [
   lldb
   file
 
+  sqlx-cli
+  mdbook
+  minio-client
+
   # Needed by Telescope.nvim
   fd
   bat
