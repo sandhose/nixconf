@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 
-let inherit (inputs) self firefox-addons nixpkgs fenix neovim;
+let inherit (inputs) self rycee nixpkgs fenix neovim;
 
 in
 {
@@ -11,7 +11,7 @@ in
     fenix.overlay
     neovim.overlay
     (final: prev: {
-      firefox-addons = firefox-addons.packages."${prev.stdenv.system}";
+      firefox-addons = (import rycee { pkgs = prev; }).firefox-addons;
     })
     (final: prev:
       let

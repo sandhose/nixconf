@@ -31,10 +31,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
+    rycee = {
+      url = "gitlab:rycee/nur-expressions";
+      flake = false;
     };
 
     darwin = {
@@ -64,7 +63,7 @@
     , nix
     , nixos-generators
     , nixpkgs
-    , firefox-addons
+    , rycee
     , sops-nix
     }@inputs:
     (
