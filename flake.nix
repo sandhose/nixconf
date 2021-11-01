@@ -99,6 +99,16 @@
           ];
         };
 
+        darwinConfigurations."sandhose-laptop-m1" = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          inherit inputs;
+          modules = [
+            # This needs to be imported here because of some weird infinite recursions issues
+            home-manager.darwinModules.home-manager
+            ./hosts/sandhose-laptop
+          ];
+        };
+
         nixosConfigurations = (
           nixpkgs.lib.genAttrs [
             "home-assistant"
