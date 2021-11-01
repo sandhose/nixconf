@@ -4,7 +4,7 @@
   imports = [ ./common.nix ];
 
   users = {
-    groups.sandhose = {};
+    groups.sandhose = { };
     users.sandhose = {
       isNormalUser = true;
       group = "sandhose";

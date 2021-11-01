@@ -2,7 +2,8 @@
 
 let inherit (inputs) nixpkgs;
 
-in {
+in
+{
   imports = [
     ../../profiles/sd-card/sd-image-aarch64.nix
     ../../profiles/base

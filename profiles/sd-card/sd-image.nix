@@ -26,7 +26,8 @@ let
   } // optionalAttrs (config.sdImage.rootPartitionUUID != null) {
     uuid = config.sdImage.rootPartitionUUID;
   });
-in {
+in
+{
   imports = [
     (mkRemovedOptionModule [ "sdImage" "bootPartitionID" ]
       "The FAT partition for SD image now only holds the Raspberry Pi firmware files. Use firmwarePartitionID to configure that partition's ID.")
@@ -214,7 +215,8 @@ in {
                 zstd -T$NIX_BUILD_CORES --rm $img
             fi
           '';
-        }) { };
+        })
+      { };
 
     boot.postBootCommands = ''
       # On the first boot do some maintenance tasks

@@ -2,7 +2,8 @@
 
 let inherit (inputs) home-manager;
 
-in {
+in
+{
   imports = [ ../base ../common ../nixos/base.nix ../../users/root/nixos.nix ];
 
   boot.isContainer = true;
