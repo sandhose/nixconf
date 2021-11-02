@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, config, ... }:
 
 with inputs; {
   imports = [ ./system.nix ];
@@ -14,13 +14,23 @@ with inputs; {
       msmtp
       #wireshark
       xquartz
+      ncurses
     ];
 
     variables = {
       EDITOR = "${pkgs.neovim}/bin/nvim";
       LANG = "en_US.UTF-8";
+      TERMINFO = "/etc/terminfo";
+    };
+
+    pathsToLink = [ "/share/terminfo" ];
+    extraOutputsToInstall = [ "terminfo" ];
+
+    etc.terminfo = {
+      source = "${config.system.path}/share/terminfo";
     };
   };
+
 
   programs.nix-index.enable = true;
   services.nix-daemon.enable = true;
