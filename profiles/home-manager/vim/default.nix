@@ -2,6 +2,14 @@
 
 let
   pluginWithDeps = plugin: deps: plugin.overrideAttrs (_: { dependencies = deps; });
+  # TODO: remove after https://github.com/NixOS/nixpkgs/issues/144354 is closed
+  fixGrammar = grammar: grammar.overrideAttrs (_: {
+    fixupPhase = lib.optionalString pkgs.stdenv.isLinux ''
+      runHook preFixup
+      $STRIP $out/parser
+      runHook postFixup
+    '';
+  });
   nvimHome = "${config.xdg.configHome}/nvim";
 in
 {
@@ -73,28 +81,36 @@ in
             nvim-treesitter.withPlugins (
               grammars:
               [
-                # TODO: package tree-sitter-comment
-                grammars.tree-sitter-bash
-                grammars.tree-sitter-c
-                grammars.tree-sitter-cpp
-                grammars.tree-sitter-css
-                grammars.tree-sitter-go
-                grammars.tree-sitter-html
-                grammars.tree-sitter-java
-                grammars.tree-sitter-javascript
-                grammars.tree-sitter-jsdoc
-                grammars.tree-sitter-json
-                grammars.tree-sitter-lua
-                grammars.tree-sitter-markdown
-                grammars.tree-sitter-nix
-                grammars.tree-sitter-php
-                grammars.tree-sitter-python
-                grammars.tree-sitter-regex
-                grammars.tree-sitter-ruby
-                grammars.tree-sitter-rust
-                grammars.tree-sitter-tsx
-                grammars.tree-sitter-typescript
-                grammars.tree-sitter-yaml
+                (fixGrammar grammars.tree-sitter-bash)
+                (fixGrammar grammars.tree-sitter-c)
+                (fixGrammar grammars.tree-sitter-comment)
+                (fixGrammar grammars.tree-sitter-cpp)
+                (fixGrammar grammars.tree-sitter-css)
+                (fixGrammar grammars.tree-sitter-dart)
+                (fixGrammar grammars.tree-sitter-dot)
+                (fixGrammar grammars.tree-sitter-fluent)
+                (fixGrammar grammars.tree-sitter-go)
+                (fixGrammar grammars.tree-sitter-html)
+                (fixGrammar grammars.tree-sitter-java)
+                (fixGrammar grammars.tree-sitter-javascript)
+                (fixGrammar grammars.tree-sitter-jsdoc)
+                (fixGrammar grammars.tree-sitter-json)
+                (fixGrammar grammars.tree-sitter-latex)
+                (fixGrammar grammars.tree-sitter-lua)
+                (fixGrammar grammars.tree-sitter-make)
+                (fixGrammar grammars.tree-sitter-markdown)
+                (fixGrammar grammars.tree-sitter-nix)
+                (fixGrammar grammars.tree-sitter-php)
+                (fixGrammar grammars.tree-sitter-python)
+                (fixGrammar grammars.tree-sitter-regex)
+                (fixGrammar grammars.tree-sitter-rst)
+                (fixGrammar grammars.tree-sitter-ruby)
+                (fixGrammar grammars.tree-sitter-rust)
+                (fixGrammar grammars.tree-sitter-svelte)
+                (fixGrammar grammars.tree-sitter-toml)
+                (fixGrammar grammars.tree-sitter-tsx)
+                (fixGrammar grammars.tree-sitter-typescript)
+                (fixGrammar grammars.tree-sitter-yaml)
               ]
             )
           )
