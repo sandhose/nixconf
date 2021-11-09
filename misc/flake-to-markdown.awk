@@ -2,8 +2,8 @@
 # compare links
 
 function unquote (str) {
-  len = length(str);
-  return substr(str, 2, len - 3)
+  split(str, arr, "'");
+  return arr[2];
 }
 
 function parse_flakeref (flakeref, res) {
@@ -28,26 +28,93 @@ function short (sha) {
   return substr(sha, 1, 8);
 }
 
-$2 !~ /^Updated$/ {
-  print $0
+BEGIN {
+  print "<details><summary>Raw output</summary><p>";
+  print "";
+  print "```";
 }
 
-$2 ~ /^Updated$/ {
-  input = unquote($3);
-  from = unquote($4);
-  to = unquote($6);
-  parse_flakeref(from, parsed_from);
-  parse_flakeref(to, parsed_to);
-  type = parsed_from["type"];
-  repo = parsed_from["repo"];
-  from_commit = parsed_from["commit"];
-  to_commit = parsed_to["commit"];
+# Print all lines anyway
+{ print }
 
-  if (type == "github") {
-    printf(" - Updated `%s`: [`%s` ➡️ `%s`](https://github.com/%s/compare/%s...%s)\n", input, short(from_commit), short(to_commit), repo, from_commit, to_commit);
-  } else if (type == "gitlab") {
-    printf(" - Updated `%s`: [`%s` ➡️ `%s`](https://gitlab.com/%s/-/compare/%s...%s)\n", input, short(from_commit), short(to_commit), repo, from_commit, to_commit);
-  } else {
-    printf(" - Updated `%s`: `%s` ➡️ `%s`\n", input, from, to);
+$3 ~ /input/ {
+  input = unquote($4);
+  operations[input] = $2;
+  next;
+}
+
+$2 ~ /\(.*\)/ {
+  input_from[input] = unquote($1)
+  input_from_date[input] = substr($2, 2, 10);
+  next;
+}
+
+$3 ~ /\(.*\)/ {
+  input_to[input] = unquote($2)
+  input_to_date[input] = substr($3, 2, 10);
+  next;
+}
+
+END {
+  print "```";
+  print "";
+  print "</p></details>";
+  print "";
+  for (input in operations) {
+    operation = operations[input];
+    details = "";
+    link = "";
+
+    if (operation == "Updated") {
+      from = input_from[input];
+      to = input_to[input];
+      from_date = input_from_date[input]
+      to_date = input_to_date[input]
+      parse_flakeref(from, parsed_from);
+      parse_flakeref(to, parsed_to);
+      type = parsed_from["type"];
+      repo = parsed_from["repo"];
+      from_commit = parsed_from["commit"];
+      to_commit = parsed_to["commit"];
+
+      compare = sprintf("`%s` ➡️ `%s`", short(from_commit), short(to_commit));
+      if (type == "github") {
+        compare = sprintf("[%s](https://github.com/%s/compare/%s...%s)", compare, repo, from_commit, to_commit);
+        link = sprintf("https://github.com/%s", repo);
+      } else if (type == "gitlab") {
+        compare = sprintf("[%s](https://gitlab.com/%s/-/compare/%s...%s)", compare, repo, from_commit, to_commit);
+        link = sprintf("https://gitlab.com/%s", repo);
+      }
+
+      details = sprintf("%s <sub>(%s to %s)</sub>", compare, from_date, to_date);
+    } else if (operation == "Added") {
+      ref = input_from[input];
+      parse_flakeref(ref, parsed_ref);
+      type = parsed_ref["type"];
+      repo = parsed_ref["repo"];
+      commit = parsed_ref["commit"];
+
+      if (type == "github") {
+        details = sprintf("[github.com/%s](https://github.com/%s/tree/%s/)", repo, repo, commit);
+        link = sprintf("https://github.com/%s", repo);
+      } else if (type == "gitlab") {
+        details = sprintf("[gitlab.com/%s](https://gitlab.com/%s/-/tree/%s/)", repo, repo, commit);
+        link = sprintf("https://gitlab.com/%s", repo);
+      } else {
+        details = sprintf("`%s`", ref);
+      }
+    }
+
+    if (link) {
+      input_txt = sprintf("[`%s`](%s)", input, link);
+    } else {
+      input_txt = sprintf("`%s`", input);
+    }
+
+    if (details) {
+      printf(" - %s input %s: %s\n", operation, input_txt, details);
+    } else {
+      printf(" - %s input %s.\n", operation, input_txt);
+    }
   }
 }
