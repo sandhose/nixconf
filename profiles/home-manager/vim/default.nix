@@ -60,12 +60,8 @@ in
       '';
 
       plugins = with pkgs.vimPlugins;
-        let
-          telescope =
-            (pluginWithDeps telescope-nvim [ plenary-nvim popup-nvim ]);
-        in
         [
-          (pluginWithDeps gruvbox-nvim [ lush-nvim ])
+          gruvbox-nvim
           undotree
           vim-fugitive
           vim-surround
@@ -74,7 +70,7 @@ in
 
           plenary-nvim
           popup-nvim
-          telescope
+          telescope-nvim
 
           nvim-lspconfig
           (
@@ -116,9 +112,8 @@ in
           )
           nvim-web-devicons
           (pluginWithDeps nvim-tree-lua [ nvim-web-devicons ])
-          (pluginWithDeps gitsigns-nvim [ plenary-nvim ])
-          (pluginWithDeps rust-tools-nvim [ telescope nvim-lspconfig ])
-          (pluginWithDeps telescope-symbols-nvim [ telescope ])
+          gitsigns-nvim
+          telescope-symbols-nvim
           nvim-compe
           lsp-status-nvim
           vim-vsnip
