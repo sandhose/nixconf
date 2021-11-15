@@ -35,15 +35,15 @@ in
         fenix.rust-analyzer
         nodePackages.bash-language-server
         clang-tools
-        nodePackages.vscode-css-languageserver-bin
+        nodePackages.vscode-langservers-extracted
         nodePackages.dockerfile-language-server-nodejs
         gopls
-        nodePackages.vscode-html-languageserver-bin
         nodePackages.pyright
         rnix-lsp
         terraform-ls
         nodePackages.typescript
         nodePackages.typescript-language-server
+        nodePackages.yaml-language-server
       ];
 
       # Can't rely on init.lua, because it gets loaded before init.vim and
@@ -84,11 +84,11 @@ in
                 (fixGrammar grammars.tree-sitter-bash)
                 (fixGrammar grammars.tree-sitter-c)
                 (fixGrammar grammars.tree-sitter-comment)
-                (fixGrammar grammars.tree-sitter-cpp)
+                #(fixGrammar grammars.tree-sitter-cpp)
                 (fixGrammar grammars.tree-sitter-css)
                 (fixGrammar grammars.tree-sitter-dart)
                 (fixGrammar grammars.tree-sitter-dot)
-                (fixGrammar grammars.tree-sitter-fluent)
+                #(fixGrammar grammars.tree-sitter-fluent)
                 (fixGrammar grammars.tree-sitter-go)
                 (fixGrammar grammars.tree-sitter-html)
                 (fixGrammar grammars.tree-sitter-java)

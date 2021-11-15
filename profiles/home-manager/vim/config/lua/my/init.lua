@@ -21,7 +21,9 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 require'nvim-tree'.setup {
-  lsp_diagnostics = true,
+  diagnostics = {
+    enable = true,
+  },
   update_focused_file = {
     enable = true,
   },

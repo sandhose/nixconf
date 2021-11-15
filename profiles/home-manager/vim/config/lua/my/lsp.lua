@@ -98,6 +98,11 @@ nvim_lsp.html.setup {
   capabilities = capabilities,
 }
 
+nvim_lsp.jsonls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
 nvim_lsp.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -130,4 +135,21 @@ nvim_lsp.terraformls.setup {
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+}
+
+nvim_lsp.yamlls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    redhat = {
+      telemetry = {
+        enabled = false,
+      },
+    },
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+      },
+    },
+  },
 }

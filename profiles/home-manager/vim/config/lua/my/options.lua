@@ -15,6 +15,10 @@ end
 
 g.mapleader = "," -- "," is my leader key
 
+g.loaded_perl_provider = 0
+g.loaded_node_provider = 0
+g.loaded_ruby_provider = 0
+
 local indent = 2
 opt('b', 'expandtab', true)         -- Use spaces instead of tabs
 opt('b', 'shiftwidth', indent)      -- Size of an indent
