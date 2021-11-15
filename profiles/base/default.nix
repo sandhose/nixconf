@@ -10,6 +10,7 @@ in
     self.overlay
     fenix.overlay
     neovim.overlay
+    (final: prev: { nix-direnv = prev.nix-direnv.override { enableFlakes = true; }; })
     (final: prev: {
       firefox-addons = (import rycee { pkgs = prev; }).firefox-addons;
     })
