@@ -34,15 +34,12 @@ in
         # Various language servers
         fenix.rust-analyzer
         nodePackages.bash-language-server
-        clang-tools
+        # clang-tools # broken on darwin
         nodePackages.vscode-langservers-extracted
         nodePackages.dockerfile-language-server-nodejs
         gopls
-        python38Packages.python-lsp-server
-        python38Packages.python-lsp-black
-        #python38Packages.pyls-isort
-        #python38Packages.pyls-mypy
-        #python38Packages.pyls-flake8
+        # python38Packages.python-lsp-server
+        # python38Packages.python-lsp-black
         rnix-lsp
         terraform-ls
         nodePackages.typescript

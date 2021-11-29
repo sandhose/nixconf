@@ -103,19 +103,19 @@ nvim_lsp.jsonls.setup {
   capabilities = capabilities,
 }
 
-nvim_lsp.pylsp.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    pylsp = {
-      plugins = {
-        flake8 = { enabled = false },
-        autopep8 = { enabled = false },
-        yapf = { enabled = false },
-      },
-    },
-  },
-}
+-- nvim_lsp.pylsp.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   settings = {
+--     pylsp = {
+--       plugins = {
+--         flake8 = { enabled = false },
+--         autopep8 = { enabled = false },
+--         yapf = { enabled = false },
+--       },
+--     },
+--   },
+-- }
 
 nvim_lsp.rnix.setup {
   on_attach = on_attach,

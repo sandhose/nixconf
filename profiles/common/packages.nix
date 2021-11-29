@@ -58,7 +58,7 @@ with pkgs; [
   wrk
   youtube-dl
   my.zsh-funcs
-  clang-tools
+  # clang-tools # broken on darwin
 
   # elixir
   # fig2dev
