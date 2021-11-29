@@ -47,6 +47,6 @@ with inputs; {
     ];
   };
 
-  networking.firewall.allowedTCPPorts = [ 24642 8080 ];
+  networking.firewall.allowedTCPPorts = [ 24642 8080 8008 ];
   networking.firewall.allowedUDPPorts = [ 24642 ];
 }

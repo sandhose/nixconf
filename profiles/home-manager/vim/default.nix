@@ -38,7 +38,11 @@ in
         nodePackages.vscode-langservers-extracted
         nodePackages.dockerfile-language-server-nodejs
         gopls
-        nodePackages.pyright
+        python38Packages.python-lsp-server
+        python38Packages.python-lsp-black
+        #python38Packages.pyls-isort
+        #python38Packages.pyls-mypy
+        #python38Packages.pyls-flake8
         rnix-lsp
         terraform-ls
         nodePackages.typescript
