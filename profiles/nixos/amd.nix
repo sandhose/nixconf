@@ -11,13 +11,9 @@
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  hardware.opengl.extraPackages = with pkgs; [
-    amdvlk
-  ];
+  hardware.opengl.extraPackages = with pkgs; [ rocm-opencl-icd amdvlk ];
 
-  hardware.opengl.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
+  hardware.opengl.extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
 
   # Force RADV
   #environment.variables.VK_ICD_FILENAMES =

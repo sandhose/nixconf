@@ -44,6 +44,8 @@ with inputs; {
       zoom-us
 
       fenix.rust-analyzer
+      rocminfo
+      rocm-opencl-runtime
     ];
   };
 

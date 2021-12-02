@@ -213,6 +213,26 @@
         "type": "github"
       }
     },
+    "rocm": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1633134551,
+        "narHash": "sha256-lSmN7XxxnLhGl7r/cR0As+FlnpjqAHUzHO1QCKfqWyo=",
+        "owner": "nixos-rocm",
+        "repo": "nixos-rocm",
+        "rev": "0ec136ecd40a837e849d5c6b0cce6c5d49591759",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos-rocm",
+        "repo": "nixos-rocm",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "darwin": "darwin",
@@ -224,6 +244,7 @@
         "nix": "nix",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs",
+        "rocm": "rocm",
         "rycee": "rycee",
         "sops-nix": "sops-nix"
       }
