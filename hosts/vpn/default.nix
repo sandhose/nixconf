@@ -1,10 +1,8 @@
 { inputs, lib, pkgs, ... }:
 
-let
-  inherit (inputs) nixpkgs;
+let inherit (inputs) nixpkgs;
 
-in
-{
+in {
   imports = [
     ../../profiles/base
     ../../profiles/nixos/base.nix

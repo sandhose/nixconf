@@ -1,10 +1,8 @@
 { lib, inputs, pkgs, ... }:
 
-let
-  inherit (inputs) self home-manager nixpkgs dwarffs nix;
+let inherit (inputs) self home-manager nixpkgs dwarffs nix;
 
-in
-{
+in {
   imports = [
     nixpkgs.nixosModules.notDetected
     home-manager.nixosModules.home-manager

@@ -36,12 +36,10 @@
     fsType = "vfat";
   };
 
-  swapDevices = [
-    {
-      device = "/swapfile";
-      size = 32768;
-    }
-  ];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 32768;
+  }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
 }

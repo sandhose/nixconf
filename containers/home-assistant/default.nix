@@ -2,8 +2,7 @@
 
 let inherit (inputs) sops-nix;
 
-in
-{
+in {
   imports = [ sops-nix.nixosModules.sops ../../profiles/container ];
 
   networking.hostName = "home-assistant";

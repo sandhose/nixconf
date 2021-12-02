@@ -63,15 +63,12 @@ with pkgs; [
   # elixir
   # fig2dev
   fontconfig
-  (
-    texlive.combine {
-      inherit (texlive)
-        scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem
-        fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind titling
-        unamth-template bib-fr synttree wrapfig lastpage ifmtarg
-        ;
-    }
-  )
+  (texlive.combine {
+    inherit (texlive)
+      scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem
+      fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind titling
+      unamth-template bib-fr synttree wrapfig lastpage ifmtarg;
+  })
   # gnome3.librsvg
 
   maven
@@ -119,16 +116,13 @@ with pkgs; [
   bat
   ripgrep
 
-  (
-    with fenix; combine (
-      with stable; [
-        cargo
-        rust-std
-        rustc
-        clippy-preview
-        latest.rustfmt-preview
-        latest.rust-src
-      ]
-    )
-  )
+  (with fenix;
+    combine (with stable; [
+      cargo
+      rust-std
+      rustc
+      clippy-preview
+      latest.rustfmt-preview
+      latest.rust-src
+    ]))
 ]

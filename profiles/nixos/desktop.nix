@@ -23,14 +23,12 @@
         local all all trust
         host all all ::1/128 trust
       '';
-      ensureUsers = [
-        {
-          name = "sandhose";
-          ensurePermissions = {
-            "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
-          };
-        }
-      ];
+      ensureUsers = [{
+        name = "sandhose";
+        ensurePermissions = {
+          "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
+        };
+      }];
     };
 
     printing = {
@@ -48,11 +46,17 @@
 
   services.gnome.experimental-features.realtime-scheduling = true;
 
-  boot.plymouth = {
-    enable = true;
-  };
+  boot.plymouth = { enable = true; };
 
-  environment.systemPackages = [ pkgs.openrgb pkgs.wireshark pkgs.teamviewer pkgs.authy pkgs.qt5.qtwayland pkgs.qgnomeplatform pkgs.lutris ];
+  environment.systemPackages = [
+    pkgs.openrgb
+    pkgs.wireshark
+    pkgs.teamviewer
+    pkgs.authy
+    pkgs.qt5.qtwayland
+    pkgs.qgnomeplatform
+    pkgs.lutris
+  ];
 
   programs.steam = {
     enable = true;
@@ -65,11 +69,7 @@
     steam-hardware.enable = true;
     opengl = {
       driSupport32Bit = true;
-      extraPackages = with pkgs; [
-        libva
-        vaapiVdpau
-        libvdpau-va-gl
-      ];
+      extraPackages = with pkgs; [ libva vaapiVdpau libvdpau-va-gl ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
         libva
         vaapiVdpau

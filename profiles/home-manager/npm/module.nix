@@ -5,8 +5,7 @@ with lib;
 let
   cfg = config.programs.npm;
   npmrcType = with types; attrsOf (oneOf [ str bool path int ]);
-in
-{
+in {
 
   options = {
     programs.npm = {

@@ -1,12 +1,11 @@
 { pkgs, ... }:
 
-
 let
   inherit (pkgs) lib fetchFromGitHub;
-  inherit (pkgs.python38Packages) buildPythonApplication python_magic python-dateutil;
+  inherit (pkgs.python38Packages)
+    buildPythonApplication python_magic python-dateutil;
 
-in
-buildPythonApplication rec {
+in buildPythonApplication rec {
   pname = "s3cmd";
   version = "2.1.0";
 
@@ -23,7 +22,8 @@ buildPythonApplication rec {
 
   meta = with lib; {
     homepage = "https://s3tools.org/s3cmd";
-    description = "Command line tool for managing Amazon S3 and CloudFront services";
+    description =
+      "Command line tool for managing Amazon S3 and CloudFront services";
     license = licenses.gpl2;
     maintainers = [ maintainers.spwhitt ];
   };

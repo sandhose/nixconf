@@ -1,9 +1,7 @@
 { pkgs, lib, inputs, ... }:
 
-let
-  inherit (inputs) nixpkgs;
-in
-{
+let inherit (inputs) nixpkgs;
+in {
   imports = [
     "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
     ../../profiles/base
@@ -12,9 +10,7 @@ in
   boot.initrd.supportedFilesystems = [ "zfs" ]; # boot from zfs
   boot.supportedFilesystems = [ "zfs" ];
 
-  networking = {
-    hostName = "live";
-  };
+  networking = { hostName = "live"; };
 
   systemd.services.sshd.wantedBy = pkgs.lib.mkForce [ "multi-user.target" ];
   users.users.root.openssh.authorizedKeys.keys = [

@@ -5,9 +5,7 @@
     enable = true;
 
     settings = {
-      env = {
-        TERM = "alacritty-direct";
-      };
+      env = { TERM = "alacritty-direct"; };
 
       window = {
         startup_mode = "Maximized";

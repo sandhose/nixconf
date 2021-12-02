@@ -26,11 +26,8 @@ with inputs; {
     pathsToLink = [ "/share/terminfo" ];
     extraOutputsToInstall = [ "terminfo" ];
 
-    etc.terminfo = {
-      source = "${config.system.path}/share/terminfo";
-    };
+    etc.terminfo = { source = "${config.system.path}/share/terminfo"; };
   };
-
 
   programs.nix-index.enable = true;
   services.nix-daemon.enable = true;
