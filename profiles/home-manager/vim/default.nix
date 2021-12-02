@@ -37,6 +37,7 @@ in
         # clang-tools # broken on darwin
         nodePackages.vscode-langservers-extracted
         nodePackages.dockerfile-language-server-nodejs
+        nodePackages.pyright
         gopls
         # python38Packages.python-lsp-server
         # python38Packages.python-lsp-black

@@ -117,6 +117,19 @@ nvim_lsp.jsonls.setup {
 --   },
 -- }
 
+nvim_lsp.pyright.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        useLibraryCodeForTypes = false,
+        excludee = {'**/.direnv', '**/.tox'},
+      },
+    },
+  },
+}
+
 nvim_lsp.rnix.setup {
   on_attach = on_attach,
   capabilities = capabilities,
