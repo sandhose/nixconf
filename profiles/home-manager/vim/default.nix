@@ -30,7 +30,7 @@ in {
         ripgrep
 
         # For nvim-dap
-        lldb
+        #lldb
 
         # Various language servers
         fenix.rust-analyzer

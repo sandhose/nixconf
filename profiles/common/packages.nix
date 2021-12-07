@@ -67,7 +67,7 @@ with pkgs; [
     inherit (texlive)
       scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem
       fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind titling
-      unamth-template bib-fr synttree wrapfig lastpage ifmtarg;
+      unamth-template bib-fr synttree wrapfig lastpage ifmtarg numprint;
   })
   # gnome3.librsvg
 
@@ -104,7 +104,7 @@ with pkgs; [
 
   gnumake
   go
-  lldb
+  #lldb
   file
 
   sqlx-cli
