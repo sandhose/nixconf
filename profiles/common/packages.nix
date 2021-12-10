@@ -43,7 +43,7 @@ with pkgs; [
   redis
   # rustup
   my.s3cmd
-  socat
+  # socat
   sqlite
   sshpass
   terraform_1_0
@@ -71,7 +71,7 @@ with pkgs; [
   })
   # gnome3.librsvg
 
-  maven
+  # maven
   # argocd
   # autoconf
   # autogen
@@ -117,12 +117,12 @@ with pkgs; [
   ripgrep
 
   (with fenix;
-    combine (with stable; [
-      cargo
-      rust-std
-      rustc
-      clippy-preview
-      latest.rustfmt-preview
-      latest.rust-src
-    ]))
+  combine (with stable; [
+    cargo
+    rust-std
+    rustc
+    clippy-preview
+    latest.rustfmt-preview
+    latest.rust-src
+  ]))
 ]
