@@ -46,7 +46,7 @@ with pkgs; [
   # socat
   sqlite
   sshpass
-  terraform_1_0
+  terraform_1
   tmux
   unixtools.watch
   unrar
