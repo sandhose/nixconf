@@ -101,6 +101,7 @@ with pkgs; [
   xmlsec
   xz
   yarn
+  jdk11
 
   gnumake
   go

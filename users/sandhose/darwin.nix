@@ -7,7 +7,7 @@
 
   home-manager.users.sandhose = { ... }: {
     imports = [
-      ../../profiles/home-manager/alacritty
+      # ../../profiles/home-manager/alacritty
       ../../profiles/home-manager/darwin-fonts
     ];
   };

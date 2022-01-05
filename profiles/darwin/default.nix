@@ -15,6 +15,7 @@ with inputs; {
       #wireshark
       xquartz
       ncurses
+      cocoapods
     ];
 
     variables = {
