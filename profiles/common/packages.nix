@@ -118,12 +118,12 @@ with pkgs; [
   ripgrep
 
   (with fenix;
-  combine (with stable; [
+  combine (with latest; [
     cargo
     rust-std
     rustc
     clippy-preview
-    latest.rustfmt-preview
-    latest.rust-src
+    rustfmt-preview
+    rust-src
   ]))
 ]
