@@ -148,6 +148,7 @@ require'rust-tools'.setup {
           ignored = {
             ["async-trait"] = {"async_trait"},
             ["tracing"] = {"instrument"},
+            ["tokio"] = {"main", "test"},
           },
         },
       },
