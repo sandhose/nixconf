@@ -13,12 +13,12 @@ let
       '';
     });
   nvimHome = "${config.xdg.configHome}/nvim";
-in {
+in
+{
   programs = {
     neovim = {
       enable = true;
       vimAlias = true;
-      package = pkgs.neovim;
 
       extraPackages = with pkgs; [
         gcc
@@ -84,7 +84,7 @@ in {
           (fixGrammar grammars.tree-sitter-dart)
           (fixGrammar grammars.tree-sitter-dot)
           #(fixGrammar grammars.tree-sitter-fluent)
-          (fixGrammar grammars.tree-sitter-go)
+          #(fixGrammar grammars.tree-sitter-go)
           (fixGrammar grammars.tree-sitter-html)
           (fixGrammar grammars.tree-sitter-java)
           (fixGrammar grammars.tree-sitter-javascript)
@@ -93,7 +93,7 @@ in {
           (fixGrammar grammars.tree-sitter-latex)
           (fixGrammar grammars.tree-sitter-lua)
           (fixGrammar grammars.tree-sitter-make)
-          (fixGrammar grammars.tree-sitter-markdown)
+          #(fixGrammar grammars.tree-sitter-markdown)
           (fixGrammar grammars.tree-sitter-nix)
           (fixGrammar grammars.tree-sitter-php)
           (fixGrammar grammars.tree-sitter-python)
@@ -133,18 +133,22 @@ in {
     };
   };
 
-  home.file = let
-    # Symlink everything in ./config to ~/.config/nvim/
-    cfg = builtins.listToAttrs (map (file: {
-      name = "${nvimHome}/${file}";
-      value = {
-        source = ./config + "/${file}";
-        recursive = true;
-      };
-    }) (builtins.attrNames (builtins.readDir ./config)));
-  in cfg // {
-    "${nvimHome}/undo/.keep".text = "";
-    "${nvimHome}/swaps/.keep".text = "";
-    "${nvimHome}/backups/.keep".text = "";
-  };
+  home.file =
+    let
+      # Symlink everything in ./config to ~/.config/nvim/
+      cfg = builtins.listToAttrs (map
+        (file: {
+          name = "${nvimHome}/${file}";
+          value = {
+            source = ./config + "/${file}";
+            recursive = true;
+          };
+        })
+        (builtins.attrNames (builtins.readDir ./config)));
+    in
+    cfg // {
+      "${nvimHome}/undo/.keep".text = "";
+      "${nvimHome}/swaps/.keep".text = "";
+      "${nvimHome}/backups/.keep".text = "";
+    };
 }

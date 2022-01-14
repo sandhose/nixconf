@@ -27,7 +27,6 @@ with pkgs; [
   # kubeseal
   kustomize
   mosh
-  neovim
   nix-index
   nmap
   nodejs_latest

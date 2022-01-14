@@ -19,7 +19,7 @@ with inputs; {
     ];
 
     variables = {
-      EDITOR = "${pkgs.neovim}/bin/nvim";
+      EDITOR = "nvim";
       LANG = "en_US.UTF-8";
       TERMINFO = "/etc/terminfo";
     };

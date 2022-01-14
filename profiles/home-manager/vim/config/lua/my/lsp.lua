@@ -1,8 +1,9 @@
 -- LSP config, here we go!
-local nvim_lsp = require'lspconfig'
 local lsp_status = require'lsp-status'
-
 lsp_status.register_progress()
+
+local nvim_lsp = require'lspconfig'
+
 lsp_status.config {
   diagnostics = false, -- Disable diagnostic since it's already handled by lualine
 }
@@ -11,6 +12,8 @@ require'lspkind'.init()
 
 -- Advertise snippets support
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.window = capabilities.window or {}
+capabilities.window.workDoneProgress = true
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = {
@@ -74,6 +77,10 @@ nvim_lsp.bashls.setup {
 }
 
 nvim_lsp.clangd.setup {
+  handlers = lsp_status.extensions.clangd.setup(),
+  init_options = {
+    clangdFileStatus = true
+  },
   on_attach = on_attach,
   capabilities = capabilities,
 }

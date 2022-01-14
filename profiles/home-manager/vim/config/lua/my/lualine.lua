@@ -9,8 +9,8 @@ require'lualine'.setup {
     },
     lualine_c = {
       {'filename', file_status = true, path = 1},
-      {'diagnostics', sources = {'nvim_lsp'}},
-      {require'lsp-status'.status, left_padding = 3},
+      {'diagnostics', sources = {'nvim_diagnostic'}},
+      {function() return require"lsp-status".status() end, left_padding = 3},
     },
     lualine_x = {
       'diff',
