@@ -118,7 +118,7 @@ with pkgs; [
   ripgrep
 
   (with fenix;
-  combine (with beta; [
+  combine (with stable; [
     cargo
     rust-std
     rustc
