@@ -1,14 +1,14 @@
 { inputs, pkgs, ... }:
 
-let inherit (inputs) self rycee nixpkgs fenix neovim rocm;
+let inherit (inputs) self rycee nixpkgs fenix rocm;
 
-in {
+in
+{
   imports = [ ./cachix.nix ./nix.nix ];
 
   nixpkgs.overlays = [
     self.overlay
     fenix.overlay
-    neovim.overlay
     rocm.overlay
     (final: prev: {
       nix-direnv = prev.nix-direnv.override { enableFlakes = true; };
@@ -23,7 +23,8 @@ in {
           inherit config;
           localSystem = "x86_64-darwin";
         };
-      in if prev.stdenv.system == "aarch64-darwin" then {
+      in
+      if prev.stdenv.system == "aarch64-darwin" then {
         inherit (x86Pkgs) xquartz nix-index wrk;
       } else
         { })
