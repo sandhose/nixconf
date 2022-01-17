@@ -2,10 +2,11 @@
 
 let inherit (inputs) nixpkgs;
 
-in lib.mkMerge [
+in
+lib.mkMerge [
   {
     nix = {
-      package = pkgs.nixUnstable;
+      package = pkgs.nix;
       nixPath = [ "nixpkgs=${nixpkgs}" ];
 
       extraOptions = ''

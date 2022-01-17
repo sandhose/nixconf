@@ -1,16 +1,15 @@
 { lib, inputs, pkgs, ... }:
 
-let inherit (inputs) self home-manager nixpkgs dwarffs nix;
+let inherit (inputs) self home-manager nixpkgs dwarffs;
 
-in {
+in
+{
   imports = [
     nixpkgs.nixosModules.notDetected
     home-manager.nixosModules.home-manager
     dwarffs.nixosModules.dwarffs
     ../home-manager
   ];
-
-  nixpkgs.overlays = [ nix.overlay ];
 
   nix.package = lib.mkForce pkgs.nix;
 

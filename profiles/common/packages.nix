@@ -2,7 +2,7 @@
 
 with pkgs; [
   # bazel
-  my.cachix
+  cachix
   curl
   dnsutils
   doctl
