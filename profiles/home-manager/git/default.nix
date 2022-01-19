@@ -4,6 +4,12 @@
   programs = {
     git = {
       enable = true;
+      delta = {
+        enable = true;
+        options = {
+          navigate = true;
+        };
+      };
       aliases = {
         lg =
           "log --graph --pretty=format:'%C(yellow)%d%Creset %C(cyan)%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short --all";
