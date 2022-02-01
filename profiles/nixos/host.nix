@@ -12,7 +12,10 @@
   services = {
     openssh.enable = true;
     fwupd.enable = true;
-    resolved.enable = true;
+    resolved = {
+      enable = true;
+      dnssec = "false";
+    };
   };
 
   console.useXkbConfig = true;

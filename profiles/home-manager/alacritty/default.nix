@@ -10,6 +10,8 @@
       window = {
         startup_mode = "Maximized";
         dynamic_title = true;
+        decorations = "none";
+        padding = { x = 5; y = 5; };
       };
 
       font = {
