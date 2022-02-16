@@ -6,7 +6,7 @@ with pkgs; [
   curl
   dnsutils
   doctl
-  docker-compose
+  # docker-compose
   editorconfig-core-c
   # fly
   git
@@ -30,9 +30,12 @@ with pkgs; [
   nix-index
   nmap
   nodejs_latest
+  openssl
+  openssl.dev
   pandoc
   parallel
   # pgcli
+  pkg-config
   # protobuf
   pwgen
   # python
@@ -116,13 +119,11 @@ with pkgs; [
   bat
   ripgrep
 
-  (with fenix;
-  combine (with stable; [
-    cargo
-    rust-std
-    rustc
-    clippy-preview
-    latest.rustfmt-preview
-    latest.rust-src
-  ]))
+  (fenix.stable.withComponents [
+    "cargo"
+    "clippy"
+    "rust-src"
+    "rustc"
+    "rustfmt"
+  ])
 ]
