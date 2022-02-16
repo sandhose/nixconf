@@ -111,7 +111,15 @@ in
         (pluginWithDeps nvim-tree-lua [ nvim-web-devicons ])
         gitsigns-nvim
         telescope-symbols-nvim
-        nvim-compe
+
+        cmp-nvim-lsp
+        cmp-buffer
+        cmp-path
+        cmp-cmdline
+        cmp-calc
+        cmp-vsnip
+        nvim-cmp
+
         lsp-status-nvim
         vim-vsnip
         vim-vsnip-integ

@@ -8,10 +8,8 @@ lsp_status.config {
   diagnostics = false, -- Disable diagnostic since it's already handled by lualine
 }
 
-require'lspkind'.init()
-
 -- Advertise snippets support
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.window = capabilities.window or {}
 capabilities.window.workDoneProgress = true
 capabilities.textDocument.completion.completionItem.snippetSupport = true
