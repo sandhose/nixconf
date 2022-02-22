@@ -119,11 +119,13 @@ with pkgs; [
   bat
   ripgrep
 
-  (fenix.stable.withComponents [
-    "cargo"
-    "clippy"
-    "rust-src"
-    "rustc"
-    "rustfmt"
+  (fenix.combine [
+    fenix.latest.rustfmt
+
+    fenix.stable.clippy
+    fenix.stable.cargo
+    fenix.stable.rust-src
+    fenix.stable.rust-std
+    fenix.stable.rustc
   ])
 ]
