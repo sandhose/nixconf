@@ -4,6 +4,8 @@ lsp_status.register_progress()
 
 local nvim_lsp = require'lspconfig'
 
+local null_ls = require'null-ls'
+
 lsp_status.config {
   diagnostics = false, -- Disable diagnostic since it's already handled by lualine
 }
@@ -68,6 +70,31 @@ local on_attach = function(client, bufnr)
     ]], false)
   end
 end
+
+null_ls.setup {
+  sources = {
+    null_ls.builtins.formatting.prettier.with({
+        extra_filetypes = { "toml", "graphql" },
+    }),
+    null_ls.builtins.formatting.eslint_d.with({
+        extra_filetypes = { "graphql" },
+    }),
+    null_ls.builtins.diagnostics.eslint_d.with({
+        extra_filetypes = { "graphql" },
+    }),
+    null_ls.builtins.diagnostics.actionlint,
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.statix,
+    null_ls.builtins.code_actions.eslint_d.with({
+        extra_filetypes = { "graphql" },
+    }),
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.code_actions.gitrebase,
+    null_ls.builtins.code_actions.shellcheck,
+    null_ls.builtins.code_actions.statix,
+  },
+  on_attach = on_attach,
+}
 
 nvim_lsp.bashls.setup {
   on_attach = on_attach,
@@ -167,7 +194,11 @@ nvim_lsp.terraformls.setup {
 }
 
 nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    -- Disable the tsserver formatter
+    client.resolved_capabilities.document_formatting = false
+    on_attach(client, bufnr)
+  end,
   capabilities = capabilities,
 }
 

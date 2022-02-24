@@ -1,5 +1,6 @@
 require'my.options'
 
+require'crates'.setup()
 require'trouble'.setup()
 require'gitsigns'.setup()
 require'nvim-treesitter.configs'.setup {
