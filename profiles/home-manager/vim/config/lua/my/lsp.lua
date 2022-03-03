@@ -73,9 +73,9 @@ end
 
 null_ls.setup {
   sources = {
-    null_ls.builtins.formatting.prettier.with({
-        extra_filetypes = { "toml", "graphql" },
-    }),
+    -- null_ls.builtins.formatting.prettier.with({
+    --     extra_filetypes = { "toml", "graphql" },
+    -- }),
     null_ls.builtins.formatting.eslint_d.with({
         extra_filetypes = { "graphql" },
     }),
