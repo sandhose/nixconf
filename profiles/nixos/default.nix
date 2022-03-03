@@ -34,7 +34,7 @@ with inputs; {
       google-chrome
       keepassxc
       libtool
-      manpages
+      man-pages
       minecraft
       mumble
       # signal-desktop

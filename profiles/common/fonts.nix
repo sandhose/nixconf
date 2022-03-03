@@ -13,7 +13,7 @@
     ibm-plex
     corefonts
     merriweather
-    opensans-ttf
+    open-sans
     raleway
     cascadia-code
     my.fork-awesome
