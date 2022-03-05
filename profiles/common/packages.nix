@@ -127,5 +127,6 @@ with pkgs; [
     fenix.stable.rust-src
     fenix.stable.rust-std
     fenix.stable.rustc
+    fenix.targets.wasm32-unknown-unknown.stable.rust-std
   ])
 ]
