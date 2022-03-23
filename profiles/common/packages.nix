@@ -26,6 +26,7 @@ with pkgs; [
   kubernetes-helm
   # kubeseal
   kustomize
+  kpt
   mosh
   nix-index
   nmap
@@ -69,7 +70,7 @@ with pkgs; [
     inherit (texlive)
       scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem
       fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind titling
-      unamth-template bib-fr synttree wrapfig lastpage ifmtarg numprint;
+      unamth-template bib-fr synttree wrapfig lastpage ifmtarg numprint bophook;
   })
   # gnome3.librsvg
 
@@ -113,6 +114,10 @@ with pkgs; [
   sqlx-cli
   mdbook
   minio-client
+  less
+
+  consul
+  nomad
 
   # Needed by Telescope.nvim
   fd

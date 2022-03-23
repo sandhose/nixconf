@@ -21,7 +21,7 @@ with inputs; {
     variables = {
       EDITOR = "nvim";
       LANG = "en_US.UTF-8";
-      TERMINFO = "/etc/terminfo";
+      TERMINFO_DIRS = "/etc/terminfo";
     };
 
     pathsToLink = [ "/share/terminfo" ];
