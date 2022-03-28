@@ -4,7 +4,7 @@ with pkgs; [
   # bazel
   cachix
   curl
-  dnsutils
+  # dnsutils
   doctl
   # docker-compose
   editorconfig-core-c
