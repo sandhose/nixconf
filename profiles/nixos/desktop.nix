@@ -44,8 +44,6 @@
     };
   };
 
-  services.gnome.experimental-features.realtime-scheduling = true;
-
   boot.plymouth = { enable = true; };
 
   environment.systemPackages = [
