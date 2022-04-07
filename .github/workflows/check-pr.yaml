@@ -37,7 +37,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: cachix/install-nix-action@v16
+      - uses: cachix/install-nix-action@v17
         with:
           install_url: https://releases.nixos.org/nix/nix-2.4/install
           extra_nix_config: |
