@@ -8,6 +8,7 @@
         enable = true;
         options = {
           navigate = true;
+          side-by-side = true;
         };
       };
       aliases = {
