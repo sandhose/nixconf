@@ -4,6 +4,7 @@ with pkgs; [
   # bazel
   cachix
   curl
+  cloudflared
   # dnsutils
   doctl
   # docker-compose
