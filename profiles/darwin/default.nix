@@ -32,7 +32,6 @@ with inputs; {
 
   programs.nix-index.enable = true;
   services.nix-daemon.enable = true;
-  fonts.enableFontDir = true;
   users.nix.configureBuildUsers = true;
 
   system.stateVersion = 4;

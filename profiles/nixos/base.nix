@@ -13,8 +13,6 @@ in
 
   nix.package = lib.mkForce pkgs.nix;
 
-  fonts.fontDir.enable = true;
-
   # TODO: move this elsewhere and ensure emoji always go first
   fonts.fontconfig = {
     enable = true;
