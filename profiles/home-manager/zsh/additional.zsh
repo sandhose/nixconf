@@ -15,6 +15,8 @@ setopt correct
 
 # Remove RPS1 after <enter>
 setopt transient_rprompt
+setopt prompt_cr 
+setopt prompt_sp
 
 # Color vars
 autoload -U colors

@@ -4,6 +4,8 @@ lsp_status.register_progress()
 
 local nvim_lsp = require'lspconfig'
 
+require'fidget'.setup {}
+
 local null_ls = require'null-ls'
 
 lsp_status.config {
@@ -38,9 +40,9 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
   buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<leader>D', '<cmd>Telescope lsp_type_definitions<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>Telescope lsp_code_actions<CR>', opts)
+  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
   buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua require"trouble".previous({skip_groups = true, jump = true})<CR>', opts)
@@ -98,6 +100,9 @@ null_ls.setup {
 nvim_lsp.bashls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
 }
 
 nvim_lsp.clangd.setup {
@@ -107,36 +112,57 @@ nvim_lsp.clangd.setup {
   },
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
 }
 
 nvim_lsp.cssls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
 }
 
 nvim_lsp.dockerls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
 }
 
 nvim_lsp.gopls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
 }
 
 nvim_lsp.html.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
 }
 
 nvim_lsp.jsonls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
 }
 
 -- nvim_lsp.pylsp.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities,
+--   flags = {
+--     debounce_text_changes = 150,
+--   },
 --   settings = {
 --     pylsp = {
 --       plugins = {
@@ -151,6 +177,9 @@ nvim_lsp.jsonls.setup {
 nvim_lsp.pyright.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
   settings = {
     python = {
       analysis = {
@@ -164,12 +193,21 @@ nvim_lsp.pyright.setup {
 nvim_lsp.rnix.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
 }
 
 require'rust-tools'.setup {
+  dap = {
+    adapter = require'dap'.adapters.codelldb
+  },
   server = {
     on_attach = on_attach,
     capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    },
     settings = {
       ["rust-analyzer"] = {
         checkOnSave = {
@@ -190,6 +228,9 @@ require'rust-tools'.setup {
 nvim_lsp.terraformls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
 }
 
 nvim_lsp.tsserver.setup {
@@ -199,11 +240,17 @@ nvim_lsp.tsserver.setup {
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
 }
 
 nvim_lsp.yamlls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
   settings = {
     redhat = {
       telemetry = {

@@ -2,6 +2,7 @@ local actions = require'telescope.actions'
 local trouble = require'trouble.providers.telescope'
 
 local telescope = require'telescope'
+local dressing = require'dressing'
 
 telescope.load_extension'dap'
 telescope.setup {
@@ -12,3 +13,5 @@ telescope.setup {
     },
   },
 }
+
+dressing.setup {}
