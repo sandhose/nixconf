@@ -38,7 +38,7 @@ in
         ripgrep
 
         # For nvim-dap
-        lldb
+        # lldb
         (
           writeScriptBin "codelldb" ''
             #!${bash}/bin/bash
