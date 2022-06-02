@@ -88,6 +88,7 @@ in
         gruvbox-nvim
         undotree
         vim-fugitive
+        vim-rhubarb
         vim-surround
         vim-easy-align
         editorconfig-vim
