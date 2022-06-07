@@ -39,13 +39,15 @@ in
 
         # For nvim-dap
         # lldb
-        (
-          writeScriptBin "codelldb" ''
-            #!${bash}/bin/bash
-            ${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/.codelldb-wrapped_ \
-              --liblldb ${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.* $@
-          ''
-        )
+
+        # It's broken: https://github.com/NixOS/nixpkgs/issues/176697
+        #(
+        #  writeScriptBin "codelldb" ''
+        #    #!${bash}/bin/bash
+        #    ${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/.codelldb-wrapped_ \
+        #      --liblldb ${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.* $@
+        #  ''
+        #)
 
         # Various language servers
         fenix.rust-analyzer
