@@ -39,16 +39,17 @@ with pkgs; [
   # pgcli
   pkg-config
   # protobuf
+  poetry
   pwgen
   # python
   # python3
-  python39Full
+  python3Full
   # python37Packages.ansible
   redis
   # rustup
   my.s3cmd
   # socat
-  sqlite
+  sqlite-interactive
   sshpass
   terraform_1
   tmux

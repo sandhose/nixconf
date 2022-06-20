@@ -183,6 +183,7 @@ nvim_lsp.pyright.setup {
   settings = {
     python = {
       analysis = {
+        diagnosticMode = "openFilesOnly",
         useLibraryCodeForTypes = false,
         excludee = {'**/.direnv', '**/.tox'},
       },
