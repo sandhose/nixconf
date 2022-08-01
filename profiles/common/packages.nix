@@ -96,7 +96,7 @@ with pkgs; [
   go
   # inkscape
   # jabref
-  keybase
+  # keybase # Broken on darwin as of 1/08/22
   kind
   librsvg
   # buildpack
