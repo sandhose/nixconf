@@ -15,7 +15,7 @@ with pkgs; [
   gnupg
   gnused
   gnutar
-  #go-jsonnet # Broken on darwin as of 1/07/22
+  #go-jsonnet # Broken on darwin as of 1/08/22
   graphviz
   htop
   imagemagick
@@ -27,7 +27,7 @@ with pkgs; [
   kubernetes-helm
   # kubeseal
   kustomize
-  kpt
+  #kpt # Broken on darwin as of 1/08/22
   mosh
   nix-index
   nmap
