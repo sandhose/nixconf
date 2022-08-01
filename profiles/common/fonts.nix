@@ -12,7 +12,7 @@
     source-code-pro
     source-serif-pro
     ibm-plex
-    corefonts
+    # corefonts # Broken on darwin
     merriweather
     open-sans
     raleway
