@@ -13,7 +13,7 @@ with inputs; {
       neomutt
       msmtp
       #wireshark
-      xquartz
+      #xquartz # Broken as of 1/08/22
       ncurses
       cocoapods
     ];
