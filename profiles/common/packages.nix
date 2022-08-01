@@ -15,7 +15,7 @@ with pkgs; [
   gnupg
   gnused
   gnutar
-  go-jsonnet
+  #go-jsonnet # Broken on darwin as of 1/07/22
   graphviz
   htop
   imagemagick
