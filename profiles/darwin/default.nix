@@ -30,6 +30,7 @@ with inputs; {
     etc.terminfo = { source = "${config.system.path}/share/terminfo"; };
   };
 
+  nix.configureBuildUsers = true;
   programs.nix-index.enable = true;
   services.nix-daemon.enable = true;
 

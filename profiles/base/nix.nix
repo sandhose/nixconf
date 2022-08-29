@@ -24,7 +24,6 @@ lib.mkMerge [
   })
 
   (lib.mkIf pkgs.stdenv.isDarwin {
-    nix.configureBuildUsers = true;
     nix.settings = {
       sandbox = false; # For some reason does not work on my laptop
       trusted-users = [ "@wheel" ];
