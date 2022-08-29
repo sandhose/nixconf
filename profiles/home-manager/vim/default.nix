@@ -155,6 +155,7 @@ in
         lspkind-nvim
         lualine-nvim
         trouble-nvim
+        symbols-outline-nvim
 
         nvim-dap
         telescope-dap-nvim

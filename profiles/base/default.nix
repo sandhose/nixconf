@@ -4,7 +4,7 @@ let inherit (inputs) self rycee nixpkgs fenix rocm;
 
 in
 {
-  imports = [ ./cachix.nix ./nix.nix ];
+  imports = [ ./cachix-adapter.nix ./nix.nix ];
 
   nixpkgs.overlays = [
     self.overlay
