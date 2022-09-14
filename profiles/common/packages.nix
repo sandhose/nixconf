@@ -129,6 +129,7 @@ with pkgs; [
   (fenix.combine [
     fenix.latest.rustfmt
 
+    fenix.stable.llvm-tools-preview
     fenix.stable.clippy
     fenix.stable.cargo
     fenix.stable.rust-src

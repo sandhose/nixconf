@@ -5,13 +5,15 @@ with inputs; {
 
   environment = {
     systemPackages = with pkgs; [
-      postgresql_12
+      postgresql_14
+      postgresql_14.lib
+      openssl.out
       pinentry_mac
       reattach-to-user-namespace
-      notmuch
+      #notmuch
       #my.neomutt
-      neomutt
-      msmtp
+      #neomutt
+      #msmtp
       #wireshark
       #xquartz # Broken as of 1/08/22
       ncurses
@@ -22,9 +24,10 @@ with inputs; {
       EDITOR = "nvim";
       LANG = "en_US.UTF-8";
       TERMINFO_DIRS = "/etc/terminfo";
+      PKG_CONFIG_PATH = "/run/current-system/sw/share/pkgconfig:/run/current-system/sw/lib/pkgconfig";
     };
 
-    pathsToLink = [ "/share/terminfo" ];
+    pathsToLink = [ "/share/terminfo" "/share/pkgconfig" "/include" "/lib" ];
     extraOutputsToInstall = [ "terminfo" ];
 
     etc.terminfo = { source = "${config.system.path}/share/terminfo"; };
