@@ -39,7 +39,8 @@ with pkgs; [
   # pgcli
   pkg-config
   # protobuf
-  poetry
+  # poetry # Installed via pipx instead
+  python3Packages.pipx
   pwgen
   # python
   # python3
