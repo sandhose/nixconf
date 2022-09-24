@@ -23,7 +23,6 @@ with inputs; {
     variables = {
       EDITOR = "nvim";
       LANG = "en_US.UTF-8";
-      TERMINFO_DIRS = "/etc/terminfo";
       PKG_CONFIG_PATH = "/run/current-system/sw/share/pkgconfig:/run/current-system/sw/lib/pkgconfig";
     };
 
