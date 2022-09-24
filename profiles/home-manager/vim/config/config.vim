@@ -23,6 +23,7 @@ nnoremap <Leader>p :!pandoc --pdf-engine=xelatex -o %:t:r.pdf %; open %:t:r.pdf<
 vnoremap <Leader>s :!psql<CR>
 nnoremap <Leader>m :set list!<CR>
 nnoremap <Leader>jp :%!jq<CR>
+nnoremap <Leader>k :RustOpenExternalDocs<CR>
 nnoremap <C-p> :GFiles<CR>
 nmap <Leader>b :NvimTreeToggle<CR>
 
