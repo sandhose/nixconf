@@ -75,7 +75,7 @@ with pkgs; [
       fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind titling
       unamth-template bib-fr synttree wrapfig lastpage ifmtarg numprint bophook;
   })
-  # gnome3.librsvg
+  # gnome.librsvg
 
   # maven
   # argocd
