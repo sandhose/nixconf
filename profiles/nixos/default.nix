@@ -29,7 +29,7 @@ with inputs; {
       darktable
       flatpak-builder
       gcc
-      gnome3.gnome-tweaks
+      gnome.gnome-tweaks
       gnome-builder
       google-chrome
       keepassxc
