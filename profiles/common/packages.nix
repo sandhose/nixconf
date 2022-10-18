@@ -113,6 +113,7 @@ with pkgs; [
   go
   #lldb
   file
+  olm
 
   sqlx-cli
   mdbook
@@ -137,5 +138,11 @@ with pkgs; [
     fenix.stable.rust-std
     fenix.stable.rustc
     fenix.targets.wasm32-unknown-unknown.stable.rust-std
+    fenix.targets.x86_64-unknown-linux-musl.stable.rust-std
+    fenix.targets.aarch64-unknown-linux-musl.stable.rust-std
+    fenix.targets.x86_64-unknown-linux-gnu.stable.rust-std
+    fenix.targets.aarch64-unknown-linux-gnu.stable.rust-std
+    fenix.targets.x86_64-apple-darwin.stable.rust-std
+    fenix.targets.aarch64-apple-darwin.stable.rust-std
   ])
 ]
