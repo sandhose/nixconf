@@ -13,7 +13,7 @@ lsp_status.config {
 }
 
 -- Advertise snippets support
-local capabilities = require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require'cmp_nvim_lsp'.default_capabilities()
 capabilities.window = capabilities.window or {}
 capabilities.window.workDoneProgress = true
 capabilities.textDocument.completion.completionItem.snippetSupport = true
