@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 
-let inherit (inputs) self rycee nixpkgs fenix rocm;
+let inherit (inputs) self rycee nixpkgs fenix;
 
 in
 {
@@ -9,7 +9,6 @@ in
   nixpkgs.overlays = [
     self.overlay
     fenix.overlay
-    rocm.overlay
     (final: prev: {
       nix-direnv = prev.nix-direnv.override { enableFlakes = true; };
     })

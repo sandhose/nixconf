@@ -44,11 +44,6 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    rocm = {
-      url = "github:nixos-rocm/nixos-rocm";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -63,7 +58,6 @@
     , nixpkgs
     , rycee
     , sops-nix
-    , rocm
     }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
     let systemPkgs = import nixpkgs { inherit system; };
