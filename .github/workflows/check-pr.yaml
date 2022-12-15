@@ -78,7 +78,7 @@ jobs:
         run: |
           delimiter="$(openssl rand -hex 16)"
           echo "diff<<${delimiter}" >> "${GITHUB_OUTPUT}"
-          nix profile diff-closures --profile ./profile >> "${GITHUB_OUTPUT}"
+          nix profile diff-closures --profile ./profile | perl -pe 's/\e\[[0-9;]*m(?:\e\[K)?//g' >> "${GITHUB_OUTPUT}"
           echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
       - name: Comment PR
