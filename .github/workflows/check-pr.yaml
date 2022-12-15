@@ -1,6 +1,12 @@
 name: "Build pull request"
+
 on:
   pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   tests:
     name: "Build ${{ matrix.target }}"
@@ -54,6 +60,9 @@ jobs:
           TARGET: ".#${{ matrix.target }}"
         run: nix build $TARGET --show-trace --fallback -v --log-format raw
 
+      - name: Garbage collect build dependencies
+        run: nix-collect-garbage
+
       - name: Fetch old system to profile
         env:
           TARGET: "github:sandhose/nixconf#${{ matrix.target }}"
@@ -67,13 +76,10 @@ jobs:
       - name: Diff profile
         id: diff
         run: |
-          diff="$(nix profile diff-closures --profile ./profile)"
-          echo "$diff"
-          diff="$(echo "$diff" | sed 's/\x1b\[[0-9;]*m//g')"
-          diff="${diff//'%'/'%25'}"
-          diff="${diff//$'\n'/'%0A'}"
-          diff="${diff//$'\r'/'%0D'}"
-          echo "::set-output name=diff::$diff"
+          delimiter="$(openssl rand -hex 16)"
+          echo "diff<<${delimiter}" >> "${GITHUB_OUTPUT}"
+          nix profile diff-closures --profile ./profile >> "${GITHUB_OUTPUT}"
+          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
       - name: Comment PR
         uses: marocchino/sticky-pull-request-comment@v2
