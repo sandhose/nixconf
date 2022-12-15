@@ -21,9 +21,11 @@ with pkgs; [
   imagemagick
   iperf
   isync
+  icu.dev
   jq
   kind
   kubectl
+  kubelogin-oidc
   kubernetes-helm
   # kubeseal
   kustomize
@@ -59,7 +61,7 @@ with pkgs; [
   urlview
   vim
   w3m
-  watchman
+  # watchman # 4+ years old, installed manually instead
   wget
   wrk
   youtube-dl
@@ -144,5 +146,7 @@ with pkgs; [
     fenix.targets.aarch64-unknown-linux-gnu.stable.rust-std
     fenix.targets.x86_64-apple-darwin.stable.rust-std
     fenix.targets.aarch64-apple-darwin.stable.rust-std
+    fenix.targets.x86_64-pc-windows-msvc.stable.rust-std
+    fenix.targets.aarch64-pc-windows-msvc.stable.rust-std
   ])
 ]

@@ -157,6 +157,22 @@ nvim_lsp.jsonls.setup {
   },
 }
 
+nvim_lsp.graphql.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+}
+
+nvim_lsp.tailwindcss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+}
+
 -- nvim_lsp.pylsp.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities,
@@ -214,9 +230,18 @@ require'rust-tools'.setup {
         checkOnSave = {
           command = "clippy",
         },
+        inlayHints = {
+          lifetimeElisionHints = {
+            enable = "always",
+          },
+          reborrowHints = {
+            enable = "always",
+          },
+        },
         procMacro = {
           ignored = {
             ["async-trait"] = {"async_trait"},
+            ["async-graphql"] = {"Object", "Subscription"},
             ["tracing"] = {"instrument"},
             ["tokio"] = {"main", "test"},
           },
@@ -237,7 +262,7 @@ nvim_lsp.terraformls.setup {
 nvim_lsp.tsserver.setup {
   on_attach = function(client, bufnr)
     -- Disable the tsserver formatter
-    client.resolved_capabilities.document_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
     on_attach(client, bufnr)
   end,
   capabilities = capabilities,

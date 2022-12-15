@@ -8,7 +8,7 @@ in
 
   nixpkgs.overlays = [
     self.overlay
-    fenix.overlay
+    fenix.overlays.default
     (final: prev: {
       nix-direnv = prev.nix-direnv.override { enableFlakes = true; };
     })
