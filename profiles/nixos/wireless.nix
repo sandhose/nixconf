@@ -8,7 +8,7 @@
     bluetooth = {
       enable = true;
       package = pkgs.bluez;
-      hsphfpd.enable = true;
+      # hsphfpd.enable = true;
     };
   };
 }
