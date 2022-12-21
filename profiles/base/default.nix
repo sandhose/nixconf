@@ -13,11 +13,20 @@ in
       nix-direnv = prev.nix-direnv.override { enableFlakes = true; };
     })
     (final: prev: {
-      firefox-addons = (import rycee { pkgs = prev; }).firefox-addons;
+      inherit ((import rycee { pkgs = prev; })) firefox-addons;
+    })
+    # TEMP FIX for https://github.com/NixOS/nixpkgs/issues/206958
+    (final: prev: {
+      clisp = prev.clisp.override {
+        # On newer readline8 fails as:
+        #  #<FOREIGN-VARIABLE "rl_readline_state" #x...>
+        #   does not have the required size or alignment
+        readline = pkgs.readline6;
+      };
     })
     (final: prev:
       let
-        config = prev.config;
+        inherit (prev) config;
         x86Pkgs = import nixpkgs {
           inherit config;
           localSystem = "x86_64-darwin";
