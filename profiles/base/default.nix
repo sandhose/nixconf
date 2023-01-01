@@ -21,7 +21,7 @@ in
         # On newer readline8 fails as:
         #  #<FOREIGN-VARIABLE "rl_readline_state" #x...>
         #   does not have the required size or alignment
-        readline = pkgs.readline6;
+        readline = pkgs.readline63;
       };
     })
     (final: prev:
