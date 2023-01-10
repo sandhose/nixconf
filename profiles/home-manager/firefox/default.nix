@@ -8,7 +8,6 @@
       ublock-origin
       reddit-enhancement-suite
       react-devtools
-      https-everywhere
       languagetool
       keepassxc-browser
       i-dont-care-about-cookies
