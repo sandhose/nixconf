@@ -230,7 +230,14 @@ require'rust-tools'.setup {
         checkOnSave = {
           command = "clippy",
         },
-        inlayHints = {
+        inlay_hints = {
+          -- See https://github.com/simrat39/rust-tools.nvim/issues/300
+          locationLinks = false,
+
+          bindingModeHints = {
+            enable = true,
+          },
+
           lifetimeElisionHints = {
             enable = "always",
           },
