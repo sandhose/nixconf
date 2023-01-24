@@ -26,7 +26,7 @@ with inputs; {
       llvmPackages_latest.clang
       llvmPackages_latest.clang-manpages
       clang-tools
-      darktable
+      #darktable
       flatpak-builder
       gcc
       gnome.gnome-tweaks
