@@ -40,7 +40,7 @@ in
         # For nvim-dap
         # lldb
 
-        # It's broken: https://github.com/NixOS/nixpkgs/issues/176697
+        # It's broken: https://github.com/NixOS/nixpkgs/issues/202507
         #(
         #  writeScriptBin "codelldb" ''
         #    #!${bash}/bin/bash
@@ -139,6 +139,9 @@ in
         null-ls-nvim
         dressing-nvim
         fidget-nvim
+
+        copilot-vim
+        cmp-copilot
 
         cmp-nvim-lsp
         cmp-buffer
