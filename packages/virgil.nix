@@ -1,17 +1,20 @@
-{ stdenv, fetchFromGitHub, ... }:
+{ stdenv, fetchFromGitHub, woff2, ... }:
 
 stdenv.mkDerivation rec {
   name = "virgil";
   version = "0.0.0";
   src = fetchFromGitHub {
     owner = "excalidraw";
-    repo = "excalidraw";
-    rev = "c06988a202a821088443ad13aa1faa35dc287b59";
-    sha256 = "0n8sbsawbipslwigmd8dgmzr4m48sv32r2k9v2nip6ml991mxrs4";
+    repo = "virgil";
+    rev = "55c9c6dd2f7a533d71718350e0b8299b4862c4a4";
+    sha256 = "sha256-ApFWppwo1T0eU6Te2QXFmF0fV+SD18N1c+tiLUl2eeQ=";
   };
 
+  buildInputs = [ woff2 ];
+
   installPhase = ''
+    woff2_decompress Virgil.woff2
     mkdir -p $out/share/fonts/truetype
-    cp public/FG_Virgil.ttf $out/share/fonts/truetype/
+    cp Virgil.ttf $out/share/fonts/truetype/
   '';
 }
