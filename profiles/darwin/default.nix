@@ -18,6 +18,9 @@ with inputs; {
       #xquartz # Broken as of 1/08/22
       ncurses
       cocoapods
+      qemu-utils
+      docker
+      docker-credential-helpers
     ];
 
     variables = {
