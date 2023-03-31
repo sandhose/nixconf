@@ -40,7 +40,7 @@ with pkgs; [
   parallel
   # pgcli
   pkg-config
-  # protobuf
+  protobuf
   # poetry # Installed via pipx instead
   python3Packages.pipx
   pwgen
