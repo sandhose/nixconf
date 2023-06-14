@@ -6,7 +6,7 @@
   programs = {
     npm = {
       enable = true;
-      package = pkgs.nodejs_latest;
+      package = pkgs.nodejs;
       npmrc = {
         enable = true;
         # followXDG = true;

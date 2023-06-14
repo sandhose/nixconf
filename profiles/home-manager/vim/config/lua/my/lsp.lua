@@ -35,27 +35,153 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
-  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
-  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<leader>D', '<cmd>Telescope lsp_type_definitions<CR>', opts)
-  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-  buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua require"trouble".previous({skip_groups = true, jump = true})<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua require"trouble".next({skip_groups = true, jump = true})<CR>', opts)
-  buf_set_keymap('n', '<leader>q', '<cmd>Trouble loclist', opts)
+
+  buf_set_keymap('n', 'gD', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Jump to definition',
+    callback = function() 
+      vim.lsp.buf.definition()
+    end,
+  })
+
+  buf_set_keymap('n', 'K', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Show hover',
+    callback = function() 
+      vim.lsp.buf.hover()
+    end,
+  })
+
+
+  buf_set_keymap('n', 'gd', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Go to definition',
+    callback = function() 
+      require'telescope.builtin'.lsp_definitions()
+    end,
+  })
+
+  buf_set_keymap('n', 'gi', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Go to implementation',
+    callback = function() 
+      require('telescope.builtin').lsp_implementations()
+    end,
+  })
+
+  buf_set_keymap('n', '<C-k>', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Show signature help',
+    callback = function() 
+      vim.lsp.buf.signature_help()
+    end,
+  })
+
+  buf_set_keymap('n', '<leader>D', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Go to type definition',
+    callback = function() 
+      require'telescope.builtin'.lsp_type_definitions()
+    end,
+  })
+
+  buf_set_keymap('n', '<leader>rn', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Rename',
+    callback = function() 
+      vim.lsp.buf.rename()
+    end,
+  })
+
+  buf_set_keymap('n', '<leader>ca', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Show code actions',
+    callback = function() 
+      vim.lsp.buf.code_action()
+    end,
+  })
+
+  buf_set_keymap('n', 'gr', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Show references',
+    callback = function() 
+      require'telescope.builtin'.lsp_references()
+    end,
+  })
+
+  buf_set_keymap('n', '<leader>e', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Show line diagnostics',
+    callback = function() 
+      vim.lsp.diagnostic.show_line_diagnostics()
+    end,
+  })
+
+  buf_set_keymap('n', '[d', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Previous trouble',
+    callback = function() 
+      require'trouble'.previous({skip_groups = true, jump = true})
+    end,
+  })
+
+  buf_set_keymap('n', ']d', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Next trouble',
+    callback = function() 
+      require'trouble'.next({skip_groups = true, jump = true})
+    end,
+  })
+
+  buf_set_keymap('n', '<leader>q', '', {
+    noremap = true,
+    silent = true,
+    desc = 'Trouble loclist',
+    callback = function() 
+      require'trouble'.loclist()
+    end,
+  })
 
   -- Set some keybinds conditional on server capabilities
   if client.server_capabilities.documentFormattingProvider then
-    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    vim.api.nvim_command("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)")
+    buf_set_keymap('n', '<leader>f', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Format buffer',
+      callback = function()
+        vim.lsp.buf.format { async = true }
+      end,
+    })
+
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      pattern = '*',
+      callback = function()
+          vim.lsp.buf.format()
+      end,
+    })
   end
+
   if client.server_capabilities.documentRangeFormattingProvider then
-    buf_set_keymap("v", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    buf_set_keymap('v', '<leader>f', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Format range',
+      callback = function()
+        vim.lsp.buf.format { async = true }
+      end,
+    })
   end
 
   -- Set autocommands conditional on server_capabilities

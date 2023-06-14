@@ -33,7 +33,7 @@ with pkgs; [
   mosh
   nix-index
   nmap
-  nodejs_latest
+  nodejs
   openssl
   openssl.dev
   pandoc
@@ -68,6 +68,8 @@ with pkgs; [
   my.zsh-funcs
   # clang-tools # broken on darwin
 
+  (hiPrio my.corepack)
+
   # elixir
   # fig2dev
   fontconfig
@@ -89,6 +91,7 @@ with pkgs; [
   bazelisk
   cargo-bloat
   cargo-edit
+  cargo-expand
   cloc
   # cmake
   dos2unix
@@ -108,7 +111,6 @@ with pkgs; [
   # weechat
   xmlsec
   xz
-  yarn
   jdk11
 
   gnumake
@@ -146,7 +148,10 @@ with pkgs; [
       fenix.targets.aarch64-unknown-linux-gnu.stable.rust-std
       fenix.targets.x86_64-apple-darwin.stable.rust-std
       fenix.targets.aarch64-apple-darwin.stable.rust-std
+      fenix.targets.aarch64-apple-ios.stable.rust-std
+      fenix.targets.aarch64-apple-ios-sim.stable.rust-std
       fenix.targets.x86_64-pc-windows-msvc.stable.rust-std
       fenix.targets.aarch64-pc-windows-msvc.stable.rust-std
+      fenix.targets.riscv32imac-unknown-none-elf.stable.rust-std
     ]))
 ]
