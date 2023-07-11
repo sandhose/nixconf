@@ -17,8 +17,10 @@ with inputs; {
   ];
 
   boot.supportedFilesystems = [ "ntfs" "xfs" ];
-  boot.cleanTmpDir = true;
-  boot.tmpOnTmpfs = true;
+  boot.tmp = {
+    useTmpfs = true;
+    cleanOnBoot = true;
+  };
 
   environment = {
     systemPackages = with pkgs; [
@@ -47,6 +49,26 @@ with inputs; {
     ];
   };
 
-  networking.firewall.allowedTCPPorts = [ 24642 8080 8008 ];
-  networking.firewall.allowedUDPPorts = [ 24642 ];
+  networking.firewall.allowedTCPPorts = [
+    24642
+    8080
+    8008
+    # Unifi
+    53
+    8443
+    8880
+    8843
+    6789
+    27117
+  ];
+  networking.firewall.allowedUDPPorts = [
+    24642
+    # unifi
+    53
+    3478
+    5514
+    10001
+    1900
+    123
+  ];
 }

@@ -40,8 +40,10 @@ in {
     hostName = "spaetzle";
   };
   boot.kernel.sysctl."net.ipv4.ip_forward" = "1";
-  boot.cleanTmpDir = true;
-  boot.tmpOnTmpfs = true;
+  boot.tmp = {
+    useTmpfs = true;
+    cleanOnBoot = true;
+  };
 
   containers = {
     murmur = {
