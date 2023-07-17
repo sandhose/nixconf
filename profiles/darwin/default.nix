@@ -16,7 +16,7 @@ with inputs; {
       #msmtp
       #wireshark
       #xquartz # Broken as of 1/08/22
-      ncurses
+      (hiPrio ncurses)
       cocoapods
       qemu-utils
       docker
