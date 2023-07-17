@@ -15,7 +15,7 @@
     gnupg = {
       agent = {
         enable = true;
-        enableSSHSupport = true;
+        enableSSHSupport = false;
       };
     };
     zsh.enable = true;
