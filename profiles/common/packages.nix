@@ -125,7 +125,7 @@ with pkgs; [
   less
 
   consul
-  nomad
+  nomad_1_4
 
   # Needed by Telescope.nvim
   fd
