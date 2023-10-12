@@ -3,8 +3,10 @@
 with pkgs; [
   # bazel
   cachix
+  caddy
   curl
   cloudflared
+  deno
   # dnsutils
   doctl
   # docker-compose
@@ -92,6 +94,7 @@ with pkgs; [
   cargo-bloat
   cargo-edit
   cargo-expand
+  cargo-deny
   cloc
   # cmake
   dos2unix
