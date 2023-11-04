@@ -33,7 +33,7 @@ jobs:
           remove-android: "true"
           remove-haskell: "true"
           remove-codeql: "true"
-          remove-docker-image: "true"
+          remove-docker-images: "true"
           build-mount-path: "/nix"
           overprovision-lvm: "true"
 
@@ -41,11 +41,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: cachix/install-nix-action@v23
-        with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
 
       - uses: cachix/cachix-action@v12
         with:
