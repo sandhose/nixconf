@@ -10,9 +10,6 @@ in
     self.overlay
     fenix.overlays.default
     (final: prev: {
-      nix-direnv = prev.nix-direnv.override { enableFlakes = true; };
-    })
-    (final: prev: {
       inherit ((import rycee { pkgs = prev; })) firefox-addons;
     })
     # TEMP FIX for https://github.com/NixOS/nixpkgs/issues/206958
