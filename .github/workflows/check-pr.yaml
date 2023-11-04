@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Create Nix mount point
         if: contains(matrix.os, 'ubuntu')
-        run: sudo mkdir -p /nix/store
+        run: sudo mkdir /nix
 
       - name: Maximize build space
         uses: easimon/maximize-build-space@v8
@@ -38,7 +38,7 @@ jobs:
           remove-haskell: "true"
           remove-codeql: "true"
           remove-docker-images: "true"
-          build-mount-path: "/nix/store"
+          build-mount-path: "/nix"
           overprovision-lvm: "true"
 
       - uses: actions/checkout@v4
@@ -48,7 +48,7 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
         with:
-          init: none
+          init: ${{ contains(matrix.os, 'ubuntu') && 'none' || null }}
 
       - uses: cachix/cachix-action@v12
         with:
