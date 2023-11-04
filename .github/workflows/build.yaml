@@ -42,9 +42,12 @@ jobs:
           fetch-depth: 0
 
       - name: Install Nix
+        if: contains(matrix.os, 'macos')
         uses: DeterminateSystems/nix-installer-action@main
-        with:
-          init: ${{ contains(matrix.os, 'ubuntu') && 'none' || null }}
+
+      - name: Install Nix
+        if: contains(matrix.os, 'ubuntu')
+        uses: cachix/install-nix-action@v22
 
       - uses: cachix/cachix-action@v12
         with:
