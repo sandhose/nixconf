@@ -60,7 +60,7 @@ with pkgs; [
   tmux
   unixtools.watch
   unrar
-  urlview
+  #urlview
   vim
   w3m
   # watchman # 4+ years old, installed manually instead
