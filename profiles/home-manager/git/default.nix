@@ -10,6 +10,8 @@
         options = {
           navigate = true;
           side-by-side = true;
+          syntax-theme = "ansi";
+          colorMoved = "default";
         };
       };
       aliases = {

@@ -21,12 +21,16 @@ with inputs; {
       qemu-utils
       docker
       docker-credential-helpers
+      podman
+      podman-compose
+      buildkit
     ];
 
     variables = {
       EDITOR = "nvim";
       LANG = "en_US.UTF-8";
       PKG_CONFIG_PATH = "/run/current-system/sw/share/pkgconfig:/run/current-system/sw/lib/pkgconfig";
+      BUILDKIT_HOST = "podman-container://buildkitd";
     };
 
     pathsToLink = [ "/share/terminfo" "/share/pkgconfig" "/include" "/lib" ];
