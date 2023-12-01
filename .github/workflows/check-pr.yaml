@@ -51,7 +51,7 @@ jobs:
 
       - name: Install Nix
         if: contains(matrix.os, 'ubuntu')
-        uses: cachix/install-nix-action@v23
+        uses: cachix/install-nix-action@v24
 
       - uses: cachix/cachix-action@v13
         with:
