@@ -12,15 +12,6 @@ in
     (final: prev: {
       inherit ((import rycee { pkgs = prev; })) firefox-addons;
     })
-    # TEMP FIX for https://github.com/NixOS/nixpkgs/issues/206958
-    (final: prev: {
-      clisp = prev.clisp.override {
-        # On newer readline8 fails as:
-        #  #<FOREIGN-VARIABLE "rl_readline_state" #x...>
-        #   does not have the required size or alignment
-        readline = pkgs.readline63;
-      };
-    })
     (final: prev:
       let
         inherit (prev) config;

@@ -14,6 +14,7 @@ lsp_status.config {
 
 -- Advertise snippets support
 local capabilities = require'cmp_nvim_lsp'.default_capabilities()
+capabilities.offsetEncoding = { 'utf-16' }
 capabilities.window = capabilities.window or {}
 capabilities.window.workDoneProgress = true
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -216,7 +217,7 @@ null_ls.setup {
     null_ls.builtins.code_actions.eslint_d.with({
         extra_filetypes = { "graphql" },
     }),
-    null_ls.builtins.code_actions.gitsigns,
+    -- null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.code_actions.shellcheck,
     null_ls.builtins.code_actions.statix,
   },
@@ -353,13 +354,13 @@ require'rust-tools'.setup {
     },
     settings = {
       ["rust-analyzer"] = {
-        checkOnSave = {
-          command = "clippy",
+        -- checkOnSave = {
+        --   command = "clippy",
+        -- },
+        rustfmt = {
+          extraArgs = { "+nightly-2023-11-18", },
         },
         inlay_hints = {
-          -- See https://github.com/simrat39/rust-tools.nvim/issues/300
-          locationLinks = false,
-
           bindingModeHints = {
             enable = true,
           },
