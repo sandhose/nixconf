@@ -49,7 +49,7 @@ jobs:
         if: contains(matrix.os, 'ubuntu')
         uses: cachix/install-nix-action@v23
 
-      - uses: cachix/cachix-action@v12
+      - uses: cachix/cachix-action@v13
         with:
           name: sandhose
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
