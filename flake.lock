@@ -20,29 +20,6 @@
         "type": "github"
       }
     },
-    "dwarffs": {
-      "inputs": {
-        "nix": [
-          "nix"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1700666138,
-        "narHash": "sha256-AoffzwAzaUn+OeqAjWX7/++RB8RHkmU8EQvteqlUHRo=",
-        "owner": "edolstra",
-        "repo": "dwarffs",
-        "rev": "b0cea6426ca6f7b1476225410af942f11d6c70b7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "edolstra",
-        "repo": "dwarffs",
-        "type": "github"
-      }
-    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -244,7 +221,6 @@
     "root": {
       "inputs": {
         "darwin": "darwin",
-        "dwarffs": "dwarffs",
         "fenix": "fenix",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",

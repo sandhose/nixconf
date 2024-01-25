@@ -9,12 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    dwarffs = {
-      url = "github:edolstra/dwarffs";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nix.follows = "nix";
-    };
-
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -49,7 +43,6 @@
   outputs =
     { self
     , darwin
-    , dwarffs
     , fenix
     , flake-utils
     , home-manager
