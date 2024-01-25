@@ -15,11 +15,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-20.04
+          - os: ubuntu-22.04
             target: nixosConfigurations.sandhose-desktop.config.system.build.toplevel
-          - os: ubuntu-20.04
+          - os: ubuntu-22.04
             target: nixosConfigurations.spaetzle.config.system.build.toplevel
-          - os: macos-11
+          - os: macos-13
             target: darwinConfigurations.sandhose-laptop.system
 
     steps:
