@@ -19,37 +19,16 @@ jobs:
             target: darwinConfigurations.sandhose-laptop.system
 
     steps:
-      - name: Create Nix mount point
-        if: contains(matrix.os, 'ubuntu')
-        run: sudo mkdir /nix
-
-      - name: Maximize build space
-        uses: easimon/maximize-build-space@v9
-        if: contains(matrix.os, 'ubuntu')
-        with:
-          root-reserve-mb: 512
-          swap-size-mb: 1024
-          remove-dotnet: "true"
-          remove-android: "true"
-          remove-haskell: "true"
-          remove-codeql: "true"
-          remove-docker-images: "true"
-          build-mount-path: "/nix"
-          overprovision-lvm: "true"
-
-      - uses: actions/checkout@v4
+      - name: Checkout the repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Install Nix
-        if: contains(matrix.os, 'macos')
         uses: DeterminateSystems/nix-installer-action@main
 
-      - name: Install Nix
-        if: contains(matrix.os, 'ubuntu')
-        uses: cachix/install-nix-action@v24
-
-      - uses: cachix/cachix-action@v13
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v13
         with:
           name: sandhose
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"

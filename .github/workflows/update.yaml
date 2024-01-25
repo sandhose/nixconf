@@ -8,11 +8,13 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout the repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: tibdex/github-app-token@v2.1
+      - name: Generate a GitHub App token
+        uses: tibdex/github-app-token@v2.1
         id: generate-token
         with:
           app_id: ${{ secrets.APP_ID }}
