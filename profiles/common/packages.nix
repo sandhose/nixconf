@@ -76,12 +76,12 @@ with pkgs; [
   # elixir
   # fig2dev
   fontconfig
-  (texlive.combine {
-    inherit (texlive)
-      scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem
-      fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind titling
-      unamth-template bib-fr synttree wrapfig lastpage ifmtarg numprint bophook;
-  })
+  # (texlive.combine {
+  #   inherit (texlive)
+  #     scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem
+  #     fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind titling
+  #     unamth-template bib-fr synttree wrapfig lastpage ifmtarg numprint bophook;
+  # })
   # gnome.librsvg
 
   # maven
