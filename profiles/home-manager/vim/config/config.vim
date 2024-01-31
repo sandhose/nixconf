@@ -1,5 +1,8 @@
 " vim:fdm=marker
 
+let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_contrast_light = "hard"
+
 if has('macunix')
   function! ChangeBackground()
     if system("defaults read -g AppleInterfaceStyle") =~ '^Dark'

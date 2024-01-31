@@ -64,6 +64,7 @@ in
         nodePackages.typescript
         nodePackages.typescript-language-server
         nodePackages.yaml-language-server
+        zls
 
         # For null-ls.nvim
         actionlint

@@ -357,9 +357,9 @@ require'rust-tools'.setup {
         -- checkOnSave = {
         --   command = "clippy",
         -- },
-        rustfmt = {
-          extraArgs = { "+nightly-2023-11-18", },
-        },
+        -- rustfmt = {
+        --   extraArgs = { "+nightly-2023-11-18", },
+        -- },
         inlay_hints = {
           bindingModeHints = {
             enable = true,
@@ -422,5 +422,13 @@ nvim_lsp.yamlls.setup {
         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
       },
     },
+  },
+}
+
+nvim_lsp.zls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
   },
 }

@@ -35,7 +35,7 @@ with pkgs; [
   mosh
   nix-index
   nmap
-  nodejs
+  nodejs_20
   openssl
   openssl.dev
   pandoc
@@ -69,6 +69,7 @@ with pkgs; [
   youtube-dl
   my.zsh-funcs
   # clang-tools # broken on darwin
+  zig
 
   (hiPrio my.corepack)
 
@@ -127,7 +128,7 @@ with pkgs; [
   less
 
   consul
-  nomad_1_4
+  nomad
 
   # Needed by Telescope.nvim
   fd
