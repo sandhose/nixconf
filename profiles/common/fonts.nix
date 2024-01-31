@@ -4,7 +4,7 @@
   fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
     fira-code
-    nerdfonts
+    # nerdfonts # 6+GB
     roboto
     roboto-mono
     roboto-slab
