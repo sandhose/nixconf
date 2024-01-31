@@ -28,7 +28,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Setup Cachix
-        uses: cachix/cachix-action@v13
+        uses: cachix/cachix-action@v14
         with:
           name: sandhose
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"

@@ -32,7 +32,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Setup cachix
-        uses: cachix/cachix-action@v13
+        uses: cachix/cachix-action@v14
         with:
           name: sandhose
           skipPush: true
