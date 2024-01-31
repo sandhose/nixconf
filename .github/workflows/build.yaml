@@ -15,8 +15,8 @@ jobs:
             target: nixosConfigurations.sandhose-desktop.config.system.build.toplevel
           - os: ubuntu-22.04
             target: nixosConfigurations.spaetzle.config.system.build.toplevel
-          - os: macos-13
-            target: darwinConfigurations.sandhose-laptop.system
+          - os: macos-14
+            target: darwinConfigurations.sandhose-laptop-m1.system
 
     steps:
       - name: Checkout the repository
