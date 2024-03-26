@@ -17,7 +17,7 @@
 
     postgresql = {
       enable = true;
-      package = pkgs.postgresql_13;
+      package = pkgs.postgresql_15;
       enableTCPIP = true;
       authentication = pkgs.lib.mkOverride 10 ''
         local all all trust
@@ -25,9 +25,7 @@
       '';
       ensureUsers = [{
         name = "sandhose";
-        ensurePermissions = {
-          "ALL TABLES IN SCHEMA public" = "ALL PRIVILEGES";
-        };
+        ensureClauses.superuser = true;
       }];
     };
 
