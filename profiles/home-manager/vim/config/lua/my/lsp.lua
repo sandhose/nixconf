@@ -1,16 +1,7 @@
 -- LSP config, here we go!
-local lsp_status = require'lsp-status'
-lsp_status.register_progress()
-
 local nvim_lsp = require'lspconfig'
 
 require'fidget'.setup {}
-
-local null_ls = require'null-ls'
-
-lsp_status.config {
-  diagnostics = false, -- Disable diagnostic since it's already handled by lualine
-}
 
 -- Advertise snippets support
 local capabilities = require'cmp_nvim_lsp'.default_capabilities()
@@ -27,205 +18,211 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 -- Keybindings
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-  lsp_status.on_attach(client, bufnr)
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(args.buf, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(args.buf, ...) end
 
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
-
-  buf_set_keymap('n', 'gD', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Jump to definition',
-    callback = function() 
-      vim.lsp.buf.definition()
-    end,
-  })
-
-  buf_set_keymap('n', 'K', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Show hover',
-    callback = function() 
-      vim.lsp.buf.hover()
-    end,
-  })
-
-
-  buf_set_keymap('n', 'gd', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Go to definition',
-    callback = function() 
-      require'telescope.builtin'.lsp_definitions()
-    end,
-  })
-
-  buf_set_keymap('n', 'gi', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Go to implementation',
-    callback = function() 
-      require('telescope.builtin').lsp_implementations()
-    end,
-  })
-
-  buf_set_keymap('n', '<C-k>', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Show signature help',
-    callback = function() 
-      vim.lsp.buf.signature_help()
-    end,
-  })
-
-  buf_set_keymap('n', '<leader>D', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Go to type definition',
-    callback = function() 
-      require'telescope.builtin'.lsp_type_definitions()
-    end,
-  })
-
-  buf_set_keymap('n', '<leader>rn', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Rename',
-    callback = function() 
-      vim.lsp.buf.rename()
-    end,
-  })
-
-  buf_set_keymap('n', '<leader>ca', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Show code actions',
-    callback = function() 
-      vim.lsp.buf.code_action()
-    end,
-  })
-
-  buf_set_keymap('n', 'gr', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Show references',
-    callback = function() 
-      require'telescope.builtin'.lsp_references()
-    end,
-  })
-
-  buf_set_keymap('n', '<leader>e', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Show line diagnostics',
-    callback = function() 
-      vim.lsp.diagnostic.show_line_diagnostics()
-    end,
-  })
-
-  buf_set_keymap('n', '[d', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Previous trouble',
-    callback = function() 
-      require'trouble'.previous({skip_groups = true, jump = true})
-    end,
-  })
-
-  buf_set_keymap('n', ']d', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Next trouble',
-    callback = function() 
-      require'trouble'.next({skip_groups = true, jump = true})
-    end,
-  })
-
-  buf_set_keymap('n', '<leader>q', '', {
-    noremap = true,
-    silent = true,
-    desc = 'Trouble loclist',
-    callback = function() 
-      require'trouble'.loclist()
-    end,
-  })
-
-  -- Set some keybinds conditional on server capabilities
-  if client.server_capabilities.documentFormattingProvider then
-    buf_set_keymap('n', '<leader>f', '', {
+    -- Mappings.
+    buf_set_keymap('n', 'gD', '', {
       noremap = true,
       silent = true,
-      desc = 'Format buffer',
-      callback = function()
-        vim.lsp.buf.format { async = true }
+      desc = 'Jump to definition',
+      callback = function() 
+        vim.lsp.buf.definition()
       end,
     })
 
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      pattern = '*',
-      callback = function()
+    buf_set_keymap('n', 'K', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Show hover',
+      callback = function() 
+        vim.lsp.buf.hover()
+      end,
+    })
+
+
+    buf_set_keymap('n', 'gd', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Go to definition',
+      callback = function() 
+        require'telescope.builtin'.lsp_definitions()
+      end,
+    })
+
+    buf_set_keymap('n', 'gi', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Go to implementation',
+      callback = function() 
+        require('telescope.builtin').lsp_implementations()
+      end,
+    })
+
+    buf_set_keymap('n', '<C-k>', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Show signature help',
+      callback = function() 
+        vim.lsp.buf.signature_help()
+      end,
+    })
+
+    buf_set_keymap('n', '<leader>D', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Go to type definition',
+      callback = function() 
+        require'telescope.builtin'.lsp_type_definitions()
+      end,
+    })
+
+    buf_set_keymap('n', '<leader>rn', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Rename',
+      callback = function() 
+        vim.lsp.buf.rename()
+      end,
+    })
+
+    buf_set_keymap('n', '<leader>ca', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Show code actions',
+      callback = function() 
+        vim.lsp.buf.code_action()
+      end,
+    })
+
+    buf_set_keymap('n', 'gr', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Show references',
+      callback = function() 
+        require'telescope.builtin'.lsp_references()
+      end,
+    })
+
+    buf_set_keymap('n', '<leader>e', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Show line diagnostics',
+      callback = function() 
+        vim.lsp.diagnostic.show_line_diagnostics()
+      end,
+    })
+
+    buf_set_keymap('n', '[d', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Previous trouble',
+      callback = function() 
+        require'trouble'.previous({skip_groups = true, jump = true})
+      end,
+    })
+
+    buf_set_keymap('n', ']d', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Next trouble',
+      callback = function() 
+        require'trouble'.next({skip_groups = true, jump = true})
+      end,
+    })
+
+    buf_set_keymap('n', '<leader>q', '', {
+      noremap = true,
+      silent = true,
+      desc = 'Trouble loclist',
+      callback = function() 
+        require'trouble'.loclist()
+      end,
+    })
+
+    -- Set some keybinds conditional on server capabilities
+    if client.server_capabilities.documentFormattingProvider then
+      buf_set_keymap('n', '<leader>f', '', {
+        noremap = true,
+        silent = true,
+        desc = 'Format buffer',
+        callback = function()
+          vim.lsp.buf.format { async = true }
+        end,
+      })
+
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        pattern = '*',
+        callback = function()
           vim.lsp.buf.format()
-      end,
-    })
-  end
+        end,
+      })
+    end
 
-  if client.server_capabilities.documentRangeFormattingProvider then
-    buf_set_keymap('v', '<leader>f', '', {
-      noremap = true,
-      silent = true,
-      desc = 'Format range',
-      callback = function()
-        vim.lsp.buf.format { async = true }
-      end,
-    })
-  end
+    if client.server_capabilities.documentRangeFormattingProvider then
+      buf_set_keymap('v', '<leader>f', '', {
+        noremap = true,
+        silent = true,
+        desc = 'Format range',
+        callback = function()
+          vim.lsp.buf.format { async = true }
+        end,
+      })
+    end
 
-  -- Set autocommands conditional on server_capabilities
-  if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_exec([[
-      hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]], false)
+    if client.server_capabilities.documentHighlightProvider then
+      local group = vim.api.nvim_create_augroup("LSPDocumentHighlight", {})
+      vim.opt.updatetime = 1000
+      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        buffer = bufnr,
+        group = group,
+        callback = function()
+          vim.lsp.buf.document_highlight()
+        end,
+      })
+      vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+        buffer = bufnr,
+        group = group,
+        callback = function()
+          vim.lsp.buf.clear_references()
+        end,
+      })
+    end
   end
-end
+})
 
-null_ls.setup {
-  sources = {
-    -- null_ls.builtins.formatting.prettier.with({
-    --     extra_filetypes = { "toml", "graphql" },
-    -- }),
-    null_ls.builtins.formatting.eslint_d.with({
-        extra_filetypes = { "graphql" },
-    }),
-    null_ls.builtins.diagnostics.eslint_d.with({
-        extra_filetypes = { "graphql" },
-    }),
-    -- null_ls.builtins.diagnostics.actionlint,
-    null_ls.builtins.diagnostics.shellcheck,
-    null_ls.builtins.diagnostics.statix,
-    null_ls.builtins.code_actions.eslint_d.with({
-        extra_filetypes = { "graphql" },
-    }),
-    -- null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.code_actions.shellcheck,
-    null_ls.builtins.code_actions.statix,
-  },
-  on_attach = on_attach,
-}
+vim.api.nvim_set_hl(0, 'LspReferenceRead', { bold = true, ctermbg = "red", bg = "LightYellow" })
+vim.api.nvim_set_hl(0, 'LspReferenceText', { bold = true, ctermbg = "red", bg = "LightYellow" })
+vim.api.nvim_set_hl(0, 'LspReferenceWrite', { bold = true, ctermbg = "red", bg = "LightYellow" })
+
+-- null_ls.setup {
+--   sources = {
+--     -- null_ls.builtins.formatting.prettier.with({
+--     --     extra_filetypes = { "toml", "graphql" },
+--     -- }),
+--     -- null_ls.builtins.diagnostics.actionlint,
+--     null_ls.builtins.formatting.biome,
+--     null_ls.builtins.diagnostics.shellcheck,
+--     null_ls.builtins.diagnostics.statix,
+--     -- null_ls.builtins.code_actions.gitsigns,
+--     null_ls.builtins.code_actions.shellcheck,
+--     null_ls.builtins.code_actions.statix,
+--   },
+-- }
 
 nvim_lsp.bashls.setup {
-  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+}
+
+nvim_lsp.biome.setup {
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -233,11 +230,6 @@ nvim_lsp.bashls.setup {
 }
 
 nvim_lsp.clangd.setup {
-  handlers = lsp_status.extensions.clangd.setup(),
-  init_options = {
-    clangdFileStatus = true
-  },
-  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -245,7 +237,6 @@ nvim_lsp.clangd.setup {
 }
 
 nvim_lsp.cssls.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -253,7 +244,13 @@ nvim_lsp.cssls.setup {
 }
 
 nvim_lsp.dockerls.setup {
-  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+}
+
+nvim_lsp.eslint.setup {
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -261,7 +258,6 @@ nvim_lsp.dockerls.setup {
 }
 
 nvim_lsp.gopls.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -269,7 +265,6 @@ nvim_lsp.gopls.setup {
 }
 
 nvim_lsp.html.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -277,7 +272,6 @@ nvim_lsp.html.setup {
 }
 
 nvim_lsp.jsonls.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -285,7 +279,6 @@ nvim_lsp.jsonls.setup {
 }
 
 nvim_lsp.graphql.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -293,7 +286,6 @@ nvim_lsp.graphql.setup {
 }
 
 nvim_lsp.tailwindcss.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -301,7 +293,6 @@ nvim_lsp.tailwindcss.setup {
 }
 
 -- nvim_lsp.pylsp.setup {
---   on_attach = on_attach,
 --   capabilities = capabilities,
 --   flags = {
 --     debounce_text_changes = 150,
@@ -318,7 +309,6 @@ nvim_lsp.tailwindcss.setup {
 -- }
 
 nvim_lsp.pyright.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -334,8 +324,7 @@ nvim_lsp.pyright.setup {
   },
 }
 
-nvim_lsp.rnix.setup {
-  on_attach = on_attach,
+nvim_lsp.nil_ls.setup {
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -347,7 +336,6 @@ require'rust-tools'.setup {
     adapter = require'dap'.adapters.codelldb
   },
   server = {
-    on_attach = on_attach,
     capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
@@ -386,7 +374,6 @@ require'rust-tools'.setup {
 }
 
 nvim_lsp.terraformls.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -397,7 +384,6 @@ nvim_lsp.tsserver.setup {
   on_attach = function(client, bufnr)
     -- Disable the tsserver formatter
     client.server_capabilities.documentFormattingProvider = false
-    on_attach(client, bufnr)
   end,
   capabilities = capabilities,
   flags = {
@@ -406,7 +392,6 @@ nvim_lsp.tsserver.setup {
 }
 
 nvim_lsp.yamlls.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
@@ -426,7 +411,6 @@ nvim_lsp.yamlls.setup {
 }
 
 nvim_lsp.zls.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
