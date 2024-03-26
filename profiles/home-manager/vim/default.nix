@@ -59,19 +59,12 @@ in
         gopls
         # python38Packages.python-lsp-server
         # python38Packages.python-lsp-black
-        rnix-lsp
         terraform-ls
+        nil
         nodePackages.typescript
         nodePackages.typescript-language-server
         nodePackages.yaml-language-server
         zls
-
-        # For null-ls.nvim
-        actionlint
-        nodePackages.prettier
-        nodePackages.eslint_d
-        shellcheck
-        statix
       ];
 
       # Can't rely on init.lua, because it gets loaded before init.vim and
@@ -137,7 +130,7 @@ in
         nvim-tree-lua
         gitsigns-nvim
         telescope-symbols-nvim
-        null-ls-nvim
+        #none-ls-nvim
         dressing-nvim
         fidget-nvim
 
