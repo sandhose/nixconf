@@ -37,18 +37,6 @@ in
         fd
         ripgrep
 
-        # For nvim-dap
-        # lldb
-
-        # It's broken: https://github.com/NixOS/nixpkgs/issues/202507
-        #(
-        #  writeScriptBin "codelldb" ''
-        #    #!${bash}/bin/bash
-        #    ${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/.codelldb-wrapped_ \
-        #      --liblldb ${vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.* $@
-        #  ''
-        #)
-
         # Various language servers
         fenix.rust-analyzer
         nodePackages.bash-language-server
@@ -95,6 +83,7 @@ in
 
         nvim-lspconfig
         (nvim-treesitter.withPlugins (grammars: [
+          grammars.tree-sitter-astro
           grammars.tree-sitter-bash
           grammars.tree-sitter-c
           grammars.tree-sitter-comment
@@ -145,6 +134,7 @@ in
         cmp-vsnip
         nvim-cmp
 
+        lsp-inlayhints-nvim
         lsp-status-nvim
         vim-vsnip
         vim-vsnip-integ
@@ -155,9 +145,12 @@ in
         symbols-outline-nvim
 
         nvim-dap
+        nvim-dap-ui
         telescope-dap-nvim
-        rust-tools-nvim
+        rustaceanvim
         crates-nvim
+
+        neotest
 
         # lightline-vim
 

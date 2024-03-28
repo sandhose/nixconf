@@ -17,12 +17,20 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   }
 }
 
+require'neotest'.setup {
+    adapters = {
+      require'rustaceanvim.neotest'
+    },
+}
+
 -- Keybindings
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(args.buf, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(args.buf, ...) end
+
+    require'lsp-inlayhints'.on_attach(client, args.buf)
 
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -179,14 +187,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
       local group = vim.api.nvim_create_augroup("LSPDocumentHighlight", {})
       vim.opt.updatetime = 1000
       vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-        buffer = bufnr,
+        buffer = args.buf,
         group = group,
         callback = function()
           vim.lsp.buf.document_highlight()
         end,
       })
       vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-        buffer = bufnr,
+        buffer = args.buf,
         group = group,
         callback = function()
           vim.lsp.buf.clear_references()
@@ -331,47 +339,51 @@ nvim_lsp.nil_ls.setup {
   },
 }
 
-require'rust-tools'.setup {
-  dap = {
-    adapter = require'dap'.adapters.codelldb
-  },
-  server = {
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    },
-    settings = {
-      ["rust-analyzer"] = {
-        -- checkOnSave = {
-        --   command = "clippy",
-        -- },
-        -- rustfmt = {
-        --   extraArgs = { "+nightly-2023-11-18", },
-        -- },
-        inlay_hints = {
-          bindingModeHints = {
-            enable = true,
+vim.g.rustaceanvim = function()
+  -- Update this path
+  local extension_path = vim.env.HOME .. '/.vscode-insiders/extensions/vadimcn.vscode-lldb-1.10.0/'
+  local codelldb_path = extension_path .. 'adapter/codelldb'
+  local liblldb_path = extension_path .. 'lldb/lib/liblldb'
+  local this_os = vim.loop.os_uname().sysname;
+  liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+
+  local cfg = require'rustaceanvim.config'
+  return {
+    server = {
+      default_settings = {
+        ['rust-analyzer'] = {
+          rustfmt = {
+            extraArgs = { "+nightly" },
           },
 
-          lifetimeElisionHints = {
-            enable = "always",
+          inlay_hints = {
+            bindingModeHints = {
+              enable = true,
+            },
+
+            lifetimeElisionHints = {
+              enable = "always",
+            },
+            reborrowHints = {
+              enable = "always",
+            },
           },
-          reborrowHints = {
-            enable = "always",
-          },
-        },
-        procMacro = {
-          ignored = {
-            ["async-trait"] = {"async_trait"},
-            ["async-graphql"] = {"Object", "Subscription"},
-            ["tracing"] = {"instrument"},
-            ["tokio"] = {"main", "test"},
+          procMacro = {
+            ignored = {
+              ["async-trait"] = {"async_trait"},
+              ["async-graphql"] = {"Object", "Subscription"},
+              ["tracing"] = {"instrument"},
+              ["tokio"] = {"main", "test"},
+            },
           },
         },
       },
     },
-  },
-}
+    dap = {
+      adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
+    },
+  }
+end
 
 nvim_lsp.terraformls.setup {
   capabilities = capabilities,
