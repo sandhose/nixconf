@@ -35,7 +35,7 @@ jobs:
 
       - name: Build system
         env:
-          TARGET: "github:sandhose/nixconf/${{ github.ref }}#${{ matrix.target }}"
+          TARGET: "github:${{ github.repository }}/${{ github.ref }}#${{ matrix.target }}"
         run: nix build $TARGET --fallback --log-format raw --print-build-logs
 
       - name: Garbage collect build dependencies
@@ -43,12 +43,12 @@ jobs:
 
       - name: Fetch old system to profile
         env:
-          TARGET: "github:sandhose/nixconf/${{ github.base_ref }}#${{ matrix.target }}"
+          TARGET: "github:${{ github.repository }}/${{ github.base_ref }}#${{ matrix.target }}"
         run: nix build $TARGET --log-format raw --print-build-logs --profile ./profile
 
       - name: Add new system to profile
         env:
-          TARGET: "github:sandhose/nixconf/${{ github.ref }}#${{ matrix.target }}"
+          TARGET: "github:${{ github.repository }}/${{ github.ref }}#${{ matrix.target }}"
         run: nix build $TARGET --log-format raw --print-build-logs --profile ./profile
 
       - name: Diff profile
