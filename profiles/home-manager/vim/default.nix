@@ -38,7 +38,6 @@ in
         ripgrep
 
         # Various language servers
-        fenix.rust-analyzer
         nodePackages.bash-language-server
         clang-tools # broken on darwin
         nodePackages.vscode-langservers-extracted
