@@ -23,11 +23,6 @@ jobs:
             target: darwinConfigurations.sandhose-laptop-m1.system
 
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
 
@@ -40,21 +35,21 @@ jobs:
 
       - name: Build system
         env:
-          TARGET: ".#${{ matrix.target }}"
-        run: nix build $TARGET --show-trace --fallback -v --log-format raw
+          TARGET: "github:sandhose/nixconf/${{ github.ref }}#${{ matrix.target }}"
+        run: nix build $TARGET --fallback --log-format raw --print-build-logs
 
       - name: Garbage collect build dependencies
         run: nix-collect-garbage
 
       - name: Fetch old system to profile
         env:
-          TARGET: "github:sandhose/nixconf#${{ matrix.target }}"
-        run: nix build $TARGET -v --log-format raw --profile ./profile
+          TARGET: "github:sandhose/nixconf/${{ github.base_ref }}#${{ matrix.target }}"
+        run: nix build $TARGET --log-format raw --print-build-logs --profile ./profile
 
       - name: Add new system to profile
         env:
-          TARGET: ".#${{ matrix.target }}"
-        run: nix build $TARGET -v --log-format raw --profile ./profile
+          TARGET: "github:sandhose/nixconf/${{ github.ref }}#${{ matrix.target }}"
+        run: nix build $TARGET --log-format raw --print-build-logs --profile ./profile
 
       - name: Diff profile
         id: diff
