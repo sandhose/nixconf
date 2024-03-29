@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, ... }:
+{ pkgs, inputs, ... }:
 
 with inputs; {
   imports = [
@@ -28,22 +28,22 @@ with inputs; {
       llvmPackages_latest.clang
       llvmPackages_latest.clang-manpages
       clang-tools
-      #darktable
-      flatpak-builder
+      # darktable
+      # flatpak-builder
       gcc
       gnome.gnome-tweaks
-      gnome-builder
-      google-chrome
+      # gnome-builder
+      # google-chrome
       keepassxc
       libtool
       man-pages
-      minecraft
+      # minecraft
       mumble
       # signal-desktop
       # steam
       # teams
       vlc
-      zoom-us
+      # zoom-us
     ];
   };
 
