@@ -71,6 +71,7 @@ with pkgs; [
   zig
 
   (hiPrio my.corepack)
+  (hiPrio fenix.rust-analyzer)
 
   # elixir
   # fig2dev

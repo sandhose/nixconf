@@ -356,6 +356,11 @@ vim.g.rustaceanvim = function()
             extraArgs = { "+nightly" },
           },
 
+          checkOnSave = {
+            command = "clippy",
+            extraArgs = { "--no-deps" },
+          },
+
           inlay_hints = {
             bindingModeHints = {
               enable = true,
