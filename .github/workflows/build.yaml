@@ -2,7 +2,7 @@ name: "Build & push to cache"
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   tests:
     name: "Build ${{ matrix.target }}"
@@ -31,5 +31,5 @@ jobs:
 
       - name: Build system
         env:
-          TARGET: "github:sandhose/nixconf/${{ github.ref }}#${{ matrix.target }}"
+          TARGET: "github:${{ github.repository }}/${{ github.ref }}#${{ matrix.target }}"
         run: nix build $TARGET --fallback --keep-going --log-format raw --print-build-logs
