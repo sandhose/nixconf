@@ -14,11 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     rycee = {
       url = "gitlab:rycee/nur-expressions";
       flake = false;
@@ -50,7 +45,6 @@
     , nixos-generators
     , nixpkgs
     , rycee
-    , sops-nix
     }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
     let systemPkgs = import nixpkgs { inherit system; };
@@ -59,9 +53,7 @@
       packages = import ./packages { nixpkgs = systemPkgs; };
       devShell = with systemPkgs;
         mkShell {
-          sopsPGPKeyDirs = [ "./keys" ];
           nativeBuildInputs = [
-            sops-nix.packages.${system}.sops-import-keys-hook
             nixos-generators.packages.${system}.nixos-generate
             nixfmt
           ];
@@ -90,7 +82,6 @@
       };
 
       nixosConfigurations = (nixpkgs.lib.genAttrs [
-        "home-assistant"
         "minecraft"
         "murmur"
         "plex"
