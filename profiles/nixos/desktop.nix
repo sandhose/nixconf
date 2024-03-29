@@ -2,7 +2,7 @@
 
 {
   services = {
-    teamviewer.enable = true;
+    # teamviewer.enable = true;
     flatpak.enable = true;
     xserver = {
       enable = true;
@@ -29,17 +29,17 @@
       }];
     };
 
-    printing = {
-      enable = true;
-      drivers = with pkgs; [
-        gutenprint
-        gutenprintBin
-        carps-cups
-        # canon-cups-ufr2 # Broken
-        cups-bjnp
-        cnijfilter2
-      ];
-    };
+    # printing = {
+    #   enable = true;
+    #   drivers = with pkgs; [
+    #     gutenprint
+    #     gutenprintBin
+    #     carps-cups
+    #     # canon-cups-ufr2 # Broken
+    #     cups-bjnp
+    #     cnijfilter2
+    #   ];
+    # };
   };
 
   boot.plymouth = { enable = true; };
@@ -47,11 +47,11 @@
   environment.systemPackages = [
     pkgs.openrgb
     pkgs.wireshark
-    pkgs.teamviewer
-    pkgs.authy
+    # pkgs.teamviewer
+    # pkgs.authy
     pkgs.qt5.qtwayland
     pkgs.qgnomeplatform
-    pkgs.lutris
+    # pkgs.lutris
   ];
 
   programs.steam = {
