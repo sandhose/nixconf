@@ -2,6 +2,7 @@
 
 {
   services = {
+    tailscale.enable = true;
     # teamviewer.enable = true;
     flatpak.enable = true;
     xserver = {
