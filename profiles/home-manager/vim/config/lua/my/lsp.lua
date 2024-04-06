@@ -59,8 +59,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(args.buf, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(args.buf, ...) end
 
-    require'lsp-inlayhints'.on_attach(client, args.buf)
-
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
