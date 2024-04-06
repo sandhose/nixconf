@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 
 let
   nvimHome = "${config.xdg.configHome}/nvim";
@@ -26,6 +26,7 @@ in
   programs = {
     neovim = {
       enable = true;
+      package = pkgs.neovim-nightly;
       vimAlias = true;
 
       extraPackages = with pkgs; [
@@ -67,6 +68,10 @@ in
         runtime config.vim
       '';
 
+      extraLuaPackages = ps: [
+        ps.nvim-nio # nvim-dap dependency
+      ];
+
       plugins = with pkgs.vimPlugins; [
         gruvbox-nvim
         undotree
@@ -90,7 +95,8 @@ in
           grammars.tree-sitter-css
           grammars.tree-sitter-dart
           grammars.tree-sitter-dot
-          #grammars.tree-sitter-fluent
+          grammars.tree-sitter-dockerfile
+          grammars.tree-sitter-graphql
           grammars.tree-sitter-go
           grammars.tree-sitter-html
           grammars.tree-sitter-java
@@ -101,10 +107,11 @@ in
           grammars.tree-sitter-lua
           grammars.tree-sitter-make
           grammars.tree-sitter-markdown
-          #grammars.tree-sitter-nix
+          grammars.tree-sitter-nix
           grammars.tree-sitter-php
           grammars.tree-sitter-python
           grammars.tree-sitter-regex
+          grammars.tree-sitter-rego
           grammars.tree-sitter-rst
           grammars.tree-sitter-ruby
           grammars.tree-sitter-rust
@@ -113,6 +120,7 @@ in
           grammars.tree-sitter-tsx
           grammars.tree-sitter-typescript
           grammars.tree-sitter-yaml
+          grammars.tree-sitter-zig
         ]))
         nvim-web-devicons
         nvim-tree-lua
@@ -121,6 +129,7 @@ in
         #none-ls-nvim
         dressing-nvim
         fidget-nvim
+        nvim-treesitter-context
 
         copilot-vim
         cmp-copilot
@@ -133,7 +142,6 @@ in
         cmp-vsnip
         nvim-cmp
 
-        lsp-inlayhints-nvim
         lsp-status-nvim
         vim-vsnip
         vim-vsnip-integ
@@ -142,6 +150,8 @@ in
         lualine-nvim
         trouble-nvim
         symbols-outline-nvim
+        satellite-nvim
+        hover-nvim
 
         nvim-dap
         nvim-dap-ui

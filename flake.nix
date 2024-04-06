@@ -7,12 +7,15 @@
     nix = {
       url = "github:NixOS/nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
     };
 
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-compat.url = "github:edolstra/flake-compat";
 
     rycee = {
       url = "gitlab:rycee/nur-expressions";
@@ -33,6 +36,12 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+    };
   };
 
   outputs =
@@ -40,7 +49,9 @@
     , darwin
     , fenix
     , flake-utils
+    , flake-compat
     , home-manager
+    , neovim-nightly-overlay
     , nix
     , nixos-generators
     , nixpkgs
