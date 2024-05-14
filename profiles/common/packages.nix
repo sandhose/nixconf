@@ -70,7 +70,7 @@ with pkgs; [
   # clang-tools # broken on darwin
   zig
 
-  (hiPrio my.corepack)
+  (hiPrio corepack_20)
   (hiPrio fenix.rust-analyzer)
 
   # elixir
