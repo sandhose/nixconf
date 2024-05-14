@@ -98,6 +98,7 @@ in
           grammars.tree-sitter-dockerfile
           grammars.tree-sitter-graphql
           grammars.tree-sitter-go
+          grammars.tree-sitter-hcl
           grammars.tree-sitter-html
           grammars.tree-sitter-java
           grammars.tree-sitter-javascript
@@ -131,8 +132,8 @@ in
         fidget-nvim
         nvim-treesitter-context
 
-        copilot-vim
-        cmp-copilot
+        copilot-lua
+        copilot-cmp
 
         cmp-nvim-lsp
         cmp-buffer
