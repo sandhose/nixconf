@@ -3,6 +3,7 @@
 {
   fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
+    fira
     fira-code
     # nerdfonts # 6+GB
     roboto

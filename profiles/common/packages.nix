@@ -6,6 +6,7 @@ with pkgs; [
   caddy
   curl
   cloudflared
+  cosign
   deno
   # dnsutils
   doctl
@@ -32,12 +33,14 @@ with pkgs; [
   # kubeseal
   kustomize
   #kpt # Broken on darwin as of 1/08/22
+  lima-bin
   mosh
   nix-index
   nmap
   nodejs_20
   openssl
   openssl.dev
+  overmind
   pandoc
   parallel
   # pgcli
@@ -66,6 +69,7 @@ with pkgs; [
   wget
   wrk
   youtube-dl
+  yq
   my.zsh-funcs
   # clang-tools # broken on darwin
   zig
@@ -129,6 +133,8 @@ with pkgs; [
 
   consul
   nomad
+  packer
+  vault-bin
 
   # Needed by Telescope.nvim
   fd
