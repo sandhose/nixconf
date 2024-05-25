@@ -1,6 +1,6 @@
 { inputs, ... }:
 
-let inherit (inputs) self rycee nixpkgs fenix neovim-nightly-overlay;
+let inherit (inputs) self rycee nixpkgs fenix;
 
 in
 {
@@ -9,7 +9,6 @@ in
   nixpkgs.overlays = [
     self.overlay
     fenix.overlays.default
-    neovim-nightly-overlay.overlay
     (final: prev: {
       inherit ((import rycee { pkgs = prev; })) firefox-addons;
     })

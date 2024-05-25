@@ -26,7 +26,6 @@ in
   programs = {
     neovim = {
       enable = true;
-      package = pkgs.neovim-nightly;
       vimAlias = true;
 
       extraPackages = with pkgs; [

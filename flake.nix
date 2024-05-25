@@ -36,12 +36,6 @@
       url = "https://flakehub.com/f/nix-community/nixos-generators/0.1.390.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-    };
   };
 
   outputs =
@@ -51,7 +45,6 @@
     , flake-utils
     , flake-compat
     , home-manager
-    , neovim-nightly-overlay
     , nix
     , nixos-generators
     , nixpkgs
