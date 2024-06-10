@@ -55,10 +55,10 @@
     # pkgs.lutris
   ];
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-  };
+  # programs.steam = {
+  #   enable = true;
+  #   remotePlay.openFirewall = true;
+  # };
 
   programs.wireshark.enable = true;
 
