@@ -73,7 +73,7 @@ with pkgs; [
   yq
   my.zsh-funcs
   # clang-tools # broken on darwin
-  zig
+  #zig
 
   haproxy
   python3Packages.supervisor
