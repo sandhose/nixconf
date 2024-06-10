@@ -30,6 +30,13 @@ require'nvim-tree'.setup {
   },
 }
 
+require'treesitter-context'.setup {
+  enable = true,
+  max_lines = 10,
+  multiline_threshold = 2,
+  mode = 'topline',
+}
+
 local dap, dapui = require'dap', require'dapui'
 dapui.setup()
 dap.listeners.before.attach.dapui_config = function()

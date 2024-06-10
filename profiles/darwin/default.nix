@@ -5,8 +5,8 @@ with inputs; {
 
   environment = {
     systemPackages = with pkgs; [
-      postgresql_14
-      postgresql_14.lib
+      postgresql_16
+      postgresql_16.lib
       openssl.out
       pinentry_mac
       reattach-to-user-namespace

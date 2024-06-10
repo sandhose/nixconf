@@ -54,7 +54,8 @@ with pkgs; [
   python3Full
   # python37Packages.ansible
   redis
-  # rustup
+  rye
+  rustup
   # socat
   sqlite-interactive
   sshpass
@@ -73,6 +74,10 @@ with pkgs; [
   my.zsh-funcs
   # clang-tools # broken on darwin
   zig
+
+  haproxy
+  python3Packages.supervisor
+  prometheus
 
   (hiPrio corepack_20)
   (hiPrio fenix.rust-analyzer)
@@ -142,7 +147,6 @@ with pkgs; [
   bat
   ripgrep
 
-  rustup
   #(fenix.complete.withComponents [ "rustc" "rustfmt" ])
   #(hiPrio
   #  (fenix.combine [

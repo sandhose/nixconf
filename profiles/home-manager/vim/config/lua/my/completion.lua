@@ -1,11 +1,10 @@
 local cmp = require'cmp'
 local lspkind = require'lspkind'
 
-require'copilot'.setup({
-  suggestion = { enabled = false },
-  panel = { enabled = false },
-})
-require'copilot_cmp'.setup({})
+require'supermaven-nvim'.setup{
+  disable_inline_completion = true,
+  disable_keymaps = true,
+}
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -15,6 +14,14 @@ end
 local feedkey = function(key, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
+
+lspkind.init({
+  symbol_map = {
+    Supermaven = "",
+  },
+})
+
+vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", {fg ="#6CC644"})
 
 cmp.setup {
   snippet = {
@@ -65,7 +72,7 @@ cmp.setup {
 
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'copilot' },
+    { name = 'supermaven' },
     --{ name = 'vsnip' },
     { name = 'path' },
     { name = 'crates' },

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   nvimHome = "${config.xdg.configHome}/nvim";
@@ -21,6 +21,18 @@ let
     url = "http://ftp.vim.org/vim/runtime/spell/fr.latin1.sug";
     sha256 = "5cb2c97901b9ca81bf765532099c0329e2223c139baa764058822debd2e0d22a";
   };
+
+  supermaven-nvim = pkgs.vimUtils.buildVimPlugin {
+    pname = "supermaven-nvim";
+    version = "2010-10-18";
+    src = pkgs.fetchFromGitHub {
+      owner = "supermaven-inc";
+      repo = "supermaven-nvim";
+      rev = "4621e779e69c2b09807a3c545ed43697d826ef83";
+      sha256 = "0ajh64bkvfkcyb7lvjd9hs184yg83p72d9x0g5phqnzihxdz7aqg";
+    };
+    meta.homepage = "https://github.com/supermaven-inc/supermaven-nvim";
+  };
 in
 {
   programs = {
@@ -42,7 +54,7 @@ in
         clang-tools # broken on darwin
         nodePackages.vscode-langservers-extracted
         nodePackages.dockerfile-language-server-nodejs
-        nodePackages.pyright
+        pyright
         gopls
         # python38Packages.python-lsp-server
         # python38Packages.python-lsp-black
@@ -131,8 +143,7 @@ in
         fidget-nvim
         nvim-treesitter-context
 
-        copilot-lua
-        copilot-cmp
+        supermaven-nvim
 
         cmp-nvim-lsp
         cmp-buffer
