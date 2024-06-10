@@ -10,11 +10,13 @@
       displayManager.gdm.enable = true;
       displayManager.gdm.wayland = true;
       desktopManager.gnome.enable = true;
-      libinput.enable = true;
-      layout = "fr";
-      xkbModel = "pc105";
-      xkbVariant = "mac";
+      xkb = {
+        model = "pc105";
+        variant = "mac";
+        layout = "fr";
+      };
     };
+    libinput.enable = true;
 
     postgresql = {
       enable = true;
