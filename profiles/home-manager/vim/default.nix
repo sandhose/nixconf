@@ -63,7 +63,7 @@ in
         nodePackages.typescript
         nodePackages.typescript-language-server
         nodePackages.yaml-language-server
-        zls
+        #zls
       ];
 
       # Can't rely on init.lua, because it gets loaded before init.vim and

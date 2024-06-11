@@ -444,9 +444,9 @@ nvim_lsp.yamlls.setup {
   },
 }
 
-nvim_lsp.zls.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
+-- nvim_lsp.zls.setup {
+--   capabilities = capabilities,
+--   flags = {
+--     debounce_text_changes = 150,
+--   },
+-- }
