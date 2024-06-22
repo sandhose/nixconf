@@ -26,6 +26,7 @@ with pkgs; [
   isync
   icu.dev
   jq
+  just
   kind
   kubectl
   kubelogin-oidc

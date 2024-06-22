@@ -24,6 +24,7 @@ with inputs; {
       podman
       podman-compose
       buildkit
+      libssh
     ];
 
     variables = {

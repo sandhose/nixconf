@@ -74,7 +74,6 @@
         vaapiVdpau
         libvdpau-va-gl
       ];
-      setLdLibraryPath = true;
     };
     logitech.wireless = {
       enable = true;

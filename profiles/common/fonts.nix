@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 {
-  fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
+  #fonts.fontDir.enable = true;
+  fonts.packages = with pkgs; [
     fira
     fira-code
     # nerdfonts # 6+GB
