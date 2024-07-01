@@ -15,6 +15,7 @@ with pkgs; [
   # fly
   git
   git-lfs
+  git-absorb
   gnupg
   gnused
   gnutar
@@ -108,7 +109,7 @@ with pkgs; [
   cargo-expand
   cargo-deny
   cloc
-  # cmake
+  cmake
   dos2unix
   ffmpeg
   fluxcd
