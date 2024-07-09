@@ -12,7 +12,7 @@ in
     # Nomad tests are failing on darwin in CI and often failing because of disk space requirements on Linux
     (final: prev: {
       nomad = prev.nomad.overrideAttrs (old: {
-        doChek = false;
+        doCheck = false;
         doInstallCheck = false;
       });
     })
