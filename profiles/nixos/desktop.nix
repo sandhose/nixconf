@@ -67,7 +67,7 @@
   hardware = {
     steam-hardware.enable = true;
     graphics = {
-      driSupport32Bit = true;
+      enable32Bit = true;
       extraPackages = with pkgs; [ libva vaapiVdpau libvdpau-va-gl ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
         libva
