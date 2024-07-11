@@ -71,7 +71,7 @@ with pkgs; [
   # watchman # 4+ years old, installed manually instead
   wget
   wrk
-  youtube-dl
+  yt-dlp
   yq
   my.zsh-funcs
   # clang-tools # broken on darwin
