@@ -5,6 +5,7 @@ with inputs; {
 
   environment = {
     systemPackages = with pkgs; [
+      lima-bin
       postgresql_16
       postgresql_16.lib
       openssl.out

@@ -35,7 +35,6 @@ with pkgs; [
   # kubeseal
   kustomize
   #kpt # Broken on darwin as of 1/08/22
-  lima-bin
   mosh
   nix-index
   nmap
