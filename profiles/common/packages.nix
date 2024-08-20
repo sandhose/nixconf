@@ -131,7 +131,6 @@ with pkgs; [
   gnumake
   go
   file
-  olm
 
   sqlx-cli
   mdbook
