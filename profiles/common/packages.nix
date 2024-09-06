@@ -65,6 +65,7 @@ with pkgs; [
   unixtools.watch
   unrar
   #urlview
+  uv
   vim
   w3m
   # watchman # 4+ years old, installed manually instead
