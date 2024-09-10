@@ -19,7 +19,6 @@ with inputs; {
       #xquartz # Broken as of 1/08/22
       (hiPrio ncurses)
       cocoapods
-      qemu-utils
       docker
       docker-credential-helpers
       podman
