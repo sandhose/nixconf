@@ -1,21 +1,21 @@
 {
   inputs = {
-    flake-utils.url = "https://flakehub.com/f/numtide/flake-utils/0.1.tar.gz";
+    flake-utils.url = "github:numtide/flake-utils";
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nix = {
-      url = "https://flakehub.com/f/NixOS/nix/2.21.2.tar.gz";
+      url = "github:NixOS/nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
     };
 
     fenix = {
-      url = "https://flakehub.com/f/nix-community/fenix/0.1.1822.tar.gz";
+      url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.0.1.tar.gz";
+    flake-compat.url = "github:edolstra/flake-compat";
 
     rycee = {
       url = "gitlab:rycee/nur-expressions";
@@ -33,7 +33,7 @@
     };
 
     nixos-generators = {
-      url = "https://flakehub.com/f/nix-community/nixos-generators/0.1.390.tar.gz";
+      url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
