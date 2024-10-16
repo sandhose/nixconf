@@ -36,7 +36,7 @@ jobs:
         run: |
           delimiter="$(openssl rand -hex 16)"
           echo "message<<${delimiter}" >> "${GITHUB_OUTPUT}"
-          git log -1 --pretty=%B
+          git log -1 --pretty=%B >> "${GITHUB_OUTPUT}"
           echo "${delimiter}" >> "${GITHUB_OUTPUT}"
 
           delimiter="$(openssl rand -hex 16)"
