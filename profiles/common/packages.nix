@@ -35,7 +35,7 @@ with pkgs; [
   # kubeseal
   kustomize
   #kpt # Broken on darwin as of 1/08/22
-  mosh
+  #mosh
   nix-index
   nmap
   nodejs_20
@@ -121,6 +121,7 @@ with pkgs; [
   # keybase # Broken on darwin as of 1/08/22
   kind
   librsvg
+  libffi.dev
   # buildpack
   shellcheck
   sops

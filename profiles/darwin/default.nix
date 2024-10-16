@@ -8,7 +8,9 @@ with inputs; {
       lima-bin
       postgresql_16
       postgresql_16.lib
-      openssl.out
+      (hiPrio postgresql_16.dev)
+      openssl
+      openssl.dev
       pinentry_mac
       reattach-to-user-namespace
       #notmuch
