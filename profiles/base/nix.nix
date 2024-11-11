@@ -8,8 +8,8 @@ lib.mkMerge [
     nix = {
       package = pkgs.nix;
       nixPath = [ "nixpkgs=${nixpkgs}" ];
+      optimise.automatic = true;
       settings = {
-        auto-optimise-store = true;
         extra-nix-path = [ "nixpkgs=${nixpkgs}" ];
         experimental-features = [ "nix-command" "flakes" ];
         keep-outputs = true;
