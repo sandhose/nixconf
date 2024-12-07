@@ -14,7 +14,7 @@
     imports = [
       ../../profiles/home-manager/direnv
       ../../profiles/home-manager/environment
-      ../../profiles/home-manager/fzf
+      ../../profiles/home-manager/atuin
       ../../profiles/home-manager/git
       ../../profiles/home-manager/npm
       ../../profiles/home-manager/tmux
