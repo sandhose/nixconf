@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [
     # gnome.gnome-boxes
     libvirt
-    looking-glass-client
+    #looking-glass-client
     # virt-manager -- TODO spice-gtk is not building, will be fixed soon
   ];
 
