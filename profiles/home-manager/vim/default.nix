@@ -21,18 +21,6 @@ let
     url = "https://ftp.nluug.nl/vim/runtime/spell/fr.latin1.sug";
     sha256 = "5cb2c97901b9ca81bf765532099c0329e2223c139baa764058822debd2e0d22a";
   };
-
-  supermaven-nvim = pkgs.vimUtils.buildVimPlugin {
-    pname = "supermaven-nvim";
-    version = "2010-10-18";
-    src = pkgs.fetchFromGitHub {
-      owner = "supermaven-inc";
-      repo = "supermaven-nvim";
-      rev = "4621e779e69c2b09807a3c545ed43697d826ef83";
-      sha256 = "0ajh64bkvfkcyb7lvjd9hs184yg83p72d9x0g5phqnzihxdz7aqg";
-    };
-    meta.homepage = "https://github.com/supermaven-inc/supermaven-nvim";
-  };
 in
 {
   programs = {
