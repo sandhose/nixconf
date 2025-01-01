@@ -414,7 +414,7 @@ nvim_lsp.terraformls.setup {
   },
 }
 
-nvim_lsp.tsserver.setup {
+nvim_lsp.ts_ls.setup {
   on_attach = function(client, bufnr)
     -- Disable the tsserver formatter
     client.server_capabilities.documentFormattingProvider = false
