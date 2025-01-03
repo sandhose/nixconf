@@ -40,7 +40,7 @@ with inputs; {
       # minecraft
       mumble
       # signal-desktop
-      # steam
+      steam
       # teams
       vlc
       # zoom-us
@@ -58,6 +58,7 @@ with inputs; {
     8843
     6789
     27117
+    51414
   ];
   networking.firewall.allowedUDPPorts = [
     24642
@@ -68,5 +69,6 @@ with inputs; {
     10001
     1900
     123
+    51414
   ];
 }

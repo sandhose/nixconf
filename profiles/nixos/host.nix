@@ -1,7 +1,6 @@
 { pkgs, config, ... }:
 
 {
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   security = {

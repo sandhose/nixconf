@@ -54,13 +54,20 @@
     # pkgs.authy
     pkgs.qt5.qtwayland
     pkgs.qgnomeplatform
+    pkgs.ghostty
     # pkgs.lutris
   ];
 
-  # programs.steam = {
-  #   enable = true;
-  #   remotePlay.openFirewall = true;
-  # };
+  programs.gamescope = {
+    enable = true;
+    #capSysNice = true;
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    gamescopeSession.enable = true;
+  };
 
   programs.wireshark.enable = true;
 
