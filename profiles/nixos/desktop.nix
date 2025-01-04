@@ -69,6 +69,26 @@
     gamescopeSession.enable = true;
   };
 
+  systemd.services.steam-gamescope-session = {
+    description = "steam gamescope session";
+    after = [ "network.target" ];
+    wantedby = [ "multi-user.target" ];
+    serviceconfig = {
+      execstart = "${pkgs.gamescope}/bin/gamescope -e  -h 2160 -w 3840 -- ${pkgs.steam}/bin/steam  -tenfoot -steamos -fulldesktopres";
+      restart = "always";
+      user = "sandhose";
+    };
+  };
+
+  boot.loader.entries = [
+    {
+      name = "Steam Gamescope Session";
+      path = "/loader/entries/steam-gamescope.conf";
+      loader = "/EFI/systemd/systemd-bootx64.efi";
+      options = "systemd.unit=steam-gamescope-session.service";
+    }
+  ];
+
   programs.wireshark.enable = true;
 
   hardware = {
