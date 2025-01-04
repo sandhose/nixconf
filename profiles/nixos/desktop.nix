@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   services = {
@@ -70,24 +70,27 @@
   };
 
   systemd.services.steam-gamescope-session = {
-    description = "steam gamescope session";
-    after = [ "network.target" ];
-    wantedby = [ "multi-user.target" ];
-    serviceconfig = {
-      execstart = "${pkgs.gamescope}/bin/gamescope -e  -h 2160 -w 3840 -- ${pkgs.steam}/bin/steam  -tenfoot -steamos -fulldesktopres";
-      restart = "always";
-      user = "sandhose";
+     description = "Steam Gamescope Session";
+     after = [ "network.target" ];
+     wantedBy = [ "multi-user.target" ];
+     serviceConfig = {
+      ExecStart = "${pkgs.gamescope}/bin/gamescope -e  -h 2160 -w 3840 -- ${pkgs.steam}/bin/steam  -tenfoot -steamos -fulldesktopres";
+      Restart = "always";
+      User = "sandhose";
     };
   };
 
-  boot.loader.entries = [
-    {
-      name = "Steam Gamescope Session";
-      path = "/loader/entries/steam-gamescope.conf";
-      loader = "/EFI/systemd/systemd-bootx64.efi";
-      options = "systemd.unit=steam-gamescope-session.service";
-    }
-  ];
+  # boot.loader.systemd-boot.extraEntries = {
+  #   "steam-gamescope.conf" = ''
+  #     title NixOS - Steam Gamescope Session
+  #     sort-key steam-gamescope
+  #     version Generation ${config.system.nixos.label} (Linux ${config.boot.kernelPackages.kernel.version})
+  #     linux /EFI/nixos/${config.system}
+  #     initrd /EFI/nixos/${config.system.build.initialRamdisk.efiFile}
+  #     options init=${config.system.build.toplevel}/init systemd.unit=steam-gamescope-session.service pcie_aspm=off amd_iommu=on acpi_enforce_resources=lax nohibernate splash loglevel=4 audit=1 apparmor=1 security=apparmor
+  #     machine-id ${config.networking.hostId}
+  #   '';
+  # };
 
   programs.wireshark.enable = true;
 
