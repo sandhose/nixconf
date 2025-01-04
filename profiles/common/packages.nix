@@ -37,6 +37,7 @@ with pkgs; [
   #kpt # Broken on darwin as of 1/08/22
   #mosh
   nix-index
+  nixd
   nmap
   nodejs_20
   openssl
