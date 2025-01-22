@@ -109,7 +109,7 @@ with pkgs; [
   cargo-edit
   # cargo-expand
   cargo-deny
-  cargo-machette
+  cargo-machete
   cloc
   cmake
   dos2unix
