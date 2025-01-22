@@ -107,8 +107,9 @@ with pkgs; [
   bazelisk
   cargo-bloat
   cargo-edit
-  cargo-expand
+  # cargo-expand
   cargo-deny
+  cargo-machette
   cloc
   cmake
   dos2unix
