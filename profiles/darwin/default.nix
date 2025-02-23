@@ -45,9 +45,7 @@ with inputs; {
 
   security.pam.enableSudoTouchIdAuth = true;
 
-  nix.configureBuildUsers = true;
   programs.nix-index.enable = true;
-  services.nix-daemon.enable = true;
 
   system.stateVersion = 4;
 }
