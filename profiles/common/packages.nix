@@ -49,11 +49,11 @@ with pkgs; [
   pkg-config
   protobuf
   # poetry # Installed via pipx instead
-  python3Packages.pipx
+  # python3Packages.pipx
   pwgen
   # python
   # python3
-  python3Full
+  # python3Full
   # python37Packages.ansible
   redis
   rye
