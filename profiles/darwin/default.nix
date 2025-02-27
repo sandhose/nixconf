@@ -43,7 +43,10 @@ with inputs; {
     etc.terminfo = { source = "${config.system.path}/share/terminfo"; };
   };
 
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local = {
+    enable = true;
+    touchIdAuth = true;
+  };
 
   programs.nix-index.enable = true;
 
