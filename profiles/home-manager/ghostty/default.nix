@@ -3,7 +3,7 @@
 {
   programs.ghostty = {
     enable = true;
-    package = pkgs.hello; # TODO: we don't want to actually install it, only have the config
+    package = null; # Don't install ghostty from nixpkgs
     installVimSyntax = false;
     installBatSyntax = false;
     enableBashIntegration = true;
@@ -13,6 +13,7 @@
       theme = "dark:catppuccin-mocha,light:catppuccin-latte";
       unfocused-split-opacity= "0.9";
       auto-update = "download";
+      macos-secure-input-indication = false;
 
       keybind = [
         "ctrl+a>c=new_tab"
