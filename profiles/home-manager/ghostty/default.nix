@@ -11,9 +11,10 @@
 
     settings = {
       theme = "dark:catppuccin-mocha,light:catppuccin-latte";
-      unfocused-split-opacity= "0.9";
+      unfocused-split-opacity= "0.8";
       auto-update = "download";
       macos-secure-input-indication = false;
+      adjust-cursor-thickness = 1;
 
       keybind = [
         "ctrl+a>c=new_tab"

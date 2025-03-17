@@ -5,7 +5,7 @@ with pkgs; [
   cachix
   caddy
   curl
-  cloudflared
+  #cloudflared
   cosign
   deno
   # dnsutils
@@ -28,6 +28,9 @@ with pkgs; [
   icu.dev
   jq
   just
+  jsonnet
+  jsonnet-bundler
+  jsonnet-language-server
   kind
   kubectl
   kubelogin-oidc
@@ -82,7 +85,7 @@ with pkgs; [
   python3Packages.supervisor
   prometheus
 
-  (hiPrio corepack_20)
+  (hiPrio corepack_22)
   (hiPrio fenix.rust-analyzer)
 
   # elixir

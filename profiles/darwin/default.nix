@@ -22,6 +22,8 @@ with inputs; {
       (hiPrio ncurses)
       cocoapods
       docker
+      docker-compose
+      docker-buildx
       docker-credential-helpers
       podman
       podman-compose
