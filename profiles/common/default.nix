@@ -7,10 +7,9 @@
   };
 
   nixpkgs.config = {
-    allowBroken = true;
-    allowUnsupportedSystem = true;
+    allowBroken = false;
+    allowUnsupportedSystem = false;
     allowUnfree = true;
-    permittedInsecurePackages = [ "electron-9.4.4" ];
   };
 
   programs = {
