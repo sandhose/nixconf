@@ -1,6 +1,12 @@
-{ pkgs, inputs, config, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 
-with inputs; {
+with inputs;
+{
   imports = [ ./system.nix ];
 
   environment = {
@@ -40,10 +46,17 @@ with inputs; {
       CLICOLOR = "1";
     };
 
-    pathsToLink = [ "/share/terminfo" "/share/pkgconfig" "/include" "/lib" ];
+    pathsToLink = [
+      "/share/terminfo"
+      "/share/pkgconfig"
+      "/include"
+      "/lib"
+    ];
     extraOutputsToInstall = [ "terminfo" ];
 
-    etc.terminfo = { source = "${config.system.path}/share/terminfo"; };
+    etc.terminfo = {
+      source = "${config.system.path}/share/terminfo";
+    };
   };
 
   security.pam.services.sudo_local = {

@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   nvimHome = "${config.xdg.configHome}/nvim";
@@ -172,17 +177,18 @@ in
   home.file =
     let
       # Symlink everything in ./config to ~/.config/nvim/
-      cfg = builtins.listToAttrs (map
-        (file: {
+      cfg = builtins.listToAttrs (
+        map (file: {
           name = "${nvimHome}/${file}";
           value = {
             source = ./config + "/${file}";
             recursive = true;
           };
-        })
-        (builtins.attrNames (builtins.readDir ./config)));
+        }) (builtins.attrNames (builtins.readDir ./config))
+      );
     in
-    cfg // {
+    cfg
+    // {
       "${nvimHome}/undo/.keep".text = "";
       "${nvimHome}/swaps/.keep".text = "";
       "${nvimHome}/backups/.keep".text = "";

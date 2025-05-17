@@ -17,7 +17,6 @@
 
     flake-compat.url = "github:edolstra/flake-compat";
 
-
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,29 +34,35 @@
   };
 
   outputs =
-    { self
-    , darwin
-    , fenix
-    , flake-utils
-    , flake-compat
-    , home-manager
-    , nix
-    , nixos-generators
-    , nixpkgs
-    }@inputs:
-    (flake-utils.lib.eachDefaultSystem (system:
-    let systemPkgs = import nixpkgs { inherit system; };
-    in
     {
-      packages = import ./packages { nixpkgs = systemPkgs; };
-      devShell = with systemPkgs;
-        mkShell {
-          nativeBuildInputs = [
-            nixos-generators.packages.${system}.nixos-generate
-            nixfmt
-          ];
-        };
-    })) // {
+      self,
+      darwin,
+      fenix,
+      flake-utils,
+      flake-compat,
+      home-manager,
+      nix,
+      nixos-generators,
+      nixpkgs,
+    }@inputs:
+    (flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        systemPkgs = import nixpkgs { inherit system; };
+      in
+      {
+        packages = import ./packages { nixpkgs = systemPkgs; };
+        devShell =
+          with systemPkgs;
+          mkShell {
+            nativeBuildInputs = [
+              nixos-generators.packages.${system}.nixos-generate
+              nixfmt-rfc-style
+            ];
+          };
+      }
+    ))
+    // {
       overlay = (final: prev: { my = self.packages.${final.system}; });
 
       darwinConfigurations."sandhose-laptop" = darwin.lib.darwinSystem {

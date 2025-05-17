@@ -14,8 +14,7 @@
   };
   # virtualisation.spiceUSBRedirection.enable = true; TODO
 
-  systemd.tmpfiles.rules =
-    [ "f /dev/shm/looking-glass 0660 sandhose qemu-libvirtd -" ];
+  systemd.tmpfiles.rules = [ "f /dev/shm/looking-glass 0660 sandhose qemu-libvirtd -" ];
 
   # for PCIe forwarding
   boot = {

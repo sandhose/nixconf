@@ -26,10 +26,12 @@
         local all all trust
         host all all ::1/128 trust
       '';
-      ensureUsers = [{
-        name = "sandhose";
-        ensureClauses.superuser = true;
-      }];
+      ensureUsers = [
+        {
+          name = "sandhose";
+          ensureClauses.superuser = true;
+        }
+      ];
     };
 
     # printing = {
@@ -45,7 +47,9 @@
     # };
   };
 
-  boot.plymouth = { enable = true; };
+  boot.plymouth = {
+    enable = true;
+  };
 
   environment.systemPackages = [
     pkgs.openrgb
@@ -70,10 +74,10 @@
   };
 
   systemd.services.steam-gamescope-session = {
-     description = "Steam Gamescope Session";
-     after = [ "network.target" ];
-     wantedBy = [ "multi-user.target" ];
-     serviceConfig = {
+    description = "Steam Gamescope Session";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
       ExecStart = "${pkgs.gamescope}/bin/gamescope -e  -h 2160 -w 3840 -- ${pkgs.steam}/bin/steam  -tenfoot -steamos -fulldesktopres";
       Restart = "always";
       User = "sandhose";
@@ -98,7 +102,11 @@
     steam-hardware.enable = true;
     graphics = {
       enable32Bit = true;
-      extraPackages = with pkgs; [ libva vaapiVdpau libvdpau-va-gl ];
+      extraPackages = with pkgs; [
+        libva
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
         libva
         vaapiVdpau

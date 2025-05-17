@@ -1,5 +1,7 @@
 { pkgs, ... }:
 
 {
-  services.syncthing = { enable = true; };
+  services.syncthing = {
+    enable = true;
+  };
 }

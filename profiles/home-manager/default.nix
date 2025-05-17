@@ -4,6 +4,6 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    sharedModules = [{ home.stateVersion = "22.05"; }];
+    sharedModules = [ { home.stateVersion = "22.05"; } ];
   };
 }

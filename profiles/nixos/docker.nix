@@ -7,6 +7,5 @@
   };
 
   # Enable BuildKit by default
-  environment.etc."docker/daemon.json".text =
-    builtins.toJSON { features.buildkit = true; };
+  environment.etc."docker/daemon.json".text = builtins.toJSON { features.buildkit = true; };
 }

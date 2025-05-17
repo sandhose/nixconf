@@ -1,4 +1,9 @@
-{ stdenv, fetchFromGitHub, woff2, ... }:
+{
+  stdenv,
+  fetchFromGitHub,
+  woff2,
+  ...
+}:
 
 stdenv.mkDerivation rec {
   name = "virgil";

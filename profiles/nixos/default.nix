@@ -1,6 +1,7 @@
 { pkgs, inputs, ... }:
 
-with inputs; {
+with inputs;
+{
   imports = [
     ./amd.nix
     ./base.nix
@@ -16,7 +17,10 @@ with inputs; {
     ./zfs.nix
   ];
 
-  boot.supportedFilesystems = [ "ntfs" "xfs" ];
+  boot.supportedFilesystems = [
+    "ntfs"
+    "xfs"
+  ];
   boot.tmp = {
     useTmpfs = true;
     cleanOnBoot = true;

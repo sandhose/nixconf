@@ -3,7 +3,9 @@
 {
   programs.direnv = {
     enable = true;
-    nix-direnv = { enable = true; };
+    nix-direnv = {
+      enable = true;
+    };
     stdlib = ''
       layout_poetry() {
         if [[ ! -f pyproject.toml ]]; then

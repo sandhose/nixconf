@@ -1,11 +1,24 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
 let
   cfg = config.programs.npm;
-  npmrcType = with types; attrsOf (oneOf [ str bool path int ]);
-in {
+  npmrcType =
+    with types;
+    attrsOf (oneOf [
+      str
+      bool
+      path
+      int
+    ]);
+in
+{
 
   options = {
     programs.npm = {
@@ -58,16 +71,13 @@ in {
     { home.packages = [ cfg.package ]; }
 
     (mkIf (cfg.prefix != null) {
-      programs.npm.npmrc.content.prefix =
-        builtins.toPath "${config.home.homeDirectory}/${cfg.prefix}";
-      programs.npm.bin =
-        builtins.toPath "${config.home.homeDirectory}/${cfg.prefix}/bin";
+      programs.npm.npmrc.content.prefix = builtins.toPath "${config.home.homeDirectory}/${cfg.prefix}";
+      programs.npm.bin = builtins.toPath "${config.home.homeDirectory}/${cfg.prefix}/bin";
       home.file."${cfg.prefix}/.keep".text = "";
     })
 
     (mkIf cfg.npmrc.enable {
-      programs.npm.npmrc.file =
-        pkgs.writeText "npmrc" (generators.toKeyValue { } cfg.npmrc.content);
+      programs.npm.npmrc.file = pkgs.writeText "npmrc" (generators.toKeyValue { } cfg.npmrc.content);
     })
 
     # (mkIf (cfg.npmrc.enable && cfg.npmrc.followXDG) {

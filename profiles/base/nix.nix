@@ -1,6 +1,12 @@
-{ pkgs, lib, inputs, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
-let inherit (inputs) nixpkgs;
+let
+  inherit (inputs) nixpkgs;
 
 in
 lib.mkMerge [
@@ -11,7 +17,10 @@ lib.mkMerge [
       optimise.automatic = true;
       settings = {
         extra-nix-path = [ "nixpkgs=${nixpkgs}" ];
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
         keep-outputs = true;
         keep-derivations = true;
       };
@@ -29,7 +38,10 @@ lib.mkMerge [
     nix.settings = {
       sandbox = false; # For some reason does not work on my laptop
       trusted-users = [ "@wheel" ];
-      extra-platforms = [ "aarch64-darwin" "x86_64-darwin" ];
+      extra-platforms = [
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
     };
   })
 ]

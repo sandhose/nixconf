@@ -1,6 +1,12 @@
-{ lib, inputs, pkgs, ... }:
+{
+  lib,
+  inputs,
+  pkgs,
+  ...
+}:
 
-let inherit (inputs) self home-manager nixpkgs;
+let
+  inherit (inputs) self home-manager nixpkgs;
 
 in
 {
@@ -15,7 +21,10 @@ in
   # TODO: move this elsewhere and ensure emoji always go first
   fonts.fontconfig = {
     enable = true;
-    defaultFonts.monospace = [ "FiraCode Nerd Font" "Noto Color Emoji" ];
+    defaultFonts.monospace = [
+      "FiraCode Nerd Font"
+      "Noto Color Emoji"
+    ];
   };
   time.timeZone = "Europe/Paris";
 

@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 {
   imports = [
@@ -10,10 +15,19 @@
     ../../users/root/nixos.nix
   ];
 
-  boot.initrd.availableKernelModules =
-    [ "xhci_pci" "ehci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ehci_pci"
+    "nvme"
+    "ahci"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+  ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-amd" /* "r8125" */ ];
+  boot.kernelModules = [
+    "kvm-amd" # "r8125"
+  ];
   # boot.extraModulePackages = [ config.boot.kernelPackages.r8125 ];
 
   networking = {
@@ -36,10 +50,12 @@
     fsType = "vfat";
   };
 
-  swapDevices = [{
-    device = "/swapfile";
-    size = 32768;
-  }];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 32768;
+    }
+  ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
 }

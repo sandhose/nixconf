@@ -1,10 +1,14 @@
 { inputs, ... }:
 
-let inherit (inputs) self fenix;
+let
+  inherit (inputs) self fenix;
 
 in
 {
-  imports = [ ./cachix-adapter.nix ./nix.nix ];
+  imports = [
+    ./cachix-adapter.nix
+    ./nix.nix
+  ];
 
   nixpkgs.overlays = [
     self.overlay
