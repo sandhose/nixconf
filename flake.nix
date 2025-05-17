@@ -17,10 +17,6 @@
 
     flake-compat.url = "github:edolstra/flake-compat";
 
-    rycee = {
-      url = "gitlab:rycee/nur-expressions";
-      flake = false;
-    };
 
     darwin = {
       url = "github:LnL7/nix-darwin";
@@ -48,7 +44,6 @@
     , nix
     , nixos-generators
     , nixpkgs
-    , rycee
     }@inputs:
     (flake-utils.lib.eachDefaultSystem (system:
     let systemPkgs = import nixpkgs { inherit system; };

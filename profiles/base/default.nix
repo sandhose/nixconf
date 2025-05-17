@@ -1,6 +1,6 @@
 { inputs, ... }:
 
-let inherit (inputs) self rycee fenix;
+let inherit (inputs) self fenix;
 
 in
 {
@@ -15,9 +15,6 @@ in
         doCheck = false;
         doInstallCheck = false;
       });
-    })
-    (final: prev: {
-      inherit ((import rycee { pkgs = prev; })) firefox-addons;
     })
   ];
 
