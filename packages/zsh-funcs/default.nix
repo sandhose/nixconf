@@ -1,6 +1,6 @@
 { stdenv, ... }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   name = "zsh-funcs";
   src = ./funcs;
 
@@ -8,10 +8,6 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/share/zsh/site-functions/
-    install -m 755 venv $out/share/zsh/site-functions/
-    install -m 755 color $out/share/zsh/site-functions/
-    install -m 755 f $out/share/zsh/site-functions/
-    install -m 755 b $out/share/zsh/site-functions/
-    install -m 755 rationalise-dot $out/share/zsh/site-functions/
+    install -m 755 manydots-magic $out/share/zsh/site-functions/
   '';
 }

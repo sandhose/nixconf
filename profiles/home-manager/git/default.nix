@@ -60,7 +60,7 @@
         merge.conflictstyle = "zdiff3";
         fetch = {
           prune = true;
-          pruneTags = true;
+          pruneTags = false;
           all = true;
         };
       };

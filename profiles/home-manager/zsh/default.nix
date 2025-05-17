@@ -23,7 +23,12 @@
         dr = "docker run -it --rm";
       };
 
-      initExtra = builtins.readFile ./additional.zsh;
+      initContent = builtins.readFile ./additional.zsh;
+    };
+
+    dircolors = {
+      enable = true;
+      enableZshIntegration = true;
     };
 
     starship = {

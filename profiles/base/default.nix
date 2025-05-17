@@ -1,6 +1,6 @@
 { inputs, ... }:
 
-let inherit (inputs) self rycee nixpkgs fenix;
+let inherit (inputs) self rycee fenix;
 
 in
 {
