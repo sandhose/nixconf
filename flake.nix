@@ -85,19 +85,7 @@
         ];
       };
 
-      nixosConfigurations = (nixpkgs.lib.genAttrs [
-        "minecraft"
-        "murmur"
-        "plex"
-        "samba"
-        "transmission"
-      ]
-        (name:
-          nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            specialArgs = { inherit inputs; };
-            modules = [ (./containers + "/${name}") ];
-          })) // {
+      nixosConfigurations = {
         "sandhose-desktop" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
@@ -108,24 +96,6 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [ ./hosts/spaetzle ];
-        };
-
-        "raspberry" = nixpkgs.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [ ./hosts/raspberry ];
-        };
-
-        "vpn" = nixpkgs.lib.makeOverridable nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [ ./hosts/vpn ];
-        };
-
-        "live" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [ ./hosts/live ];
         };
       };
     };
