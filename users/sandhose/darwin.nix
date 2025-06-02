@@ -3,6 +3,8 @@
 {
   imports = [ ./common.nix ];
 
+  system.primaryUser = "sandhose";
+
   users.users = {
     sandhose = {
       home = "/Users/sandhose";
