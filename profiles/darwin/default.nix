@@ -11,7 +11,7 @@ with inputs;
 
   environment = {
     systemPackages = with pkgs; [
-      lima-bin
+      lima
       postgresql_16
       postgresql_16.lib
       (hiPrio postgresql_16.dev)
