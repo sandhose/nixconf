@@ -15,6 +15,7 @@ with inputs;
       postgresql_16
       postgresql_16.lib
       (hiPrio postgresql_16.dev)
+      postgresql_16.pg_config
       openssl
       openssl.dev
       pinentry_mac
