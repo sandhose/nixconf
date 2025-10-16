@@ -11,7 +11,7 @@
   programs = {
     npm = {
       enable = true;
-      package = pkgs.nodejs_20;
+      package = pkgs.nodejs_22;
       npmrc = {
         enable = true;
         # followXDG = true;

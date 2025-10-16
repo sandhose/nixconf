@@ -11,7 +11,9 @@ with inputs;
 
   environment = {
     systemPackages = with pkgs; [
-      lima
+      (lima.override {
+        withAdditionalGuestAgents = true;
+      })
       postgresql_16
       postgresql_16.lib
       (hiPrio postgresql_16.dev)

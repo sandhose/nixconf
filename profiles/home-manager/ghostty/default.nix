@@ -10,7 +10,7 @@
     enableZshIntegration = true;
 
     settings = {
-      theme = "dark:catppuccin-mocha,light:catppuccin-latte";
+      theme = "dark:Catppuccin Mocha,light:Catppuccin Latte";
       unfocused-split-opacity = "0.8";
       auto-update = "download";
       macos-secure-input-indication = false;

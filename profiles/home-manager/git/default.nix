@@ -27,6 +27,7 @@
         ".mypy_cache"
         ".envrc"
         ".direnv/"
+        ".zed/"
       ];
 
       extraConfig = {

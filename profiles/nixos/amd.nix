@@ -18,12 +18,6 @@
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  hardware.graphics.extraPackages = with pkgs; [
-    amdvlk
-  ];
-
-  hardware.graphics.extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
-
   # Force RADV
   #environment.variables.VK_ICD_FILENAMES =
   #  "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
