@@ -20,7 +20,7 @@ with pkgs;
   gnupg
   gnused
   gnutar
-  #go-jsonnet # Broken on darwin as of 1/08/22
+  go-jsonnet
   graphviz
   htop
   imagemagick
@@ -29,7 +29,7 @@ with pkgs;
   icu.dev
   jq
   just
-  jsonnet
+  #jsonnet
   jsonnet-bundler
   jsonnet-language-server
   kind
