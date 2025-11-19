@@ -2,22 +2,21 @@
 
 {
   programs = {
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        hyperlinks = true;
+        navigate = true;
+        side-by-side = true;
+        syntax-theme = "ansi";
+        colorMoved = "default";
+      };
+    };
+
     git = {
       enable = true;
       lfs.enable = true;
-      delta = {
-        enable = true;
-        options = {
-          hyperlinks = true;
-          navigate = true;
-          side-by-side = true;
-          syntax-theme = "ansi";
-          colorMoved = "default";
-        };
-      };
-      aliases = {
-        lg = "log --graph --pretty=format:'%C(yellow)%d%Creset %C(cyan)%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short --all";
-      };
       ignores = [
         ".DS_Store"
         "*.swp"
@@ -30,7 +29,10 @@
         ".zed/"
       ];
 
-      extraConfig = {
+      settings = {
+        aliases = {
+          lg = "log --graph --pretty=format:'%C(yellow)%d%Creset %C(cyan)%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short --all";
+        };
         column.ui = "auto";
         branch.sort = "-committerdate";
         tag.sort = "version:refname";

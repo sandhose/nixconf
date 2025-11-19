@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }:
 
@@ -46,7 +45,7 @@ in
         nodePackages.bash-language-server
         clang-tools # broken on darwin
         nodePackages.vscode-langservers-extracted
-        nodePackages.dockerfile-language-server-nodejs
+        dockerfile-language-server
         pyright
         gopls
         # python38Packages.python-lsp-server

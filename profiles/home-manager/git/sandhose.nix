@@ -8,8 +8,10 @@
         signByDefault = true;
       };
 
-      userEmail = "quentingliech@gmail.com";
-      userName = "Quentin Gliech";
+      settings.user = {
+        email = "quentingliech@gmail.com";
+        name = "Quentin Gliech";
+      };
     };
   };
 }

@@ -87,19 +87,48 @@ with pkgs;
   python3Packages.supervisor
   prometheus
 
-  (hiPrio corepack_22)
-  (hiPrio fenix.rust-analyzer)
+  (lib.hiPrio corepack_22)
+  (lib.hiPrio fenix.rust-analyzer)
 
   # elixir
   # fig2dev
   fontconfig
   #(texlive.combine {
   #  inherit (texlive)
-  #    scheme-medium footmisc spreadtab xstring titlesec arydshln enumitem
-  #    fvextra upquote chngcntr cleveref adjustbox collectbox tocbibind titling
-  #    unamth-template bib-fr synttree wrapfig lastpage ifmtarg numprint bophook
-  #    beamertheme-metropolis;
+  #    scheme-medium
+  #    footmisc
+  #    spreadtab
+  #    xstring
+  #    titlesec
+  #    arydshln
+  #    enumitem
+  #    fvextra
+  #    upquote
+  #    chngcntr
+  #    cleveref
+  #    adjustbox
+  #    collectbox
+  #    tocbibind
+  #    titling
+  #    unamth-template
+  #    bib-fr
+  #    synttree
+  #    wrapfig
+  #    lastpage
+  #    ifmtarg
+  #    numprint
+  #    bophook
+  #    beamertheme-metropolis
+  #    ucs
+  #    csvsimple
+  #    environ
+  #    svg
+  #    transparent
+  #    multirow
+  #    ;
+  #  inherit auto-multiple-choice;
   #})
+  #auto-multiple-choice
   # gnome.librsvg
 
   # maven
@@ -121,7 +150,7 @@ with pkgs;
   ffmpeg
   fluxcd
   gawk
-  gitAndTools.gh
+  gh
   go
   # inkscape
   # jabref
