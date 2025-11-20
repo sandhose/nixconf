@@ -58,7 +58,6 @@
     # pkgs.authy
     pkgs.qt5.qtwayland
     pkgs.qgnomeplatform
-    pkgs.ghostty
     # pkgs.lutris
   ];
 
