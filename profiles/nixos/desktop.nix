@@ -58,7 +58,6 @@
     # pkgs.authy
     pkgs.qt5.qtwayland
     pkgs.qgnomeplatform
-    pkgs.ghostty
     # pkgs.lutris
   ];
 
@@ -104,12 +103,12 @@
       enable32Bit = true;
       extraPackages = with pkgs; [
         libva
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [
         libva
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
     };

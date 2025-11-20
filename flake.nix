@@ -63,7 +63,7 @@
       }
     ))
     // {
-      overlay = (final: prev: { my = self.packages.${final.system}; });
+      overlay = (final: prev: { my = self.packages.${final.stdenv.hostPlatform.system}; });
 
       darwinConfigurations."sandhose-laptop" = darwin.lib.darwinSystem {
         system = "x86_64-darwin";

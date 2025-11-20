@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  lib,
   ...
 }:
 
@@ -16,7 +17,7 @@ with inputs;
       })
       postgresql_16
       postgresql_16.lib
-      (hiPrio postgresql_16.dev)
+      (lib.hiPrio postgresql_16.dev)
       postgresql_16.pg_config
       openssl
       openssl.dev
@@ -28,7 +29,7 @@ with inputs;
       #msmtp
       #wireshark
       #xquartz # Broken as of 1/08/22
-      (hiPrio ncurses)
+      (lib.hiPrio ncurses)
       cocoapods
       docker
       docker-compose
