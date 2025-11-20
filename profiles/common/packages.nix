@@ -44,6 +44,7 @@ with pkgs;
   nixd
   nmap
   nodejs_20
+  opencode
   openssl
   openssl.dev
   overmind
