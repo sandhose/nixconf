@@ -4,7 +4,7 @@
   users = {
     users.sandhose = {
       description = "Quentin Gliech";
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
     };
   };
 
