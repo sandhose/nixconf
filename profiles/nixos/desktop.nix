@@ -7,15 +7,17 @@
     flatpak.enable = true;
     xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
-      displayManager.gdm.wayland = true;
-      desktopManager.gnome.enable = true;
       xkb = {
         model = "pc105";
         variant = "mac";
         layout = "fr";
       };
     };
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
+    };
+    desktopManager.gnome.enable = true;
     libinput.enable = true;
 
     postgresql = {
