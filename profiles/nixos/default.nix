@@ -8,7 +8,7 @@ with inputs;
     ./dbus-dev.nix
     ./docker.nix
     ./desktop.nix
-    ./efi.nix
+    # ./efi.nix  # Moved to host-specific configs (lanzaboote for desktop, efi for spaetzle)
     ./host.nix
     ./libvirt.nix
     # ./nvidia.nix
@@ -37,7 +37,7 @@ with inputs;
       gcc
       gnome-tweaks
       # gnome-builder
-      # google-chrome
+      google-chrome
       keepassxc
       libtool
       man-pages

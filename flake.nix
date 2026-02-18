@@ -31,6 +31,11 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -41,6 +46,7 @@
       flake-utils,
       flake-compat,
       home-manager,
+      lanzaboote,
       nix,
       nixos-generators,
       nixpkgs,

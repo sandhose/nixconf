@@ -10,6 +10,7 @@
     ../../profiles/base
     ../../profiles/common
     ../../profiles/nixos
+    ../../profiles/nixos/lanzaboote.nix
     ../../profiles/home-manager
     ../../users/sandhose/nixos-gui.nix
     ../../users/root/nixos.nix
