@@ -4,6 +4,7 @@
   programs = {
     git = {
       signing = {
+        format = "openpgp";
         key = "552719FC";
         signByDefault = true;
       };
