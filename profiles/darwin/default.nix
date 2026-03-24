@@ -15,10 +15,10 @@ with inputs;
       (lima.override {
         withAdditionalGuestAgents = true;
       })
-      postgresql_16
-      postgresql_16.lib
-      (lib.hiPrio postgresql_16.dev)
-      postgresql_16.pg_config
+      postgresql_18
+      postgresql_18.lib
+      (lib.hiPrio postgresql_18.dev)
+      postgresql_18.pg_config
       openssl
       openssl.dev
       pinentry_mac
