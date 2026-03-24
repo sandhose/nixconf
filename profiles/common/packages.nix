@@ -44,7 +44,7 @@ with pkgs;
   nix-index
   nixd
   nmap
-  nodejs_20
+  nodejs_24
   opencode
   openssl
   openssl.dev
@@ -88,7 +88,7 @@ with pkgs;
   python3Packages.supervisor
   prometheus
 
-  (lib.hiPrio corepack_22)
+  (lib.hiPrio corepack_24)
   (lib.hiPrio fenix.rust-analyzer)
 
   # elixir
