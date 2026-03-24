@@ -32,6 +32,7 @@ with pkgs;
   #jsonnet
   jsonnet-bundler
   jsonnet-language-server
+  k3d
   kind
   kubectl
   kubelogin-oidc
