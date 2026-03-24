@@ -240,57 +240,6 @@ vim.lsp.config('pyright', {
   },
 })
 
-vim.g.rustaceanvim = function()
-  -- Update this path
-  local extension_path = vim.env.HOME .. '/.vscode-insiders/extensions/vadimcn.vscode-lldb-1.10.0/'
-  local codelldb_path = extension_path .. 'adapter/codelldb'
-  local liblldb_path = extension_path .. 'lldb/lib/liblldb'
-  local this_os = vim.loop.os_uname().sysname;
-  liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
-
-  local cfg = require'rustaceanvim.config'
-  return {
-    server = {
-      default_settings = {
-        ['rust-analyzer'] = {
-          rustfmt = {
-            extraArgs = { "+nightly" },
-          },
-
-          checkOnSave = {
-            command = "clippy",
-            extraArgs = { "--no-deps" },
-          },
-
-          inlay_hints = {
-            bindingModeHints = {
-              enable = true,
-            },
-
-            lifetimeElisionHints = {
-              enable = "always",
-            },
-            reborrowHints = {
-              enable = "always",
-            },
-          },
-          procMacro = {
-            ignored = {
-              ["async-trait"] = {"async_trait"},
-              ["async-graphql"] = {"Object", "Subscription"},
-              ["tracing"] = {"instrument"},
-              ["tokio"] = {"main", "test"},
-            },
-          },
-        },
-      },
-    },
-    dap = {
-      adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
-    },
-  }
-end
-
 vim.lsp.config('ts_ls', {
   on_attach = function(client, bufnr)
     -- Disable the tsserver formatter
