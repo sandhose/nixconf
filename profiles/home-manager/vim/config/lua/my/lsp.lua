@@ -1,6 +1,4 @@
 -- LSP config, here we go!
-local nvim_lsp = require'lspconfig'
-
 require'fidget'.setup {}
 
 -- Advertise snippets support
@@ -16,6 +14,11 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     'additionalTextEdits',
   }
 }
+
+-- Apply capabilities to all LSP servers
+vim.lsp.config('*', {
+  capabilities = capabilities,
+})
 
 require'neotest'.setup {
   adapters = {
@@ -225,119 +228,7 @@ vim.api.nvim_set_hl(0, 'LspReferenceRead', { bold = true, ctermbg = "red", bg = 
 vim.api.nvim_set_hl(0, 'LspReferenceText', { bold = true, ctermbg = "red", bg = "LightYellow" })
 vim.api.nvim_set_hl(0, 'LspReferenceWrite', { bold = true, ctermbg = "red", bg = "LightYellow" })
 
--- null_ls.setup {
---   sources = {
---     -- null_ls.builtins.formatting.prettier.with({
---     --     extra_filetypes = { "toml", "graphql" },
---     -- }),
---     -- null_ls.builtins.diagnostics.actionlint,
---     null_ls.builtins.formatting.biome,
---     null_ls.builtins.diagnostics.shellcheck,
---     null_ls.builtins.diagnostics.statix,
---     -- null_ls.builtins.code_actions.gitsigns,
---     null_ls.builtins.code_actions.shellcheck,
---     null_ls.builtins.code_actions.statix,
---   },
--- }
-
-nvim_lsp.bashls.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-nvim_lsp.biome.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-nvim_lsp.clangd.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-nvim_lsp.cssls.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-nvim_lsp.dockerls.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-nvim_lsp.eslint.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-nvim_lsp.gopls.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-nvim_lsp.html.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-nvim_lsp.jsonls.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-nvim_lsp.graphql.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-nvim_lsp.tailwindcss.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
--- nvim_lsp.pylsp.setup {
---   capabilities = capabilities,
---   flags = {
---     debounce_text_changes = 150,
---   },
---   settings = {
---     pylsp = {
---       plugins = {
---         flake8 = { enabled = false },
---         autopep8 = { enabled = false },
---         yapf = { enabled = false },
---       },
---     },
---   },
--- }
-
-nvim_lsp.pyright.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
+vim.lsp.config('pyright', {
   settings = {
     python = {
       analysis = {
@@ -347,14 +238,7 @@ nvim_lsp.pyright.setup {
       },
     },
   },
-}
-
-nvim_lsp.nil_ls.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
+})
 
 vim.g.rustaceanvim = function()
   -- Update this path
@@ -407,29 +291,14 @@ vim.g.rustaceanvim = function()
   }
 end
 
-nvim_lsp.terraformls.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-nvim_lsp.ts_ls.setup {
+vim.lsp.config('ts_ls', {
   on_attach = function(client, bufnr)
     -- Disable the tsserver formatter
     client.server_capabilities.documentFormattingProvider = false
   end,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
+})
 
-nvim_lsp.yamlls.setup {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
+vim.lsp.config('yamlls', {
   settings = {
     redhat = {
       telemetry = {
@@ -442,11 +311,23 @@ nvim_lsp.yamlls.setup {
       },
     },
   },
-}
+})
 
--- nvim_lsp.zls.setup {
---   capabilities = capabilities,
---   flags = {
---     debounce_text_changes = 150,
---   },
--- }
+vim.lsp.enable({
+  'bashls',
+  'biome',
+  'clangd',
+  'cssls',
+  'dockerls',
+  'eslint',
+  'gopls',
+  'graphql',
+  'html',
+  'jsonls',
+  'nil_ls',
+  'pyright',
+  'tailwindcss',
+  'terraformls',
+  'ts_ls',
+  'yamlls',
+})
