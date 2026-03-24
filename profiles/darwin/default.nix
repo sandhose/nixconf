@@ -39,6 +39,11 @@ with inputs;
       podman-compose
       buildkit
       libssh
+      pkg-config
+      gettext
+      zlib
+      libiconv
+      llvmPackages.openmp
     ];
 
     variables = {
