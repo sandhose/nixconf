@@ -40,6 +40,7 @@ with pkgs;
   # kubeseal
   kustomize
   #kpt # Broken on darwin as of 1/08/22
+  grafana-loki
   #mosh
   nix-index
   nixd
