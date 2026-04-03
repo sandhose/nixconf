@@ -18,6 +18,8 @@
         ../../profiles/home-manager/ghostty
         ../../profiles/home-manager/git
         ../../profiles/home-manager/git/sandhose.nix
+        ../../profiles/home-manager/jj
+        ../../profiles/home-manager/jj/sandhose.nix
         ../../profiles/home-manager/nix
         ../../profiles/home-manager/nu
         ../../profiles/home-manager/npm
