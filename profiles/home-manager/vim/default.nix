@@ -42,9 +42,9 @@ in
         ripgrep
 
         # Various language servers
-        nodePackages.bash-language-server
+        bash-language-server
         clang-tools # broken on darwin
-        nodePackages.vscode-langservers-extracted
+        vscode-langservers-extracted
         dockerfile-language-server
         pyright
         gopls
@@ -52,9 +52,9 @@ in
         # python38Packages.python-lsp-black
         terraform-ls
         nil
-        nodePackages.typescript
-        nodePackages.typescript-language-server
-        nodePackages.yaml-language-server
+        typescript
+        typescript-language-server
+        yaml-language-server
         #zls
       ];
 
