@@ -10,11 +10,6 @@
       inputs.flake-compat.follows = "flake-compat";
     };
 
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     flake-compat.url = "github:edolstra/flake-compat";
 
     darwin = {
@@ -42,7 +37,6 @@
     {
       self,
       darwin,
-      fenix,
       flake-utils,
       flake-compat,
       home-manager,

@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 let
-  inherit (inputs) self fenix;
+  inherit (inputs) self;
 
 in
 {
@@ -12,7 +12,6 @@ in
 
   nixpkgs.overlays = [
     self.overlay
-    fenix.overlays.default
     # Nomad tests are failing on darwin in CI and often failing because of disk space requirements on Linux
     (final: prev: {
       nomad = prev.nomad.overrideAttrs (old: {

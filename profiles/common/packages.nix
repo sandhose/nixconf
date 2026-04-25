@@ -90,7 +90,6 @@ with pkgs;
   prometheus
 
   (lib.hiPrio corepack_24)
-  (lib.hiPrio fenix.rust-analyzer)
 
   # elixir
   # fig2dev
@@ -187,26 +186,4 @@ with pkgs;
   bat
   ripgrep
 
-  #(fenix.complete.withComponents [ "rustc" "rustfmt" ])
-  #(hiPrio
-  #  (fenix.combine [
-  #    fenix.stable.llvm-tools-preview
-  #    fenix.stable.clippy
-  #    fenix.stable.cargo
-  #    fenix.stable.rust-src
-  #    fenix.stable.rust-std
-  #    fenix.stable.rustc
-  #    fenix.targets.wasm32-unknown-unknown.stable.rust-std
-  #    fenix.targets.x86_64-unknown-linux-musl.stable.rust-std
-  #    fenix.targets.aarch64-unknown-linux-musl.stable.rust-std
-  #    fenix.targets.x86_64-unknown-linux-gnu.stable.rust-std
-  #    fenix.targets.aarch64-unknown-linux-gnu.stable.rust-std
-  #    fenix.targets.x86_64-apple-darwin.stable.rust-std
-  #    fenix.targets.aarch64-apple-darwin.stable.rust-std
-  #    fenix.targets.aarch64-apple-ios.stable.rust-std
-  #    fenix.targets.aarch64-apple-ios-sim.stable.rust-std
-  #    fenix.targets.x86_64-pc-windows-msvc.stable.rust-std
-  #    fenix.targets.aarch64-pc-windows-msvc.stable.rust-std
-  #    fenix.targets.riscv32imac-unknown-none-elf.stable.rust-std
-  #  ]))
 ]
