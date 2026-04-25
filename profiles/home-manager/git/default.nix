@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   programs = {
@@ -17,6 +17,7 @@
     git = {
       enable = true;
       lfs.enable = true;
+      signing.format = lib.mkDefault "openpgp";
       ignores = [
         ".DS_Store"
         "*.swp"

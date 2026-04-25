@@ -11,7 +11,7 @@ in
   ];
 
   nixpkgs.overlays = [
-    self.overlay
+    self.overlays.default
     # Nomad tests are failing on darwin in CI and often failing because of disk space requirements on Linux
     (final: prev: {
       nomad = prev.nomad.overrideAttrs (old: {

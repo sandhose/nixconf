@@ -31,6 +31,8 @@ in
     neovim = {
       enable = true;
       vimAlias = true;
+      withRuby = false;
+      withPython3 = false;
 
       extraPackages = with pkgs; [
         gcc
