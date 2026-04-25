@@ -4,8 +4,6 @@
 
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    flake-compat.url = "github:edolstra/flake-compat";
-
     darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +30,6 @@
       self,
       darwin,
       flake-utils,
-      flake-compat,
       home-manager,
       lanzaboote,
       nixos-generators,
