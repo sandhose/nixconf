@@ -176,10 +176,10 @@ with pkgs;
   minio-client
   less
 
-  consul
-  nomad
-  packer
-  vault-bin
+  #consul
+  #nomad
+  #packer
+  #vault-bin
 
   # Needed by Telescope.nvim
   fd

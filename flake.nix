@@ -75,6 +75,16 @@
         ];
       };
 
+      darwinConfigurations."quenting-laptop" = darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        inherit inputs;
+        modules = [
+          # This needs to be imported here because of some weird infinite recursions issues
+          home-manager.darwinModules.home-manager
+          ./hosts/quenting-laptop
+        ];
+      };
+
       nixosConfigurations = {
         "sandhose-desktop" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

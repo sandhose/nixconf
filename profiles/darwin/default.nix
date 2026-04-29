@@ -75,5 +75,5 @@ with inputs;
 
   programs.nix-index.enable = true;
 
-  system.stateVersion = 4;
+  system.stateVersion = 6;
 }
