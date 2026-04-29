@@ -12,11 +12,17 @@ in
 
   nixpkgs.overlays = [
     self.overlays.default
-    # Nomad tests are failing on darwin in CI and often failing because of disk space requirements on Linux
+
     (final: prev: {
+      # Nomad tests are failing on darwin in CI and often failing because of disk space requirements on Linux
       nomad = prev.nomad.overrideAttrs (old: {
         doCheck = false;
         doInstallCheck = false;
+      });
+
+      # direnv tests are failing on darwin: https://github.com/NixOS/nixpkgs/issues/507531
+      direnv = prev.direnv.overrideAttrs (old: {
+        doCheck = false;
       });
     })
   ];
