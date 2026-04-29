@@ -8,4 +8,6 @@
     ../../profiles/darwin
     ../../users/quenting/darwin.nix
   ];
+
+  system.stateVersion = 6;
 }

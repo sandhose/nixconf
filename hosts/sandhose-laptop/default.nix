@@ -8,4 +8,6 @@
     ../../profiles/darwin
     ../../users/sandhose/darwin.nix
   ];
+
+  system.stateVersion = 4;
 }
