@@ -44,6 +44,7 @@ with pkgs;
   #mosh
   nix-index
   nixd
+  nil
   nmap
   nodejs_24
   opencode
