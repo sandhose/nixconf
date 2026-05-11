@@ -6,7 +6,7 @@ with pkgs;
   cachix
   caddy
   curl
-  #cloudflared
+  cloudflared
   cosign
   deno
   # dnsutils
@@ -41,6 +41,7 @@ with pkgs;
   kustomize
   #kpt # Broken on darwin as of 1/08/22
   grafana-loki
+  mailpit
   #mosh
   nix-index
   nixd
