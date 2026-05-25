@@ -44,6 +44,7 @@ with inputs;
       zlib
       libiconv
       llvmPackages.openmp
+      xcodegen
     ];
 
     variables = {
