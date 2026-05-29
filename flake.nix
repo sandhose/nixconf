@@ -23,6 +23,12 @@
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    jj-starship = {
+      url = "github:dmmulroy/jj-starship";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs =
@@ -31,6 +37,7 @@
       darwin,
       flake-utils,
       home-manager,
+      jj-starship,
       lanzaboote,
       nixos-generators,
       nixpkgs,

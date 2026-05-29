@@ -1,7 +1,10 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ my.zsh-funcs ];
+  home.packages = with pkgs; [
+    my.zsh-funcs
+    jj-starship
+  ];
 
   programs = {
     zsh = {
@@ -38,6 +41,15 @@
         aws.disabled = true;
         gcloud.disabled = true;
         openstack.disabled = true;
+
+        # Unified git/jj prompt module: https://github.com/dmmulroy/jj-starship
+        custom.jj = {
+          when = "jj-starship detect";
+          shell = [ "jj-starship" ];
+          format = "$output ";
+        };
+        git_branch.disabled = true;
+        git_status.disabled = true;
       };
     };
   };

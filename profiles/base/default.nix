@@ -1,7 +1,7 @@
 { inputs, ... }:
 
 let
-  inherit (inputs) self;
+  inherit (inputs) self jj-starship;
 
 in
 {
@@ -12,6 +12,7 @@ in
 
   nixpkgs.overlays = [
     self.overlays.default
+    jj-starship.overlays.default
 
     (final: prev: {
       # Nomad tests are failing on darwin in CI and often failing because of disk space requirements on Linux
