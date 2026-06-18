@@ -20,7 +20,9 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.0.0";
+      # v1.0.0 sets boot.bootspec.enable, which newer nixpkgs rejects; pin to the
+      # fix commit until a release past v1.0.0 is cut. See lanzaboote#617.
+      url = "github:nix-community/lanzaboote/0403b4b7e8b2612657f0053a4c315e6c43eee9e6";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
