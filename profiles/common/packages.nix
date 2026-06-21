@@ -21,6 +21,7 @@ with pkgs;
   gnused
   gnutar
   go-jsonnet
+  google-cloud-sdk
   graphviz
   htop
   imagemagick
@@ -154,6 +155,7 @@ with pkgs;
   fluxcd
   gawk
   gh
+  glab
   go
   # inkscape
   # jabref
