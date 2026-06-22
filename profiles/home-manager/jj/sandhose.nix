@@ -10,9 +10,11 @@
     signing = {
       backend = "gpg";
       key = "552719FC";
-      sign-all = true;
     };
 
-    git.push-bookmark-prefix = "quenting/push-";
+    git = {
+      push-bookmark-prefix = "quenting/push-";
+      sign-on-push = true;
+    };
   };
 }
