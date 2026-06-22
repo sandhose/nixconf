@@ -2,6 +2,7 @@
 
 with pkgs;
 [
+  acli
   # bazel
   cachix
   caddy
