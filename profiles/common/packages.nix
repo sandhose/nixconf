@@ -93,7 +93,7 @@ with pkgs;
   python3Packages.supervisor
   prometheus
 
-  (lib.hiPrio corepack_24)
+  (lib.hiPrio corepack)
 
   # elixir
   # fig2dev
