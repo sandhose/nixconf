@@ -6,6 +6,12 @@
     settings = {
       remotes.origin.auto-track-bookmarks = "*";
 
+      # Treat commits marked by `jj-mark-reviewed` (local `reviewed/pr-*`
+      # bookmarks pointing at GitHub-reviewed commits) as immutable. These
+      # bookmarks are local and untracked, so a plain `jj git push` never
+      # pushes them.
+      revset-aliases."immutable_heads()" = "builtin_immutable_heads() | bookmarks(glob:'reviewed/*')";
+
       ui = {
         pager = "delta";
         diff.format = "git";

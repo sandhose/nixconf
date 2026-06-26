@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     my.zsh-funcs
+    my.jj-mark-reviewed
     jj-starship
   ];
 
