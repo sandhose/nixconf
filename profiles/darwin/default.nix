@@ -35,8 +35,8 @@ with inputs;
       docker-compose
       docker-buildx
       docker-credential-helpers
-      podman
-      podman-compose
+      #podman
+      #podman-compose
       buildkit
       libssh
       pkg-config
@@ -51,7 +51,7 @@ with inputs;
       EDITOR = "nvim";
       LANG = "en_US.UTF-8";
       PKG_CONFIG_PATH = "/run/current-system/sw/share/pkgconfig:/run/current-system/sw/lib/pkgconfig";
-      BUILDKIT_HOST = "podman-container://buildkitd";
+      #BUILDKIT_HOST = "podman-container://buildkitd";
       COREPACK_ENABLE_AUTO_PIN = "0"; # Disable yarn automatically pinning itself in the package.json
       CLICOLOR = "1";
     };
