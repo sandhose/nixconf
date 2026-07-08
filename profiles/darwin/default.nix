@@ -10,15 +10,6 @@ with inputs;
 {
   imports = [ ./system.nix ];
 
-  # nix-darwin's darwin-manual-html build calls `nixos-render-docs manual html
-  # --toc-depth`, which newer nixpkgs' nixos-render-docs removed in favour of
-  # --sidebar-depth (see nix-darwin PRs #1818/#1819). Skip building the HTML
-  # manual + `darwin-help` until that fix lands upstream; manpages still work.
-  # The uninstaller embeds its own darwin-system with docs on, so it drags the
-  # broken manual back into the closure — disable it too.
-  documentation.doc.enable = false;
-  system.tools.darwin-uninstaller.enable = false;
-
   environment = {
     systemPackages = with pkgs; [
       (lima.override {
