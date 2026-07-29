@@ -3,96 +3,79 @@
 with pkgs;
 [
   acli
-  # bazel
+  bat
   cachix
   caddy
-  curl
+  cargo-deny
+  cargo-edit
+  cloc
   cloudflared
+  cmake
   cosign
-  deno
-  # dnsutils
-  doctl
-  # docker-compose
-  editorconfig-core-c
-  # fly
+  curl
+  fd
+  ffmpeg
+  file
+  fluxcd
+  gawk
+  gh
   git
-  git-lfs
   git-absorb
+  git-lfs
+  glab
   gnupg
   gnused
   gnutar
+  go
   go-jsonnet
   google-cloud-sdk
+  grafana-loki
   graphviz
   htop
   imagemagick
   iperf
-  isync
-  icu.dev
   jq
-  just
-  #jsonnet
   jsonnet-bundler
-  jsonnet-language-server
+  just
   k3d
   kind
   kubectl
   kubectl-cnpg
   kubelogin-oidc
   kubernetes-helm
-  # kubeseal
   kustomize
-  #kpt # Broken on darwin as of 1/08/22
-  grafana-loki
+  less
+  libffi.dev
   mailpit
-  #mosh
+  mdbook
+  my.zsh-funcs
   nix-index
-  nixd
-  nil
-  nmap
   nodejs_24
-  opencode
   openssl
   openssl.dev
   overmind
   pandoc
   parallel
-  # pgcli
   pkg-config
+  prometheus
   protobuf
-  # poetry # Installed via pipx instead
-  # python3Packages.pipx
   pwgen
-  # python
-  # python3
-  # python3Full
-  # python37Packages.ansible
   redis
-  rye
+  ripgrep
   rustup
-  # socat
+  shellcheck
+  sops
   sqlite-interactive
-  sshpass
-  terraform_1
-  tmux
+  sqlx-cli
   unixtools.watch
-  unrar
-  #urlview
   uv
+  vault-bin
   vim
-  w3m
-  # watchman # 4+ years old, installed manually instead
   wget
   wrk
-  yt-dlp
+  xz
   yq
-  my.zsh-funcs
-  # clang-tools # broken on darwin
-  #zig
-
-  haproxy
-  python3Packages.supervisor
-  prometheus
+  yt-dlp
 
   (lib.hiPrio corepack)
 
@@ -136,60 +119,4 @@ with pkgs;
   #})
   #auto-multiple-choice
   # gnome.librsvg
-
-  # maven
-  # argocd
-  # autoconf
-  # autogen
-  # automake
-  bazel-buildtools
-  # bazel-watcher
-  bazelisk
-  cargo-bloat
-  cargo-edit
-  # cargo-expand
-  cargo-deny
-  cargo-machete
-  cloc
-  cmake
-  dos2unix
-  ffmpeg
-  fluxcd
-  gawk
-  gh
-  glab
-  go
-  # inkscape
-  # jabref
-  # keybase # Broken on darwin as of 1/08/22
-  kind
-  librsvg
-  libffi.dev
-  # buildpack
-  shellcheck
-  sops
-  # weechat
-  xmlsec
-  xz
-  jdk11
-
-  gnumake
-  go
-  file
-
-  sqlx-cli
-  mdbook
-  minio-client
-  less
-
-  consul
-  nomad
-  #packer
-  vault-bin
-
-  # Needed by Telescope.nvim
-  fd
-  bat
-  ripgrep
-
 ]

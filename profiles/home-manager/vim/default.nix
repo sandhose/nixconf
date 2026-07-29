@@ -37,27 +37,11 @@ in
       extraPackages = with pkgs; [
         gcc
         tree-sitter
-
-        # Needed by Telescope
-        bat
-        fd
-        ripgrep
-
-        # Various language servers
         bash-language-server
         clang-tools # broken on darwin
         vscode-langservers-extracted
         dockerfile-language-server
-        pyright
-        gopls
-        # python38Packages.python-lsp-server
-        # python38Packages.python-lsp-black
-        terraform-ls
-        nil
-        typescript
-        typescript-language-server
         yaml-language-server
-        #zls
       ];
 
       # Can't rely on init.lua, because it gets loaded before init.vim and

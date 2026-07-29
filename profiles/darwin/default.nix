@@ -23,27 +23,17 @@ with inputs;
       openssl.dev
       pinentry_mac
       reattach-to-user-namespace
-      #notmuch
-      #my.neomutt
-      #neomutt
-      #msmtp
-      #wireshark
-      #xquartz # Broken as of 1/08/22
-      (lib.hiPrio ncurses)
       cocoapods
       docker
       docker-compose
       docker-buildx
       docker-credential-helpers
-      #podman
-      #podman-compose
       buildkit
       libssh
       pkg-config
       gettext
       zlib
       libiconv
-      llvmPackages.openmp
       xcodegen
     ];
 
