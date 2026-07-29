@@ -37,6 +37,7 @@ with pkgs;
   k3d
   kind
   kubectl
+  kubectl-cnpg
   kubelogin-oidc
   kubernetes-helm
   # kubeseal
