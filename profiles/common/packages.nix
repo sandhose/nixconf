@@ -53,6 +53,7 @@ with pkgs;
   nodejs_24
   openssl
   openssl.dev
+  opentofu
   overmind
   pandoc
   parallel
