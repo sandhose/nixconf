@@ -12,6 +12,13 @@
       # pushes them.
       revset-aliases."immutable_heads()" = "builtin_immutable_heads() | bookmarks(glob:'reviewed/*')";
 
+      revset-aliases."closest_pushable(to)" = {
+        definition = ''heads(::to & mutable() & ~empty() & description(regex:".+"))'';
+        doc = "Closest mutable, non-empty, described commits at or behind to";
+      };
+
+      revsets.bookmark-advance-to = "closest_pushable(@)";
+
       ui = {
         pager = "delta";
         diff.format = "git";
