@@ -19,6 +19,7 @@ with pkgs;
   fluxcd
   gawk
   gh
+  gh-stack
   git
   git-absorb
   git-lfs
