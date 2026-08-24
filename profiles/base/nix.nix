@@ -27,14 +27,14 @@ lib.mkMerge [
     };
   }
 
-  (lib.mkIf pkgs.stdenv.isLinux {
+  (lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     nix.settings = {
       sandbox = true;
       trusted-users = [ "@admin" ];
     };
   })
 
-  (lib.mkIf pkgs.stdenv.isDarwin {
+  (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     nix.settings = {
       sandbox = false; # For some reason does not work on my laptop
       trusted-users = [ "@wheel" ];

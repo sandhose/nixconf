@@ -3,7 +3,7 @@
 {
   programs.ghostty = {
     enable = true;
-    package = if pkgs.stdenv.isDarwin then null else pkgs.ghostty; # Don't install ghostty from nixpkgs on macOS
+    package = if pkgs.stdenv.hostPlatform.isDarwin then null else pkgs.ghostty; # Don't install ghostty from nixpkgs on macOS
     installVimSyntax = false;
     installBatSyntax = false;
     enableBashIntegration = true;
