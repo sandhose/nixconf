@@ -25,6 +25,15 @@ in
       direnv = prev.direnv.overrideAttrs (old: {
         doCheck = false;
       });
+
+      # FIXME: TEMPORARY WORKAROUND, REMOVE once nixpkgs fixes redis on darwin.
+      # redis 8.10.3 no longer has the SDK path in src/modules/Makefile, so the darwin
+      # --replace-fail in postPatch aborts the build (broken since NixOS/nixpkgs#579205).
+      # This blanket-swaps every --replace-fail in postPatch, so it hides future
+      # substitution breakages in redis too; check the upstream derivation before keeping it.
+      redis = prev.redis.overrideAttrs (old: {
+        postPatch = builtins.replaceStrings [ "--replace-fail" ] [ "--replace-quiet" ] old.postPatch;
+      });
     })
   ];
 
