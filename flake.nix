@@ -29,11 +29,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+
+    credentialsd = {
+      url = "github:dmnc98/credentialsd-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       self,
+      credentialsd,
       darwin,
       flake-utils,
       home-manager,

@@ -15,6 +15,26 @@
         "type": "github"
       }
     },
+    "credentialsd": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793981227,
+        "narHash": "sha256-slL8Yj8QhsZ5QzDiEE5AfjD8JVkv0Q56xIhfjVN8MIQ=",
+        "owner": "dmnc98",
+        "repo": "credentialsd-flake",
+        "rev": "a86e7a81a705d818350a54944f966c3e9354925a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dmnc98",
+        "repo": "credentialsd-flake",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -235,6 +255,7 @@
     },
     "root": {
       "inputs": {
+        "credentialsd": "credentialsd",
         "darwin": "darwin",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
