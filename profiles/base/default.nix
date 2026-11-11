@@ -25,6 +25,11 @@ in
       direnv = prev.direnv.overrideAttrs (old: {
         doCheck = false;
       });
+
+      # sqlx-cli links against system sqlite but doesn't list it as a dependency: https://github.com/NixOS/nixpkgs/pull/585098
+      sqlx-cli = prev.sqlx-cli.overrideAttrs (old: {
+        buildInputs = (old.buildInputs or [ ]) ++ [ final.sqlite ];
+      });
     })
   ];
 
