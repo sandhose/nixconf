@@ -48,6 +48,9 @@
 
   boot.plymouth = {
     enable = true;
+    # The initrd only ships this one font, and the boot log view asks for
+    # "monospace": give it an actual monospace font
+    font = "${pkgs.nerd-fonts.fira-code}/share/fonts/truetype/NerdFonts/FiraCode/FiraCodeNerdFont-Regular.ttf";
   };
 
   environment.systemPackages = [
@@ -92,9 +95,8 @@
         libvdpau-va-gl
       ];
     };
-    logitech.wireless = {
-      enable = true;
-      enableGraphical = true;
-    };
+    logitech.wireless.enable = true;
   };
+
+  programs.solaar.enable = true;
 }
