@@ -8,6 +8,7 @@
       records = true;
       auto_sync = true;
       sync_frequency = "5m";
+      threads.capture = true;
     };
     daemon.enable = true;
   };
