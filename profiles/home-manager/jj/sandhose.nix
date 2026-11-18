@@ -12,9 +12,8 @@
       key = "552719FC";
     };
 
-    git = {
-      push-bookmark-prefix = "quenting/push-";
-      sign-on-push = true;
-    };
+    templates.git_push_bookmark = ''"quenting/push-" ++ change_id.short()'';
+
+    revsets.git-sign-on-push = "~signed() & mine()";
   };
 }
