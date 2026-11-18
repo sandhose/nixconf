@@ -59,5 +59,17 @@
     }
   ];
 
+  # Personal Rex server, reachable on the tailnet through Rex's own embedded
+  # Tailscale node at https://rex-desktop.<tailnet>.ts.net
+  home-manager.users.sandhose.services.rex = {
+    enable = true;
+    tailscale = {
+      enable = true;
+      hostname = "rex-desktop";
+    };
+  };
+  # Keep the user service (and its sessions) alive while logged out
+  users.users.sandhose.linger = true;
+
   powerManagement.cpuFreqGovernor = lib.mkDefault "schedutil";
 }
