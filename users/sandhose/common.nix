@@ -23,6 +23,7 @@
         ../../profiles/home-manager/nix
         ../../profiles/home-manager/nu
         ../../profiles/home-manager/npm
+        ../../profiles/home-manager/rex
         ../../profiles/home-manager/tmux
         ../../profiles/home-manager/vim
         ../../profiles/home-manager/zsh
