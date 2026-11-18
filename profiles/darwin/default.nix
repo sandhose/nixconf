@@ -57,6 +57,16 @@ with inputs;
     etc.terminfo = {
       source = "${config.system.path}/share/terminfo";
     };
+
+    # Makes ssh announce xterm-256color instead of Rex's xterm-rex to hosts
+    # that lack the terminfo entry.
+    etc."ssh/ssh_config.d/50-rex.conf" =
+      let
+        package = inputs.rex.packages.${pkgs.stdenv.hostPlatform.system}.rex or null;
+      in
+      lib.mkIf (package != null) {
+        source = "${package}/share/rex/ssh_config.d/50-rex.conf";
+      };
   };
 
   security.pam.services.sudo_local = {
