@@ -30,6 +30,17 @@ in
       sqlx-cli = prev.sqlx-cli.overrideAttrs (old: {
         buildInputs = (old.buildInputs or [ ]) ++ [ final.sqlite ];
       });
+
+      # rustaceanvim integration tests time out waiting for rust-analyzer on darwin: https://github.com/NixOS/nixpkgs/issues/588378
+      luajit =
+        if prev.stdenv.hostPlatform.isDarwin then
+          prev.luajit.override {
+            packageOverrides = lfinal: lprev: {
+              rustaceanvim = lprev.rustaceanvim.overrideAttrs { doCheck = false; };
+            };
+          }
+        else
+          prev.luajit;
     })
   ];
 
